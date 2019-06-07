@@ -1,12 +1,11 @@
 extends KinematicBody2D
 
 
-##### ++++++++++++++++++++ CONSTANTS ++++++++++++++++++++ #####
-
+##### ++++++++++++++++++++++++++++++ CONSTANTS ++++++++++++++++++++++++++++++ #####
 
 ### STATES
 
-enum PlayerState {
+enum PlayerStates {
 	DEFAULT,
 	GROUND, AIR, CROUCH,
 	GROUND_ATK, AIR_ATK, CROUCH_ATK,
@@ -22,11 +21,11 @@ const WALK_SPEED: int = 120
 const JUMP_VELOCITY: int = 250
 
 
-##### ++++++++++++++++++++ VARIABLES ++++++++++++++++++++ #####
+##### ++++++++++++++++++++++++++++++ VARIABLES ++++++++++++++++++++++++++++++ #####
 
+var GameState: Node
 
 var del: float
-
 var state: int
 
 
@@ -45,16 +44,41 @@ var input_jump: bool
 var velocity: Vector2
 
 var jumps: int
+var can_jump: bool
 
 
-##### ++++++++++++++++++++ READY ++++++++++++++++++++ #####
+##### +++++++++++++++++++++++++++++ READY ++++++++++++++++++++++++++++++ #####
 
 func _ready() -> void:
-	state = PlayerState.DEFAULT
+	
+	GameState = get_node("../State")
+	
+	state = PlayerStates.DEFAULT
+	
+	
+	### MOVEMENT VARIABLES
+	
 	velocity = Vector2(0, 0)
+	
+	reset_jumps()
+	can_jump = false
 
 
-##### ++++++++++++++++++++ PROCESS ++++++++++++++++++++ #####
+##### ++++++++++++++++++++++++++++++ METHODS ++++++++++++++++++++++++++++++ #####
+
+func reset_jumps() -> void:
+	jumps = GameState.jumps
+
+func jump() -> void:
+	can_jump = false
+	jumps -= 1
+	velocity.y = -JUMP_VELOCITY
+
+func on_ground() -> bool:
+	return test_move(transform, Vector2(0,1))
+
+
+##### ++++++++++++++++++++++++++++++ PROCESS ++++++++++++++++++++++++++++++ #####
 
 func _physics_process(delta) -> void:
 	
@@ -71,19 +95,59 @@ func _physics_process(delta) -> void:
 	input_jump = Input.is_action_pressed("input_jump")
 	
 	
-	### PLAYER STATES
+	### STATE SWITCHING
 	
 	match state:
-		_:
-			if is_on_floor():
-				if input_jump:
-					velocity.y = -JUMP_VELOCITY
-				elif velocity.y != 0:
-					velocity.y = 0
-			else:
-				velocity.y += GRAVITY
+		
+		PlayerStates.DEFAULT:
+			state = PlayerStates.AIR
 			
+		PlayerStates.AIR:
+			if on_ground():
+				state = PlayerStates.GROUND
+				print("AIR -> GROUND")
+		
+		PlayerStates.GROUND:
+			if !on_ground():
+				state = PlayerStates.AIR
+				print("GROUND -> AIR")
+			if input_jump && can_jump:
+				state = PlayerStates.AIR
+				print("GROUND -> AIR")
+	
+	
+	### STATE FUNCTIONALITY
+	
+	match state:
+		
+		
+		PlayerStates.AIR:
+			
+			if input_jump && can_jump:
+				jump()
+			
+			velocity.y += GRAVITY
 			velocity.x = WALK_SPEED * (input_right - input_left)
 			
 			move_and_slide(velocity, Vector2(0,-1))
+		
+		
+		PlayerStates.GROUND:
 			
+			reset_jumps()
+			
+			if velocity.y != 0:
+				velocity.y = 0
+			velocity.x = WALK_SPEED * (input_right - input_left)
+			
+			move_and_slide_with_snap(velocity, Vector2(0,-1))
+		
+		
+		_: #default
+			continue
+	
+	
+	### STATE-INDEPENDENT FUNCTIONALITY
+	
+	if !can_jump && !input_jump && jumps > 0:
+		can_jump = true
