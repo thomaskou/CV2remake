@@ -4,6 +4,17 @@ extends KinematicBody2D
 ##### ++++++++++++++++++++ CONSTANTS ++++++++++++++++++++ #####
 
 
+### STATES
+
+enum PlayerState {
+	GROUND,
+	GROUND_ATTACK,
+	AIR,
+	AIR_ATTACK,
+	
+}
+
+
 ### MOVEMENT CONSTANTS
 
 const GRAVITY: float = 14.0
@@ -30,6 +41,8 @@ var input_jump: bool
 
 var velocity: Vector2
 
+var double_jumped: bool
+
 
 ##### ++++++++++++++++++++ READY ++++++++++++++++++++ #####
 
@@ -54,7 +67,7 @@ func _physics_process(delta) -> void:
 	input_jump = Input.is_action_pressed("input_jump")
 	
 	
-	### MOVEMENT
+	### STATES
 	
 	if is_on_floor():
 		if input_jump:
