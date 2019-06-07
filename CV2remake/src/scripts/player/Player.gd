@@ -7,11 +7,11 @@ extends KinematicBody2D
 ### STATES
 
 enum PlayerState {
-	GROUND,
-	GROUND_ATTACK,
-	AIR,
-	AIR_ATTACK,
-	
+	DEFAULT,
+	GROUND, AIR, CROUCH,
+	GROUND_ATK, AIR_ATK, CROUCH_ATK,
+	GROUND_DASH, AIR_DASH, SLIDE, SJUMP,
+	HURT,
 }
 
 
@@ -24,7 +24,10 @@ const JUMP_VELOCITY: int = 250
 
 ##### ++++++++++++++++++++ VARIABLES ++++++++++++++++++++ #####
 
+
 var del: float
+
+var state: int
 
 
 ### INPUT VARIABLES
@@ -41,12 +44,13 @@ var input_jump: bool
 
 var velocity: Vector2
 
-var double_jumped: bool
+var jumps: int
 
 
 ##### ++++++++++++++++++++ READY ++++++++++++++++++++ #####
 
 func _ready() -> void:
+	state = PlayerState.DEFAULT
 	velocity = Vector2(0, 0)
 
 
@@ -67,16 +71,19 @@ func _physics_process(delta) -> void:
 	input_jump = Input.is_action_pressed("input_jump")
 	
 	
-	### STATES
+	### PLAYER STATES
 	
-	if is_on_floor():
-		if input_jump:
-			velocity.y = -JUMP_VELOCITY
-		elif velocity.y != 0:
-			velocity.y = 0
-	else:
-		velocity.y += GRAVITY
-	
-	velocity.x = WALK_SPEED * (input_right - input_left)
-	
-	move_and_slide(velocity, Vector2(0,-1))
+	match state:
+		_:
+			if is_on_floor():
+				if input_jump:
+					velocity.y = -JUMP_VELOCITY
+				elif velocity.y != 0:
+					velocity.y = 0
+			else:
+				velocity.y += GRAVITY
+			
+			velocity.x = WALK_SPEED * (input_right - input_left)
+			
+			move_and_slide(velocity, Vector2(0,-1))
+			
