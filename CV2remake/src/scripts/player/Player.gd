@@ -72,7 +72,7 @@ func _ready() -> void:
 ### CONDITIONS
 
 func on_ground() -> bool:
-	return test_move(transform, Vector2(0,1))
+	return test_move(transform, Vector2(0,0.9))
 
 
 ### GENERAL
