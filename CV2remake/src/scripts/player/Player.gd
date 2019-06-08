@@ -16,11 +16,12 @@ enum PlayerStates {
 
 ### MOVEMENT CONSTANTS
 
+const JUMP_VELOCITY: int = 250
 const GRAVITY: float = 14.0
-const AIR_FRICTION: float = 6.0
+const AIR_FRICTION: float = 20.0
 
 const WALK_SPEED: int = 120
-const JUMP_VELOCITY: int = 250
+const GROUND_FRICTION: float = 50.0
 
 
 ##### ++++++++++++++++++++++++++++++ VARIABLES ++++++++++++++++++++++++++++++ #####
@@ -74,35 +75,33 @@ func on_ground() -> bool:
 	return test_move(transform, Vector2(0,1))
 
 
-### MOVEMENT
+### GROUND MOVEMENT
 
-func get_velocity_in_air(speed: int) -> void:
+func get_velocity_on_ground(speed: int, delta: float) -> void:
+	
+	# standard horizontal movement
 	if !input_left && !input_right:
-		air_friction(speed)
-	elif input_right && !input_left:
-		velocity.x = speed * int(input_right)
-	elif input_left && !input_right:
-		velocity.x = -speed * int(input_left)
-	elif input_left || input_right:
+		ground_friction()
+	else:
 		velocity.x = speed * (int(input_right) - int(input_left))
+		
+	# slope movement (set downward velocity when moving downhill)
+	var test_y = round(abs(velocity.x))
+	while test_move(transform, delta * Vector2(round(velocity.x), round(test_y))):
+		if test_y == 0:
+			break
+		test_y -= 1
+	velocity.y = test_y
 
-func move_in_air() -> void:
-	move_and_slide(velocity.round(), Vector2(0,-1))
-
-func get_velocity_on_ground(speed: int) -> void:
-	velocity.x = speed * (int(input_right) - int(input_left))
+func ground_friction() -> void:
+	if velocity.x != 0.0:
+		velocity.x -= sign(velocity.x) * min(GROUND_FRICTION, abs(velocity.x))
 
 func move_on_ground(delta: float) -> void:
-	var test_x = round(velocity.x)
-	while test_move(transform, Vector2(test_x * delta, 0)):
-		test_x -= sign(test_x)
-		if test_x == 0:
-			break
-	move_local_x(test_x * delta)
-	#move_and_slide_with_snap(velocity.round(), Vector2(0,-1))
+	move_and_slide_with_snap(velocity.round(), Vector2(0,-1))
 
 
-### GRAVITY
+### AIR MOVEMENT
 
 func reset_vspeed() -> void:
 	if velocity.y != 0:
@@ -111,9 +110,19 @@ func reset_vspeed() -> void:
 func gravity() -> void:
 	velocity.y += GRAVITY
 
-func air_friction(speed: int) -> void:
+func get_velocity_in_air(speed: int) -> void:
+	if !input_left && !input_right:
+		air_friction()
+	else:
+		velocity.x = speed * (int(input_right) - int(input_left))
+	gravity()
+
+func air_friction() -> void:
 	if velocity.x != 0.0:
 		velocity.x -= sign(velocity.x) * min(AIR_FRICTION, abs(velocity.x))
+
+func move_in_air() -> void:
+	move_and_slide(velocity.round(), Vector2(0,-1))
 
 
 ### JUMPING
@@ -174,14 +183,13 @@ func _physics_process(delta) -> void:
 		
 		PlayerStates.AIR:
 			jump_after_input()
-			gravity()
 			get_velocity_in_air(WALK_SPEED)
 			move_in_air()
 		
 		PlayerStates.GROUND:
 			reset_jump_count()
 			reset_vspeed()
-			get_velocity_on_ground(WALK_SPEED)
+			get_velocity_on_ground(WALK_SPEED, delta)
 			move_on_ground(delta)
 	
 	
