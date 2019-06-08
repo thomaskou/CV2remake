@@ -75,6 +75,13 @@ func on_ground() -> bool:
 	return test_move(transform, Vector2(0,1))
 
 
+### GENERAL
+
+func round_position() -> void:
+	move_local_x(round(position.x) - position.x)
+	move_local_y(round(position.y) - position.y)
+
+
 ### GROUND MOVEMENT
 
 func get_velocity_on_ground(speed: int, delta: float) -> void:
@@ -196,3 +203,4 @@ func _physics_process(delta) -> void:
 	### STATE-INDEPENDENT FUNCTIONALITY
 	
 	set_can_jump()
+	round_position()
