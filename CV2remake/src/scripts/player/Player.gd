@@ -16,9 +16,11 @@ enum PlayerStates {
 
 ### MOVEMENT CONSTANTS
 
-const JUMP_VELOCITY: int = 250
-const GRAVITY: float = 14.0
+const JUMP_VELOCITY: float = 280.0
+const GRAVITY: float = 15.0
+const FAST_GRAVITY: float = 80.0
 const AIR_FRICTION: float = 20.0
+const TERMINAL_VELOCITY: float = 500.0
 
 const WALK_SPEED: int = 120
 const GROUND_FRICTION: float = 50.0
@@ -48,6 +50,7 @@ var velocity: Vector2
 
 var jump_count: int
 var can_jump: bool
+var fast_fall: bool
 
 
 ##### +++++++++++++++++++++++++++++ READY ++++++++++++++++++++++++++++++ #####
@@ -65,6 +68,7 @@ func _ready() -> void:
 	
 	reset_jump_count()
 	can_jump = false
+	fast_fall = false
 
 
 ##### ++++++++++++++++++++++++++++++ METHODS ++++++++++++++++++++++++++++++ #####
@@ -115,7 +119,14 @@ func reset_vspeed() -> void:
 		velocity.y = 0
 
 func gravity() -> void:
-	velocity.y += GRAVITY
+	if velocity.y < TERMINAL_VELOCITY:
+#		if fast_fall && (velocity.y + FAST_GRAVITY < 0):
+#			velocity.y += FAST_GRAVITY
+#		else:
+#			velocity.y += GRAVITY
+		velocity.y += (min(FAST_GRAVITY, abs(velocity.y)) if fast_fall else GRAVITY)
+	elif velocity.y > TERMINAL_VELOCITY:
+		velocity.y = TERMINAL_VELOCITY
 
 func get_velocity_in_air(speed: int) -> void:
 	if !input_left && !input_right:
@@ -141,11 +152,18 @@ func set_can_jump() -> void:
 	if !can_jump && !input_jump && jump_count > 0:
 		can_jump = true
 
+func set_fast_fall() -> void:
+	if !fast_fall && velocity.y < 0 && !input_jump:
+		fast_fall = true
+	elif fast_fall && velocity.y >= 0:
+		fast_fall = false
+
 func jump_after_input() -> void:
 	if input_jump && can_jump:
 		can_jump = false
 		jump_count -= 1
 		velocity.y = -JUMP_VELOCITY
+		fast_fall = false
 
 
 ##### ++++++++++++++++++++++++++++++ PROCESS ++++++++++++++++++++++++++++++ #####
@@ -189,6 +207,7 @@ func _physics_process(delta) -> void:
 	match state:
 		
 		PlayerStates.AIR:
+			set_fast_fall()
 			jump_after_input()
 			get_velocity_in_air(WALK_SPEED)
 			move_in_air()
