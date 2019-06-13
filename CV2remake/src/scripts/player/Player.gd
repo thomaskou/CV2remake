@@ -17,7 +17,7 @@ enum PlayerStates {
 ### MOVEMENT CONSTANTS
 
 const JUMP_VELOCITY: float = 280.0
-const GRAVITY: float = 15.0
+const GRAVITY: float = 14.5
 const FAST_GRAVITY: float = 80.0
 const AIR_FRICTION: float = 20.0
 const TERMINAL_VELOCITY: float = 500.0
@@ -78,6 +78,9 @@ func _ready() -> void:
 func on_ground() -> bool:
 	return test_move(transform, Vector2(0,0.9))
 
+func under_ceiling() -> bool:
+	return test_move(transform, Vector2(0,-0.9))
+
 
 ### GENERAL
 
@@ -99,7 +102,7 @@ func get_velocity_on_ground(speed: int, delta: float) -> void:
 	# slope movement (set downward velocity when moving downhill)
 	var test_y = round(abs(velocity.x))
 	while test_move(transform, delta * Vector2(round(velocity.x), round(test_y))):
-		if test_y == 0:
+		if test_y <= 0:
 			break
 		test_y -= 1
 	velocity.y = test_y
@@ -120,15 +123,13 @@ func reset_vspeed() -> void:
 
 func gravity() -> void:
 	if velocity.y < TERMINAL_VELOCITY:
-#		if fast_fall && (velocity.y + FAST_GRAVITY < 0):
-#			velocity.y += FAST_GRAVITY
-#		else:
-#			velocity.y += GRAVITY
 		velocity.y += (min(FAST_GRAVITY, abs(velocity.y)) if fast_fall else GRAVITY)
 	elif velocity.y > TERMINAL_VELOCITY:
 		velocity.y = TERMINAL_VELOCITY
 
 func get_velocity_in_air(speed: int) -> void:
+	if under_ceiling() && velocity.y < 0:
+		reset_vspeed()
 	if !input_left && !input_right:
 		air_friction()
 	else:
