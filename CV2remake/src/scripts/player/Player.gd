@@ -1,7 +1,8 @@
 extends KinematicBody2D
 
-
-##### ++++++++++++++++++++++++++++++ CONSTANTS ++++++++++++++++++++++++++++++ #####
+################################################################################
+# Constants
+################################################################################
 
 ### STATES
 
@@ -26,7 +27,9 @@ const WALK_SPEED: int = 120
 const GROUND_FRICTION: float = 50.0
 
 
-##### ++++++++++++++++++++++++++++++ VARIABLES ++++++++++++++++++++++++++++++ #####
+################################################################################
+# Variables
+################################################################################
 
 var GameState: Node
 
@@ -53,7 +56,9 @@ var can_jump: bool
 var fast_fall: bool
 
 
-##### +++++++++++++++++++++++++++++ READY ++++++++++++++++++++++++++++++ #####
+################################################################################
+# Ready
+################################################################################
 
 func _ready() -> void:
 	
@@ -71,7 +76,9 @@ func _ready() -> void:
 	fast_fall = false
 
 
-##### ++++++++++++++++++++++++++++++ METHODS ++++++++++++++++++++++++++++++ #####
+################################################################################
+# Methods
+################################################################################
 
 ### CONDITIONS
 
@@ -111,7 +118,7 @@ func ground_friction() -> void:
 	if velocity.x != 0.0:
 		velocity.x -= sign(velocity.x) * min(GROUND_FRICTION, abs(velocity.x))
 
-func move_on_ground(delta: float) -> void:
+func move_on_ground() -> void:
 	move_and_slide_with_snap(velocity.round(), Vector2(0,-1))
 
 
@@ -167,7 +174,9 @@ func jump_after_input() -> void:
 		fast_fall = false
 
 
-##### ++++++++++++++++++++++++++++++ PROCESS ++++++++++++++++++++++++++++++ #####
+################################################################################
+# Process
+################################################################################
 
 func _physics_process(delta) -> void:
 	
@@ -217,7 +226,7 @@ func _physics_process(delta) -> void:
 			reset_jump_count()
 			reset_vspeed()
 			get_velocity_on_ground(WALK_SPEED, delta)
-			move_on_ground(delta)
+			move_on_ground()
 	
 	
 	### STATE-INDEPENDENT FUNCTIONALITY
