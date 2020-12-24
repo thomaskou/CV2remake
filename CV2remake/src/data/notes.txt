@@ -1,0 +1,15 @@
+ATTRIBUTES:
+
+- pierce
+- slash
+- strike
+
+- dark
+- fire
+- holy
+- ice
+- thunder
+
+- curse
+- poison
+- stone

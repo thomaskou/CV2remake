@@ -1,0 +1,143 @@
+{
+    "default": {
+        "name": "DEFAULT",
+        "description": "LOREM IPSUM DOLOR SIT AMET.",
+        "icon": "res://src/assets/sprites/inventory/default.png"
+    },
+
+
+    
+    "pot_hp0": {
+        "name": "Potion", "use": true, "sell": 125,
+        "effect": "stats", "stats": { "hp": 80 },
+        "description": "Restores 80 HP."
+    },
+    "pot_hp1": {
+        "name": "High Potion", "use": true, "sell": 500,
+        "effect": "stats", "stats": { "hp": 200 },
+        "description": "Restores 200 HP."
+    },
+    "pot_hp2": {
+        "name": "Super Potion", "use": true, "sell": 3750,
+        "effect": "stats", "stats": { "hp": "100%" },
+        "description": "Restores all HP."
+    },
+    "pot_mp0": {
+        "name": "Mind Up", "use": true, "sell": 100,
+        "effect": "stats", "stats": { "hp": 100 },
+        "description": "Restores 100 MP."
+    },
+    "pot_mp1": {
+        "name": "High Mind Up", "use": true, "sell": 300,
+        "effect": "stats", "stats": { "hp": 200 },
+        "description": "Restores 200 MP."
+    },
+    "pot_mp2": {
+        "name": "Mana Prism", "use": true, "sell": 2500,
+        "effect": "stats", "stats": { "hp": "100%" },
+        "description": "Restores all MP."
+    },
+    "pot_poison": {
+        "name": "Anti-Venom", "use": true, "sell": 25,
+        "description": "Removes poison from your body."
+    },
+    "pot_curse": {
+        "name": "Uncurse Potion", "use": true, "sell": 25,
+        "description": "Nullifies curses."
+    },
+
+
+
+    "food_meat0": {
+        "name": "Pot Roast", "use": true, "sell": 72,
+        "effect": "stats", "stats": { "hp": 29 },
+        "description": "Restores 29 HP. Yummy!"
+    },
+    "food_meat1": {
+        "name": "Giant Roast", "use": true, "sell": 250,
+        "effect": "stats", "stats": { "hp": 290 },
+        "description": "Restores 290 HP. Delicious!"
+    },
+    "food_meat2": {
+        "name": "Thick Steak", "use": true, "sell": 1250,
+        "effect": "stats", "stats": { "hp": 1000 },
+        "description": "High-quality cut of choice meat."
+    },
+    "food_rice": {
+        "name": "Rice Ball", "use": true, "sell": 25,
+        "effect": "stats", "stats": { "hp": 20 },
+        "description": "Salmon-flavored rice ball."
+    },
+    "food_mushroom": {
+        "name": "Mushroom", "use": true, "sell": 50,
+        "effect": "stats", "stats": { "hp": 50 },
+        "description": "Deliciously appetizing mushroom."
+    },
+    "food_minestrone": {
+        "name": "Minestrone", "use": true, "sell": 150,
+        "effect": "stats", "stats": { "hp": 130 },
+        "description": "Hearty vegetable bean soup on a tomato broth."
+    },
+    "food_curry": {
+        "name": "Curry", "use": true, "sell": 345,
+        "effect": "stats", "stats": { "hp": 400 },
+        "description": "Exquisite dish of a dozen spices, simmered for a day and a night."
+    },
+    "food_ramen": {
+        "name": "Ramen", "use": true, "sell": 200,
+        "effect": "stats", "stats": { "hp": 300 },
+        "description": "Said to have come from the Far East by way of the Silk Road."
+    },
+    "food_creampuff": {
+        "name": "Cream Puff", "use": true, "sell": 30,
+        "effect": "stats", "stats": { "hp": 80 },
+        "description": "Soft, fluffy, and sweet."
+    },
+    "food_shortcake": {
+        "name": "Shortcake", "use": true, "sell": null,
+        "description": "Lorem ipsum dolor sit amet."
+    },
+    "food_cheese": {
+        "name": "Cheese", "use": true, "sell": null,
+        "description": "Lorem ipsum dolor sit amet."
+    },
+    "food_starfish": {
+        "name": "Boiled Starfish", "use": true, "sell": 100,
+        "effect": "stats", "stats": { "hp": 120 },
+        "description": "Has a firm yet slightly elastic texture."
+    },
+    "food_sorbet": {
+        "name": "Sorbet", "use": true, "sell": 25,
+        "effect": "stats", "stats": { "hp": 50 },
+        "description": "Sweet frozen dessert from France."
+    },
+
+
+
+    "effect_jar": {
+        "name": "Medicine Jar", "use": true, "sell": 7700,
+        "description": "Medicine that makes the user intangible for a brief period."
+    },
+    "effect_laurel": {
+        "name": "Laurel", "use": true, "sell": null,
+        "description": "Lorem ipsum dolor sit amet."
+    },
+
+
+
+    "throw_garlic": {
+        "name": "Garlic", "use": true, "sell": null,
+        "description": "Lorem ipsum dolor sit amet."
+    },
+
+
+
+    "sell_crown": {
+        "name": "Crown", "use": false, "sell": 5000,
+        "description": "Symbol of power and victory. 5000 pts."
+    },
+    "sell_moai": {
+        "name": "Moai", "use": false, "sell": 5000,
+        "description": "Ancient stone carving. 5000 pts."
+    }
+}

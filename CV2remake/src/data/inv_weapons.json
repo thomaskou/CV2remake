@@ -1,0 +1,505 @@
+{
+    "default": {
+        "name": "DEFAULT",
+        "description": "LOREM IPSUM DOLOR SIT AMET.",
+        "icon": "res://src/assets/sprites/inventory/default.png"
+    },
+
+
+    
+    "oak_stake": {
+        "name": "Oak Stake", "attrib": ["pierce"], "sell": 25,
+        "stats": { "atk": 13 },
+        "description": "According to folklore, it slays vampires when driven into their hearts."
+    },
+
+
+
+    "whip_vk0": {
+        "name": "Vampire Killer", "attrib": [], "sell": null,
+        "stats": { "atk": 10 },
+        "description": "Belmont family whip. Its powers have been cursed by Dracula."
+    },
+    "whip_vk1": {
+        "name": "Vampire Killer", "attrib": [], "sell": null,
+        "stats": { "atk": 80 },
+        "description": "The legendary whip wielded by the Belmont family."
+    },
+    "whip_vk2": {
+        "name": "Vampire Killer", "attrib": [], "sell": null,
+        "stats": { "atk": 130 },
+        "description": "Legendary whip of the Belmonts. Its potential has been fully realized."
+    },
+    "whip_leather": {
+        "name": "Leather Whip", "attrib": [], "sell": 250,
+        "stats": { "atk": 22 },
+        "description": "Made from leather. A weapon for a warrior with panache."
+    },
+    "whip_thorn": {
+        "name": "Whip of Thorns", "attrib": [], "sell": 750,
+        "stats": { "atk": 35 },
+        "description": "Whip woven of leather and thorns."
+    },
+    "whip_steel": {
+        "name": "Steel Whip", "attrib": [], "sell": 1250,
+        "stats": { "atk": 45 },
+        "description": "Whip fashioned from chains of steel."
+    },
+    "whip_rose": {
+        "name": "Rose Stem Whip", "attrib": [], "sell": 2000,
+        "stats": { "atk": 60 },
+        "description": "Thorned whip that requires great skill to use."
+    },
+    "whip_stone": {
+        "name": "Medusa Whip", "attrib": ["stone"], "sell": 3500,
+        "stats": { "atk": 30 },
+        "description": "Whip that can turn its targets to stone."
+    },
+    "whip_nebula": {
+        "name": "Nebula", "attrib": ["holy"], "sell": 5000,
+        "stats": { "atk": 37 },
+        "description": "Chain that binds and destroys evil."
+    },
+    "whip_fire": {
+        "name": "Flame Whip", "attrib": ["fire"], "sell": 5000,
+        "stats": { "atk": 65 },
+        "description": "Whip imbued with the power of flames."
+    },
+    "whip_dark": {
+        "name": "Jet Black Whip", "attrib": ["dark", "poison"], "sell": 16650,
+        "stats": { "atk": 44 },
+        "description": "Jet black whip imbued with the power of darkness."
+    },
+    "whip_morningstar": {
+        "name": "Morningstar", "attrib": ["strike"], "sell": 5000,
+        "stats": { "atk": 65 },
+        "description": "Whip with a vicious, star-shaped head."
+    },
+    "whip_undead": {
+        "name": "Undead Whip", "attrib": ["holy"], "sell": 25000,
+        "stats": { "atk": 70 },
+        "description": "Holy whip that can kill even the undead."
+    },
+
+
+    
+    "dagger_baselard": {
+        "name": "Baselard", "attrib": ["pierce"], "sell": 300,
+        "stats": { "atk": 19 },
+        "description": "Dagger with an I-shaped shaft."
+    },
+    "dagger_combat": {
+        "name": "Combat Dagger", "attrib": ["pierce"], "sell": 500,
+        "stats": { "atk": 24 },
+        "description": "Knife designed for close-quarters combat."
+    },
+    "dagger_cutall": {
+        "name": "Cutall", "attrib": ["pierce"], "sell": 1350,
+        "stats": { "atk": 48 },
+        "description": "Dagger of Indian origins."
+    },
+    "dagger_cinquedea": {
+        "name": "Cinquedea", "attrib": ["pierce"], "sell": 1875,
+        "stats": { "atk": 59 },
+        "description": "Elaborate dagger encrusted with jewels."
+    },
+
+
+
+    "sword_short": {
+        "name": "Short Sword", "attrib": ["slash"], "sell": 100,
+        "stats": { "atk": 16 },
+        "description": "Sword with a short blade."
+    },
+    "sword_cutlass": {
+        "name": "Cutlass", "attrib": ["slash"], "sell": 550,
+        "stats": { "atk": 21 },
+        "description": "Short sword used by sailors."
+    },
+    "sword_long": {
+        "name": "Long Sword", "attrib": ["slash"], "sell": 875,
+        "stats": { "atk": 29 },
+        "description": "Common long sword."
+    },
+    "sword_fragarach": {
+        "name": "Fragarach", "attrib": ["slash"], "sell": 1750,
+        "stats": { "atk": 32 },
+        "description": "Demonic sword in the shape of a cross."
+    },
+    "sword_mystletain": {
+        "name": "Mystletain", "attrib": ["slash", "holy"], "sell": 2250,
+        "stats": { "atk": 28 },
+        "description": "Sword hewn from the wood of a divine tree."
+    },
+    "sword_fire0": {
+        "name": "Laevatain", "attrib": ["slash", "fire"], "sell": 3400,
+        "stats": { "atk": 25, "int": 5 },
+        "description": "Intensely hot sword that scorches everything it touches."
+    },
+    "sword_gladius": {
+        "name": "Gladius", "attrib": ["slash"], "sell": 1450,
+        "stats": { "atk": 35, "def": 2 },
+        "description": "Sword used in ancient Rome."
+    },
+    "sword_gold": {
+        "name": "Joyeuse", "attrib": ["slash"], "sell": 25000,
+        "stats": { "atk": 43, "lck": 5 },
+        "description": "Extravagantly beautiful sword. Quite valuable."
+    },
+    "sword_stone": {
+        "name": "Milican's Sword", "attrib": ["slash", "stone"], "sell": 5000,
+        "stats": { "atk": 40 },
+        "description": "Sword that sometimes turns those it strikes to stone."
+    },
+    "sword_ice": {
+        "name": "Rahab's Frost", "attrib": ["slash", "ice"], "sell": 5500,
+        "stats": { "atk": 40, "int": 5 },
+        "description": "Icy blade made from the fang of the water-dragon Rahab."
+    },
+    "sword_fire1": {
+        "name": "Agni's Flame", "attrib": ["slash", "fire"], "sell": 5500,
+        "stats": { "atk": 40, "int": 5 },
+        "description": "Flaming blade of Agni, the god of fire."
+    },
+    "sword_poison": {
+        "name": "Hrunting", "attrib": ["slash", "poison"], "sell": 6250,
+        "stats": { "atk": 52 },
+        "description": "Poisoned blade preferred by assassins."
+    },
+    "sword_heaven": {
+        "name": "Heaven's Sword", "attrib": ["slash", "holy"], "sell": 9500,
+        "stats": { "atk": 35 },
+        "description": "Demon-slaying sword once wielded by an angel."
+    },
+    "sword_burtgang": {
+        "name": "Burtgang", "attrib": ["slash"], "sell": 7250,
+        "stats": { "atk": 58, "def": 8, "con": 10 },
+        "description": "Sword blessed with divinity. It is designed for defense first."
+    },
+    "sword_bakatwa": {
+        "name": "Bakatwa", "attrib": ["slash"], "sell": 2500,
+        "stats": { "atk": 68 },
+        "description": "Simple, effective sword that is easy to wield."
+    },
+    "sword_kaladbolg": {
+        "name": "Kaladbolg", "attrib": ["slash"], "sell": 8250,
+        "stats": { "atk": 65, "int": 8 },
+        "description": "Demonic sword tempered by fairies."
+    },
+    "sword_jagdplaute": {
+        "name": "Jagdplaute", "attrib": ["slash"], "sell": 3200,
+        "stats": { "atk": 75 },
+        "description": "Elegant yet deadly sword."
+    },
+    "sword_stellar": {
+        "name": "Stellar Sword", "attrib": ["slash", "holy"], "sell": 17500,
+        "stats": { "atk": 70 },
+        "description": "Family heirloom of the Kischine bloodline."
+    },
+    "sword_damascus": {
+        "name": "Damascus Sword", "attrib": ["slash"], "sell": 12500,
+        "stats": { "atk": 88 },
+        "description": "Superior sword that never loses its razor-sharp edge."
+    },
+
+
+
+    "auto_valmanway": {
+        "name": "Valmanway", "attrib": ["slash"], "sell": 44000,
+        "stats": { "atk": 36 },
+        "description": "Sword whose name means \"Blessed Wind\"."
+    },
+    
+
+
+    "stab_rapier": {
+        "name": "Rapier", "attrib": ["pierce"], "sell": 240,
+        "stats": { "atk": 16 },
+        "description": "Thrusting sword with a tapered blade."
+    },
+    "stab_gauche": {
+        "name": "Main Gauche", "attrib": ["pierce"], "sell": 900,
+        "stats": { "atk": 24, "def": 3 },
+        "description": "Sword designed for superior defense."
+    },
+    "stab_small": {
+        "name": "Small Sword", "attrib": ["pierce"], "sell": 1550,
+        "stats": { "atk": 28 },
+        "description": "Light and easy-to-handle sword."
+    },
+    "stab_estoc": {
+        "name": "Estoc", "attrib": ["pierce"], "sell": 2200,
+        "stats": { "atk": 32 },
+        "description": "Blade primarily designed as a stabbing weapon."
+    },
+    "stab_garian": {
+        "name": "Garian Sword", "attrib": ["pierce"], "sell": 4250,
+        "stats": { "atk": 40 },
+        "description": "Flexible, articulated sword made for executions."
+    },
+    "stab_naga": {
+        "name": "Kris Naga", "attrib": ["pierce"], "sell": 9750,
+        "stats": { "atk": 45 },
+        "description": "Beautifully adorned stiletto knife."
+    },
+
+
+
+    "great_claymore": {
+        "name": "Claymore", "attrib": ["slash"], "sell": 200,
+        "stats": { "atk": 30 },
+        "description": "Large Scottish blade."
+    },
+    "great_falchion": {
+        "name": "Falchion", "attrib": ["slash"], "sell": 700,
+        "stats": { "atk": 42 },
+        "description": "Norman sword with a wide, crescent-shaped blade."
+    },
+    "great_great": {
+        "name": "Great Sword", "attrib": ["slash"], "sell": 1700,
+        "stats": { "atk": 55 },
+        "description": "Massive sword designed to smash through its targets."
+    },
+    "great_durandal": {
+        "name": "Durandal", "attrib": ["slash"], "sell": 2000,
+        "stats": { "atk": 61 },
+        "description": "Sword of giants that was tempered by fairies."
+    },
+    "great_zweihander": {
+        "name": "Zweihander", "attrib": ["slash"], "sell": 2200,
+        "stats": { "atk": 69 },
+        "description": "German two-handed sword."
+    },
+    "great_dainslef": {
+        "name": "Dainslef", "attrib": ["slash", "curse"], "sell": 5250,
+        "stats": { "atk": 72, "str": 6, "con": 6, "int": 6 },
+        "description": "Demonic sword of finality."
+    },
+    "great_ascalon": {
+        "name": "Ascalon", "attrib": ["slash"], "sell": 5900,
+        "stats": { "atk": 80 },
+        "description": "Famous sword of the dragon slayers."
+    },
+    "great_royal": {
+        "name": "Royal Sword", "attrib": ["slash"], "sell": 7200,
+        "stats": { "atk": 84, "str": 8, "con": 6, "int": 6 },
+        "description": "Two-handed sword of kings."
+    },
+    "great_balmung": {
+        "name": "Balmung", "attrib": ["slash", "curse"], "sell": 10500,
+        "stats": { "atk": 99, "mnd": 10 },
+        "description": "Legendary sword of the dragon slayers."
+    },
+    "great_final": {
+        "name": "Final Sword", "attrib": ["slash"], "sell": 13750,
+        "stats": { "atk": 120 },
+        "description": "Blade favoured by the Final Guards."
+    },
+    "great_holy": {
+        "name": "Holy Claymore", "attrib": ["slash", "holy"], "sell": 75000,
+        "stats": { "atk": 100, "int": 10 },
+        "description": "Enormous sword shaped like a cross."
+    },
+    "great_claimh": {
+        "name": "Claimh Solais", "attrib": ["slash", "holy"], "sell": 82500,
+        "stats": { "atk": 82, "str": 6, "int": 6 },
+        "description": "Indefatigable sword. Its blade glitters with light."
+    },
+
+
+
+    "pole_spear": {
+        "name": "Spear", "attrib": ["pierce"], "sell": 125,
+        "stats": { "atk": 31 },
+        "description": "Standard spear."
+    },
+    "pole_partisan": {
+        "name": "Partisan", "attrib": ["pierce"], "sell": 375,
+        "stats": { "atk": 40 },
+        "description": "Polearm fitted with a broad blade."
+    },
+    "pole_halberd": {
+        "name": "Halberd", "attrib": ["pierce"], "sell": 1000,
+        "stats": { "atk": 60 },
+        "description": "Polearm ending in a wide axe blade."
+    },
+    "pole_lance": {
+        "name": "Lance", "attrib": ["pierce"], "sell": 1500,
+        "stats": { "atk": 60 },
+        "description": "Spear used by cavalry knights."
+    },
+    "pole_trident": {
+        "name": "Trident", "attrib": ["pierce"], "sell": 2000,
+        "stats": { "atk": 70 },
+        "description": "Three-pronged spear."
+    },
+    "pole_long": {
+        "name": "Long Spear", "attrib": ["pierce"], "sell": 2500,
+        "stats": { "atk": 80 },
+        "description": "Spear with an especially long shaft."
+    },
+    "pole_brionac": {
+        "name": "Brionac", "attrib": ["pierce"], "sell": 3500,
+        "stats": { "atk": 84 },
+        "description": "Demonic five-pronged spear."
+    },
+    "pole_couse": {
+        "name": "Couse", "attrib": ["pierce"], "sell": 3750,
+        "stats": { "atk": 90 },
+        "description": "Polearm fitted with a large, curved blade."
+    },
+    "pole_geiborg": {
+        "name": "Geiborg", "attrib": ["pierce"], "sell": 5250,
+        "stats": { "atk": 96 },
+        "description": "Spear tempered by witches."
+    },
+    "pole_sarissa": {
+        "name": "Sarissa", "attrib": ["pierce"], "sell": 7500,
+        "stats": { "atk": 100 },
+        "description": "Macedonian long spear."
+    },
+    "pole_longinus": {
+        "name": "Longinus", "attrib": ["pierce"], "sell": 12500,
+        "stats": { "atk": 112 },
+        "description": "Spear of divinity."
+    },
+    "pole_gungner": {
+        "name": "Gungner", "attrib": ["pierce", "thunder"], "sell": 22500,
+        "stats": { "atk": 68 },
+        "description": "Divine thunderbolt that pierces everything it touches."
+    },
+    "pole_alucard": {
+        "name": "Alucard's Spear", "attrib": ["pierce"], "sell": 25000,
+        "stats": { "atk": 120 },
+        "description": "Spear with ties to Alucard."
+    },
+
+
+    
+    "cudgel_axe": {
+        "name": "Axe", "attrib": ["slash"], "sell": 200,
+        "stats": { "atk": 50 },
+        "description": "Heavy single-edged axe."
+    },
+    "cudgel_mace": {
+        "name": "Mace", "attrib": ["strike"], "sell": 200,
+        "stats": { "atk": 45 },
+        "description": "Large metal club."
+    },
+    "cudgel_battle": {
+        "name": "Battle Axe", "attrib": ["slash"], "sell": 1250,
+        "stats": { "atk": 60 },
+        "description": "Double-edged axe designed for combat."
+    },
+    "cudgel_bhuj": {
+        "name": "Bhuj", "attrib": ["slash"], "sell": 3500,
+        "stats": { "atk": 80 },
+        "description": "Very heavy combat axe."
+    },
+    "cudgel_great": {
+        "name": "Great Axe", "attrib": ["slash"], "sell": 4500,
+        "stats": { "atk": 90 },
+        "description": "Huge war axe. It is exceptionally heavy."
+    },
+    "cudgel_voulge": {
+        "name": "Voulge", "attrib": ["slash", "dark"], "sell": 5750,
+        "stats": { "atk": 100 },
+        "description": "Axe with a hooked blade."
+    },
+    "cudgel_mjollnjr": {
+        "name": "Mjollnjr", "attrib": ["strike", "thunder"], "sell": 6750,
+        "stats": { "atk": 40 },
+        "description": "Mighty hammer of the thunder god."
+    },
+    "cudgel_bullova": {
+        "name": "Bullova", "attrib": ["slash"], "sell": 10000,
+        "stats": { "atk": 115 },
+        "description": "Axe with a crescent-shaped blade."
+    },
+    "cudgel_gold": {
+        "name": "Golden Axe", "attrib": ["slash"], "sell": 15000,
+        "stats": { "atk": 130 },
+        "description": "Axe with astounding destructive power, crafted from gold."
+    },
+
+
+
+    "katana_blunt": {
+        "name": "Namakura", "attrib": ["slash"], "sell": 2100,
+        "stats": { "atk": 18 },
+        "description": "Blunt sword with a dull cutting edge."
+    },
+    "katana_katana": {
+        "name": "Katana", "attrib": ["slash"], "sell": 3600,
+        "stats": { "atk": 24 },
+        "description": "Traditional sword used by samurai."
+    },
+    "katana_kotetsu": {
+        "name": "Kotetsu", "attrib": ["slash"], "sell": 3600,
+        "stats": { "atk": 31 },
+        "description": "Sword named after the legendary swordsmith, Nagasone Kotetsu."
+    },
+    "katana_masamune": {
+        "name": "Masamune", "attrib": ["slash"], "sell": 6000,
+        "stats": { "atk": 39 },
+        "description": "Famed Japanese samurai sword."
+    },
+    "katana_osafune": {
+        "name": "Osafune", "attrib": ["slash"], "sell": 7250,
+        "stats": { "atk": 48 },
+        "description": "Japanese sword with the full name of Bizen Osafune Nagamitsu."
+    },
+    "katana_kunitsuna": {
+        "name": "Kunitsuna", "attrib": ["slash"], "sell": 10000,
+        "stats": { "atk": 58 },
+        "description": "Onimaru Kunitsuna, a sword said to have slain Oni demons."
+    },
+    "katana_yasutsuna": {
+        "name": "Yasutsuna", "attrib": ["slash"], "sell": 14000,
+        "stats": { "atk": 69 },
+        "description": "Onimaru Kunitsuna, a sword said to have slain Oni demons."
+    },
+    "katana_muramasa": {
+        "name": "Muramasa", "attrib": ["slash", "curse"], "sell": 24000,
+        "stats": { "atk": 84 },
+        "description": "Sword with a macabre reputation."
+    },
+
+
+
+    "punch_brass": {
+        "name": "Brass Knuckles", "attrib": ["strike"], "sell": 50,
+        "stats": { "atk": 10 },
+        "description": "Metal knuckle weapon that adds sting to your punches."
+    },
+    "punch_cestus": {
+        "name": "Cestus", "attrib": ["strike"], "sell": 250,
+        "stats": { "atk": 22 },
+        "description": "Hard knuckle guards worn by ancient boxers."
+    },
+    "punch_whip": {
+        "name": "Whip Knuckles", "attrib": ["strike"], "sell": 1750,
+        "stats": { "atk": 40 },
+        "description": "Enables quick, whip-like punches."
+    },
+    "punch_bahgnahk": {
+        "name": "Bahg Nahk", "attrib": ["strike"], "sell": 2450,
+        "stats": { "atk": 35 },
+        "description": "Handheld weapon whose name means \"tiger claw\"."
+    },
+    "punch_mach": {
+        "name": "Mach Punch", "attrib": ["strike"], "sell": 2500,
+        "stats": { "atk": 18 },
+        "description": "Enables the wearer to throw punches at the speed of sound."
+    },
+    "punch_illusion": {
+        "name": "Illusion Fist", "attrib": ["strike"], "sell": 6700,
+        "stats": { "atk": 20 },
+        "description": "Throws punches faster than the eye can see."
+    },
+    "punch_baiser": {
+        "name": "Kaiser Knuckles", "attrib": ["strike"], "sell": 8250,
+        "stats": { "atk": 45 },
+        "description": "Knuckles imbued with divine rage."
+    }
+}

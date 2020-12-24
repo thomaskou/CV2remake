@@ -1,0 +1,90 @@
+{
+    "default": {
+        "name": "DEFAULT",
+        "description": "LOREM IPSUM DOLOR SIT AMET.",
+        "icon": "res://src/assets/sprites/inventory/default.png"
+    },
+
+
+    
+    "u_enames": {
+        "name": "Book of Spirits", "cost": 0,
+        "description": "Displays enemy names as you attack."
+    },
+    "u_dash": {
+        "name": "Dash Charm", "cost": 0,
+        "description": "Dash by pressing %s.",
+        "placeholders": ["dash"]
+    },
+    "u_tether": {
+        "name": "Whip Tether", "cost": 0,
+        "description": "Lorem ipsum dolor sit amet."
+    },
+    "u_slide": {
+        "name": "Lizard Tail", "cost": 0,
+        "description": "Slide into narrow spaces with %s + %s.",
+        "placeholders": ["down", "jump"]
+    },
+    "u_djump": {
+        "name": "Leap Stone", "cost": 0,
+        "description": "Jump a second time while in midair."
+    },
+    "u_water": {
+        "name": "Serpent Scale", "cost": 0,
+        "description": "Move freely underwater."
+    },
+    "u_sjump": {
+        "name": "Griffin Wing", "cost": 0,
+        "description": "Jump higher with %s + %s.",
+        "placeholders": ["up", "dash"]
+    },
+
+
+
+    "c_white": {
+        "name": "White Pendant", "cost": 3,
+        "description": "Contains a sparkling white jewel."
+    },
+    "c_blue": {
+        "name": "Aljiba Charm", "cost": 3,
+        "description": "Radiant blue gemstone. Heirloom of the people of Aljiba."
+    },
+    "c_red": {
+        "name": "Soul Crystal", "cost": 3,
+        "description": "Mysterious red crystal. Enshrined in the Aldra Chapel."
+    },
+
+
+
+    "d_rib": {
+        "name": "Rib of Vlad", "cost": 0,
+        "description": "Rib of the Unholy."
+    },
+    "d_heart": {
+        "name": "Heart of Vlad", "cost": 0,
+        "description": "Heart filled with hatred."
+    },
+    "d_eye": {
+        "name": "Eye of Vlad", "cost": 0,
+        "description": "Eye of the Master. Reveals breakable walls."
+    },
+    "d_nail": {
+        "name": "Nail of Vlad", "cost": 0,
+        "description": "Long, sharp nail."
+    },
+    "d_fang": {
+        "name": "Fang of Vlad", "cost": 0,
+        "description": "Vicious blood-stained tooth."
+    },
+    "d_ring": {
+        "name": "Ring of Vlad", "cost": 0,
+        "description": "Ring of the Master. Opens the way to the ruins of Dracula's Castle."
+    },
+
+
+
+    "e_dash_blade": {
+        "name": "Vortex Dash", "cost": 3,
+        "description": "Spins the Vampire Killer around you while dashing."
+    }
+}

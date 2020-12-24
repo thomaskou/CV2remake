@@ -1,0 +1,165 @@
+{
+    "default": {
+        "name": "DEFAULT",
+        "description": "LOREM IPSUM DOLOR SIT AMET.",
+        "icon": "res://src/assets/sprites/inventory/default.png"
+    },
+
+
+    
+    "dagger": {
+        "name": "Dagger", "mp": 20, "attrib": ["pierce"],
+        "min_dmg": 3, "max_dmg": 11, "master": 300,
+        "description": "Throwing weapon used by hunters."
+    },
+    "axe": {
+        "name": "Axe", "mp": 22, "attrib": ["slash"],
+        "min_dmg": 14, "max_dmg": 37, "master": 1000,
+        "description": "Throwing weapon that is especially effective against overhead targets."
+    },
+    "cross": {
+        "name": "Cross", "mp": 30, "attrib": ["holy"],
+        "min_dmg": 10, "max_dmg": 28, "master": 2000,
+        "description": "Holy cross that dispels evil."
+    },
+    "holy_water": {
+        "name": "Holy Water", "mp": 25, "attrib": ["fire", "holy"],
+        "min_dmg": 5, "max_dmg": 16, "master": 2000,
+        "description": "Blessed water that wards off evil."
+    },
+
+
+
+    "ricochet": {
+        "name": "Ricochet Rock", "mp": 22, "attrib": ["strike"],
+        "min_dmg": 10, "max_dmg": 28, "master": 1000,
+        "description": "Weapon that bounces back after hitting walls."
+    },
+    "silver_knife": {
+        "name": "Silver Knife", "mp": null, "attrib": ["pierce"],
+        "min_dmg": null, "max_dmg": null, "master": null,
+        "description": "Lorem ipsum dolor sit amet."
+    },
+    "gold_knife": {
+        "name": "Gold Knife", "mp": null, "attrib": ["pierce"],
+        "min_dmg": null, "max_dmg": null, "master": null,
+        "description": "Lorem ipsum dolor sit amet."
+    },
+    "sacred_flame": {
+        "name": "Sacred Flame", "mp": null, "attrib": ["fire"],
+        "min_dmg": null, "max_dmg": null, "master": null,
+        "description": "Ancient flame kindled to burn creatures of evil."
+    },
+
+
+    
+    "holy_flame": {
+        "name": "Holy Flame", "mp": null, "attrib": ["fire"],
+        "min_dmg": null, "max_dmg": null, "master": null,
+        "description": "Blasts enemies with fire."
+    },
+    "ice_shards": {
+        "name": "Blue Splash", "mp": null, "attrib": ["ice"],
+        "min_dmg": null, "max_dmg": null, "master": null,
+        "description": "Materializes shards of ice."
+    },
+    "lightning_balls": {
+        "name": "Holy Lightning", "mp": null, "attrib": ["thunder"],
+        "min_dmg": null, "max_dmg": null, "master": null,
+        "description": "Creates orbs of lightning that pursue foes."
+    },
+
+
+
+    "bible": {
+        "name": "Bible", "mp": 22, "attrib": ["holy"],
+        "min_dmg": 7, "max_dmg": 21, "master": 2000,
+        "description": "Book containing words that exorcise evil."
+    },
+
+
+
+    "javelin": {
+        "name": "Javelin", "mp": 25, "attrib": ["pierce"],
+        "min_dmg": 7, "max_dmg": 21, "master": 1500,
+        "description": "Throwing spear that sticks into the ground."
+    },
+    "boomerang": {
+        "name": "Boomerang", "mp": 28, "attrib": ["slash"],
+        "min_dmg": 10, "max_dmg": 28, "master": 1500,
+        "description": "Throwing weapon that returns to the thrower in an arc."
+    },
+    "bwaka": {
+        "name": "Bwaka Knife", "mp": 22, "attrib": ["slash"],
+        "min_dmg": 5, "max_dmg": 16, "master": 1000,
+        "description": "Throwing knife used by the Bwaka people."
+    },
+    "shuriken": {
+        "name": "Shuriken", "mp": 24, "attrib": ["slash"],
+        "min_dmg": 10, "max_dmg": 28, "master": 1000,
+        "description": "Refined throwing blade used by ninjas."
+    },
+    "discus": {
+        "name": "Discus", "mp": 32, "attrib": ["slash"],
+        "min_dmg": 9, "max_dmg": 25, "master": 1500,
+        "description": "Round disc with razor edges."
+    },
+    "kunai": {
+        "name": "Kunai", "mp": 20, "attrib": ["slash"],
+        "min_dmg": 5, "max_dmg": 16, "master": 500,
+        "description": "Ninja's knife; it is also a deadly throwing weapon."
+    },
+    "airplane": {
+        "name": "Paper Airplane", "mp": 3, "attrib": ["slash"],
+        "min_dmg": 5, "max_dmg": 16, "master": 100,
+        "description": "Not terribly intimidating, but just might put someone's eye out."
+    },
+    "pie": {
+        "name": "Cream Pie", "mp": 3, "attrib": ["strike", "dark"],
+        "min_dmg": 5, "max_dmg": 16, "master": 100,
+        "description": "Throwing weapon aimed at an enemy's face for psychological damage."
+    },
+    "crossbow": {
+        "name": "Crossbow", "mp": 24, "attrib": ["fire"],
+        "min_dmg": 9, "max_dmg": 25, "master": 500,
+        "description": "Ranged weapon that fires bolts."
+    },
+    "dart": {
+        "name": "Dart", "mp": 3, "attrib": ["fire"],
+        "min_dmg": 2, "max_dmg": 9, "master": 200,
+        "description": "Does extra damage if it hits the center of the target."
+    },
+    "grenade": {
+        "name": "Gunpowder Flask", "mp": 28, "attrib": ["fire"],
+        "min_dmg": 10, "max_dmg": 28, "master": 1500,
+        "description": "Ceramic flask of gunpowder that explodes for fire damage."
+    },
+    "steel_ball": {
+        "name": "Steel Ball", "mp": 30, "attrib": ["strike"],
+        "min_dmg": 18, "max_dmg": 47, "master": 1000,
+        "description": "Very heavy steel ball."
+    },
+    "aura_blast": {
+        "name": "Aura Blast", "mp": 40, "attrib": ["holy"],
+        "min_dmg": 11, "max_dmg": 30, "master": 1500,
+        "description": "Technique that converts mental energy into a shockwave."
+    },
+
+
+
+    "gale_force": {
+        "name": "Gale Force", "mp": 20, "attrib": ["slash"],
+        "min_dmg": 14, "max_dmg": 28, "master": null,
+        "description": "Tear through enemies with raging winds."
+    },
+    "rock_riot": {
+        "name": "Rock Riot", "mp": 20, "attrib": ["strike"],
+        "min_dmg": 10, "max_dmg": 20, "master": null,
+        "description": "Dump rocks onto your enemy."
+    },
+    "raging_fire": {
+        "name": "Raging Fire", "mp": 20, "attrib": ["fire"],
+        "min_dmg": 8, "max_dmg": 16, "master": null,
+        "description": "Fires a burst of flames."
+    }
+}

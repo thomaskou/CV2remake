@@ -1,0 +1,54 @@
+{
+    "clue_1": {
+        "name": "Riddle Card: Oak Stake", "truth": true,
+        "description": "A symbol of the Dark Lord will be revealed when struck with an oak stake."
+    },
+    "clue_2": {
+        "name": "Riddle Card: Curse of the River", "truth": true,
+        "description": "Dispel the curse of the river to reveal the road to the forsaken fortress."
+    },
+    "clue_3": {
+        "name": "Riddle Card: Illusions of Dracula", "truth": true,
+        "description": "The illusions of Dracula at his full power can only be shattered by a holy prayer."
+    },
+    "clue_4": {
+        "name": "Riddle Card: White Crystal", "truth": true,
+        "description": "The white crystal reveals the secret way into the cursed forest mansion."
+    },
+    "clue_5": {
+        "name": "Riddle Card: Jewel of Water", "truth": true,
+        "description": "When the jewel of water hits the shores of the drowned lake, the earth will swallow the water."
+    },
+    "clue_6": {
+        "name": "Riddle Card: ", "truth": true,
+        "description": "Lorem ipsum dolor sit amet."
+    },
+    "clue_7": {
+        "name": "Riddle Card: ", "truth": true,
+        "description": "Lorem ipsum dolor sit amet."
+    },
+    "clue_8": {
+        "name": "Riddle Card: ", "truth": true,
+        "description": "Lorem ipsum dolor sit amet."
+    },
+    "clue_9": {
+        "name": "Riddle Card: Spirits of Wind", "truth": true,
+        "description": "There exists a crystal that can awaken the ancient spirits of wind slumbering in Deborah Cliff."
+    },
+    "clue_10": {
+        "name": "Riddle Card: ", "truth": true,
+        "description": "Lorem ipsum dolor sit amet."
+    },
+    "clue_11": {
+        "name": "Riddle Card: ", "truth": true,
+        "description": "Lorem ipsum dolor sit amet."
+    },
+    "clue_12": {
+        "name": "Riddle Card: ", "truth": true,
+        "description": "Lorem ipsum dolor sit amet."
+    },
+    "clue_13": {
+        "name": "Riddle Card: Dagger of Gold", "truth": true,
+        "description": "The bloody-teared sorceress has but one weakness: the dagger of gold."
+    }
+}

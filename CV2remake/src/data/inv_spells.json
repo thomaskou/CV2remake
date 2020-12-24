@@ -1,0 +1,14 @@
+{
+    "default": {
+        "name": "DEFAULT",
+        "description": "LOREM IPSUM DOLOR SIT AMET.",
+        "icon": "res://src/assets/sprites/inventory/default.png"
+    },
+
+
+    
+    "rosary": {
+        "name": "Rosary", "mp": 80, "continuous": false,
+        "description": "Holy symbol of prayer. Damages all visible enemies."
+    }
+}
