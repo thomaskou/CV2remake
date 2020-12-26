@@ -24,8 +24,8 @@ export var max_rp: int
 
 # Derived stats
 export var level: int
-export var max_hp: int
-export var max_mp: int
+export var max_hp: int setget ,get_max_hp
+export var max_mp: int setget ,get_max_mp
 export var atk: int setget ,get_atk
 export var def: int setget ,get_def
 
@@ -150,6 +150,12 @@ func update_level() -> void:
 ################################################################################
 # Stat accessors
 ################################################################################
+
+func get_max_hp() -> int:
+	return 8*level + 20*plus_hp_max + 128
+
+func get_max_mp() -> int:
+	return 6*level + 10*plus_mp_max + 80
 
 func get_atk() -> int:
 	return int(floor(stat_str/2.0))
