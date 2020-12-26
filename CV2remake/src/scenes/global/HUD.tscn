@@ -1,9 +1,26 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/scripts/global/HUD.gd" type="Script" id=1]
 [ext_resource path="res://src/assets/sprites/ui/hud_health.png" type="Texture" id=2]
 [ext_resource path="res://src/assets/sprites/ui/hud_bar_hp.png" type="Texture" id=3]
 [ext_resource path="res://src/assets/sprites/ui/hud_bar_mp.png" type="Texture" id=4]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node2D
+
+onready var FontRepository: Node = get_node(\"/root/Main/FontRepository\")
+onready var GameState: Node = get_node(\"/root/Main/GameState\")
+onready var hp_memo: int = GameState.hp
+
+func _process(_delta):
+	if hp_memo != GameState.hp:
+		hp_memo = GameState.hp
+		update()
+
+func _draw():
+	var hp_string: String = String(GameState.hp)
+	draw_string(FontRepository.fonts[\"nums0_gray\"], Vector2(18-3*hp_string.length(),0), hp_string)
+"
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource( 1 )
@@ -23,6 +40,10 @@ margin_bottom = 17.0
 margin_right = 107.0
 margin_bottom = 17.0
 texture = ExtResource( 2 )
+
+[node name="Text" type="Node2D" parent="Margin/HBox/Bars"]
+position = Vector2( 0, 5 )
+script = SubResource( 1 )
 
 [node name="HP" type="TextureProgress" parent="Margin/HBox/Bars"]
 margin_left = 32.0

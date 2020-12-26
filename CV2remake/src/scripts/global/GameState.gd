@@ -5,9 +5,14 @@ extends Node
 # Variables
 ################################################################################
 
+# Game flags
+export var debug_mode: bool
+
 # UI flags
-export onready var pause_menu: bool = false
-export onready var map_screen: bool = false
+export onready var pause_menu: bool = false setget set_pause_menu
+export onready var map_screen: bool = false setget set_map_screen
+export onready var room_transitioning: bool = false setget set_room_transitioning
+export onready var area_transitioning: bool = false setget set_area_transitioning
 
 # Upgrade flags/variables
 export var has_djumps: bool
@@ -15,9 +20,9 @@ export var has_slide: bool
 export var numjumps: int setget ,get_numjumps
 
 # Main stats
+export var xp: int setget set_xp
 export var hp: int setget set_hp
 export var mp: int setget set_mp
-export var xp: int setget set_xp
 export var gold: int
 export var status: int
 export var max_rp: int
@@ -80,9 +85,10 @@ func load_default_save() -> void:
 	file.open("res://src/data/default_save.json", File.READ)
 	var json: Dictionary = JSON.parse(file.get_as_text()).result
 	
-	hp = json["stats"]["hp"]
-	mp = json["stats"]["mp"]
-	xp = json["stats"]["xp"]
+	debug_mode = json["flags"]["debug_mode"]
+	
+	set_xp(json["stats"]["xp"])
+	
 	gold = json["stats"]["gold"]
 	status = json["stats"]["status"]
 	max_rp = json["stats"]["max_rp"]
@@ -108,11 +114,41 @@ func load_default_save() -> void:
 	inv_spells = json["inventory"]["spells"]
 	inv_items = json["inventory"]["items"]
 	
+	set_hp(json["stats"]["hp"])
+	set_mp(json["stats"]["mp"])
+	
 	file.close()
 
 
 ################################################################################
-# Upgrade flag/variable accessors
+# UI flag methods
+################################################################################
+
+func is_game_paused() -> bool:
+	return pause_menu or map_screen or room_transitioning or area_transitioning
+
+func set_game_paused() -> void:
+	get_tree().paused = is_game_paused()
+
+func set_pause_menu(value: bool) -> void:
+	pause_menu = !is_game_paused() and value
+	set_game_paused()
+
+func set_map_screen(value: bool) -> void:
+	map_screen = !is_game_paused() and value
+	set_game_paused()
+
+func set_room_transitioning(value: bool) -> void:
+	room_transitioning = !is_game_paused() and value
+	set_game_paused()
+
+func set_area_transitioning(value: bool) -> void:
+	area_transitioning = !is_game_paused() and value
+	set_game_paused()
+
+
+################################################################################
+# Upgrade flag/variable methods
 ################################################################################
 
 func update_has_djumps() -> void:
@@ -129,15 +165,15 @@ func get_numjumps() -> int:
 # Stat mutators
 ################################################################################
 
-func set_hp(value: int) -> void:
-	hp = int(clamp(value, 0, max_hp))
-
-func set_mp(value: int) -> void:
-	mp = int(clamp(value, 0, max_mp))
-
 func set_xp(value: int) -> void:
 	xp = value
 	update_level()
+
+func set_hp(value: int) -> void:
+	hp = int(clamp(value, 0, get_max_hp()))
+
+func set_mp(value: int) -> void:
+	mp = int(clamp(value, 0, get_max_mp()))
 
 func update_level() -> void:
 	if xp < 10:
@@ -152,10 +188,10 @@ func update_level() -> void:
 ################################################################################
 
 func get_max_hp() -> int:
-	return 8*level + 20*plus_hp_max + 128
+	return 8*level + 20*plus_hp_max + 120
 
 func get_max_mp() -> int:
-	return 6*level + 10*plus_mp_max + 80
+	return 6*level + 10*plus_mp_max + 74
 
 func get_atk() -> int:
 	return int(floor(stat_str/2.0))

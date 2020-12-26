@@ -1,4 +1,4 @@
-extends Node
+extends CanvasLayer
 
 const SCREEN_WIDTH: int = 320
 const SCREEN_HEIGHT: int = 192
@@ -8,7 +8,9 @@ const ROOM_MARGIN_TOP: int = 6
 const ROOM_MARGIN_RIGHT: int = 0
 const ROOM_MARGIN_BOTTOM: int = 6
 
+onready var GameState: Node = get_node("/root/Main/GameState")
 onready var Player: Node = get_node("/root/Main/Gameplay/Player")
+onready var BlackScreen: Node = get_node("./BlackScreen")
 var AreaNode: Node
 var Room: Node
 var ScreenMap: Node
@@ -43,11 +45,22 @@ func update_room() -> void:
 	if AreaNode.room_map.has(player_coords):
 		var get_room: Node = AreaNode.room_map[player_coords]
 		if get_room != null and Room != get_room:
-			AreaNode.remove_child(Room)
-			AreaNode.add_child(get_room)
-			Room = get_node("/root/Main/Gameplay/Area/Room")
-			ScreenMap = Room.get_node("./Screens")
-			set_room_limits()
+			room_transition(get_room)
+
+func room_transition(new_room: Node) -> void:
+	BlackScreen.visible = true
+	AreaNode.remove_child(Room)
+	AreaNode.add_child(new_room)
+	Room = get_node("/root/Main/Gameplay/Area/Room")
+	ScreenMap = Room.get_node("./Screens")
+	set_room_limits()
+	GameState.room_transitioning = true
+	# 6-frame timeout while game is not processing
+	yield(get_tree().create_timer(1.0/10), "timeout")
+	GameState.room_transitioning = false
+	# 2-frame timeout while game is processing
+	yield(get_tree().create_timer(1.0/30), "timeout")
+	BlackScreen.visible = false
 
 func set_room_limits() -> void:
 	var limits: Rect2 = ScreenMap.get_used_rect()

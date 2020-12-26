@@ -1,6 +1,6 @@
-extends Node
+extends CanvasLayer
 
-onready var GameState: Node = get_node("../GameState")
+onready var GameState: Node = get_node("/root/Main/GameState")
 onready var HP: Node = get_node("Margin/HBox/Bars/HP")
 onready var MP: Node = get_node("Margin/HBox/Bars/MP")
 

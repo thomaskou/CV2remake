@@ -3,13 +3,11 @@
 [ext_resource path="res://src/scripts/global/map/Map.gd" type="Script" id=1]
 [ext_resource path="res://src/scripts/global/map/MapDraw.gd" type="Script" id=2]
 
-[node name="Map" type="Node"]
+[node name="Map" type="CanvasLayer"]
+layer = 100
 script = ExtResource( 1 )
 
-[node name="Parallax" type="ParallaxBackground" parent="."]
-layer = 100
-
-[node name="Background" type="ColorRect" parent="Parallax"]
+[node name="Background" type="ColorRect" parent="."]
 visible = false
 margin_right = 320.0
 margin_bottom = 180.0
@@ -18,5 +16,5 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MapDraw" type="Node2D" parent="Parallax/Background"]
+[node name="MapDraw" type="Node2D" parent="Background"]
 script = ExtResource( 2 )

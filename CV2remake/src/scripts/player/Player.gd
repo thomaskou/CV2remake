@@ -347,8 +347,6 @@ func _physics_process(delta):
 	input_jump = Input.is_action_pressed("input_jump")
 	input_jump_press = Input.is_action_just_pressed("input_jump")
 	
-	input_debug1_press = Input.is_action_just_pressed("input_debug1")
-	
 	
 	### STATE TRANSITIONS
 	

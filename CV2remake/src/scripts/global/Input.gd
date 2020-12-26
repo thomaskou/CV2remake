@@ -20,3 +20,12 @@ func _ready() -> void:
 	map_key("input_jump", KEY_Z)
 	
 	map_key("input_debug1", KEY_1)
+	map_key("input_debug2", KEY_2)
+	map_key("input_debug3", KEY_3)
+	map_key("input_debug4", KEY_4)
+	map_key("input_debug5", KEY_5)
+	map_key("input_debug6", KEY_6)
+	map_key("input_debug7", KEY_7)
+	map_key("input_debug8", KEY_8)
+	map_key("input_debug9", KEY_9)
+	map_key("input_debug0", KEY_0)
