@@ -13,6 +13,8 @@ const ROOM_MARGIN_TOP: int = 6
 const ROOM_MARGIN_RIGHT: int = 0
 const ROOM_MARGIN_BOTTOM: int = 6
 
+const ROOM_TRANSITION_FRAMES: int = 8
+
 
 ################################################################################
 # Variables
@@ -61,7 +63,7 @@ func room_transition(new_room_data: Dictionary) -> void:
 	unload_room()
 	load_room(new_room_data)
 	GameState.room_transitioning = true
-	yield(get_tree().create_timer(8.0/60), "timeout")
+	yield(get_tree().create_timer(ROOM_TRANSITION_FRAMES / 60.0), "timeout")
 	ScreenShaders.black_fadeout(0)
 	GameState.room_transitioning = false
 

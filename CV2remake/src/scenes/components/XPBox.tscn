@@ -1,0 +1,115 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://src/assets/sprites/ui/menu_frame0.png" type="Texture" id=2]
+[ext_resource path="res://src/scenes/components/XPBar.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/scenes/components/BarBack.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/assets/fonts/font_pansyhand.tres" type="DynamicFont" id=6]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends TextureProgress
+
+onready var GameState: Node = get_node(\"/root/Main/GameState\")
+
+func _process(_delta):
+	var num: int = GameState.xp - GameState.xp_for_this_level
+	var denom: int = GameState.xp_for_next_level - GameState.xp_for_this_level - 1
+	value = int(round(float(max_value)*float(num)/float(denom)))
+"
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends Label
+
+onready var GameState: Node = get_node(\"/root/Main/GameState\")
+
+func _process(_delta):
+	text = String(GameState.xp_for_next_level - GameState.xp)
+"
+
+[sub_resource type="GDScript" id=3]
+script/source = "extends Label
+
+onready var GameState: Node = get_node(\"/root/Main/GameState\")
+
+func _process(_delta):
+	text = String(GameState.xp)
+"
+
+[node name="XPBox" type="Control"]
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Frame" type="NinePatchRect" parent="."]
+margin_right = 88.0
+margin_bottom = 36.0
+texture = ExtResource( 2 )
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="XPBarBack" parent="." instance=ExtResource( 5 )]
+margin_left = 8.0
+margin_top = 6.0
+margin_right = 80.0
+margin_bottom = 11.0
+
+[node name="XPBar" parent="." instance=ExtResource( 4 )]
+margin_left = 12.0
+margin_top = 7.0
+margin_right = 76.0
+margin_bottom = 10.0
+script = SubResource( 1 )
+
+[node name="NextLabel" type="Label" parent="."]
+margin_left = 8.0
+margin_top = 9.0
+margin_right = 25.0
+margin_bottom = 23.0
+custom_fonts/font = ExtResource( 6 )
+text = "NEXT"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NextText" type="Label" parent="."]
+margin_left = 29.0
+margin_top = 9.0
+margin_right = 81.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 52, 0 )
+custom_fonts/font = ExtResource( 6 )
+text = "9999999999999"
+align = 2
+script = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ExpLabel" type="Label" parent="."]
+margin_left = 8.0
+margin_top = 18.0
+margin_right = 25.0
+margin_bottom = 32.0
+custom_fonts/font = ExtResource( 6 )
+text = "EXP"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ExpText" type="Label" parent="."]
+margin_left = 29.0
+margin_top = 18.0
+margin_right = 81.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 52, 0 )
+custom_fonts/font = ExtResource( 6 )
+text = "9999999999999"
+align = 2
+script = SubResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

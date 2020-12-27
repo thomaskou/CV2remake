@@ -1,5 +1,9 @@
 extends Node
 
+export var Enums: Dictionary
+
+export var DataLevels: Array
+
 export var InvArmor: Dictionary
 export var InvItems: Dictionary
 export var InvRelics: Dictionary
@@ -9,6 +13,14 @@ export var InvWeapons: Dictionary
 
 func _ready():
 	var file: File = File.new()
+	
+	file.open("res://src/data/enums.json", File.READ)
+	Enums = JSON.parse(file.get_as_text()).result
+	file.close()
+	
+	file.open("res://src/data/data_levels.json", File.READ)
+	DataLevels = JSON.parse(file.get_as_text()).result
+	file.close()
 	
 	file.open("res://src/data/inv_armor.json", File.READ)
 	InvArmor = JSON.parse(file.get_as_text()).result

@@ -1,0 +1,8 @@
+{
+    "status": ["Good", "Poison", "Curse", "Stone"],
+    "attrib": [
+        "Pierce", "Slash", "Strike",
+        "Dark", "Fire", "Holy", "Ice", "Thunder",
+        "Curse", "Poison", "Stone"
+    ]
+}
