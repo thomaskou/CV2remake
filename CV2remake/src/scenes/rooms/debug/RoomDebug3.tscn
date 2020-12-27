@@ -6,6 +6,7 @@
 [ext_resource path="res://src/scenes/graphics/backgrounds/BgForestBack0.tscn" type="PackedScene" id=4]
 
 [node name="RoomDebug3" instance=ExtResource( 1 )]
+script = null
 
 [node name="Screens" parent="." index="0"]
 tile_data = PoolIntArray( 0, 0, 0, 1, 0, 0, 65536, 0, 0, 65537, 0, 0 )

@@ -42,7 +42,6 @@ const SLIDE_STUN_TIME: int = 4
 ################################################################################
 
 onready var GameState: Node = get_node("/root/Main/GameState")
-onready var SpriteHandler: Node = $SpriteHandler
 
 export onready var state: int = PlayerStates.DEFAULT
 # The player's state exactly one frame prior; useful for remembering state transitions
@@ -386,7 +385,7 @@ func _physics_process(delta):
 				snap_to_ground_or_fall(delta)
 			elif velocity.x == 0:
 				start_crouch_stun(SLIDE_STUN_TIME)
-				SpriteHandler.update_sprite()
+				$SpriteHandler.update_sprite()
 				forced_sprite_update = true
 				snap_to_ground_or_fall_after_slide()
 	
@@ -395,7 +394,7 @@ func _physics_process(delta):
 	if forced_sprite_update == true:
 		forced_sprite_update = false
 	else:
-		SpriteHandler.update_sprite()
+		$SpriteHandler.update_sprite()
 	
 	
 	### STATE FUNCTIONALITY

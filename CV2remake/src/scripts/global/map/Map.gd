@@ -5,10 +5,7 @@ const MAP_HEIGHT: int = 32
 
 onready var GameState: Node = get_node("/root/Main/GameState")
 onready var RoomHandler: Node = get_node("/root/Main/RoomHandler")
-onready var MapBg: Node = get_node("./Background")
-onready var MapDraw: Node = get_node("./Background/MapDraw")
 export var explored_tiles: Array
-var input_map_press: bool
 
 func _ready():
 	explored_tiles = []
@@ -24,9 +21,9 @@ func _process(delta):
 func update_explored_tiles() -> void:
 	if !explored_tiles[RoomHandler.coords_world.x][RoomHandler.coords_world.y]:
 		explored_tiles[RoomHandler.coords_world.x][RoomHandler.coords_world.y] = true
-		MapDraw.update()
+		$Background.get_node("./MapDraw").update()
 
 func check_map_input() -> void:
 	if Input.is_action_just_pressed("input_map"):
 		GameState.map_screen = !GameState.map_screen
-		MapBg.visible = GameState.map_screen
+		$Background.visible = GameState.map_screen

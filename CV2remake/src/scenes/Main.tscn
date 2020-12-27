@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://src/scenes/global/Input.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/scenes/global/GameState.tscn" type="PackedScene" id=2]
@@ -11,6 +11,8 @@
 [ext_resource path="res://src/scenes/global/HUD.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/scenes/global/FontRepository.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/scenes/global/Debug.tscn" type="PackedScene" id=11]
+[ext_resource path="res://src/scenes/global/Menu.tscn" type="PackedScene" id=12]
+[ext_resource path="res://src/scenes/global/ScreenShaders.tscn" type="PackedScene" id=13]
 
 [node name="Main" type="Node2D"]
 pause_mode = 2
@@ -25,9 +27,13 @@ pause_mode = 2
 
 [node name="RoomHandler" parent="." instance=ExtResource( 8 )]
 
+[node name="Menu" parent="." instance=ExtResource( 12 )]
+
 [node name="Map" parent="." instance=ExtResource( 7 )]
 
 [node name="HUD" parent="." instance=ExtResource( 9 )]
+
+[node name="ScreenShaders" parent="." instance=ExtResource( 13 )]
 
 [node name="Debug" parent="." instance=ExtResource( 11 )]
 
@@ -41,6 +47,7 @@ position = Vector2( 1216, 128 )
 z_index = 100
 
 [node name="Camera" type="Camera2D" parent="Gameplay/Player"]
+pause_mode = 2
 position = Vector2( 0, -16 )
 current = true
 script = ExtResource( 5 )

@@ -1,31 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=2]
 
 [sub_resource type="Shader" id=1]
-code = "shader_type canvas_item;
-
-uniform vec4 outline_col = vec4(0.0, 0.0, 0.0, 0.0);
-
-void fragment() {
-	vec4 tex_col = texture(TEXTURE,UV);
-	
-	// Get alpha val of adjacent pixels
-	vec2 p = TEXTURE_PIXEL_SIZE;
-
-	float a = texture(TEXTURE,UV+vec2(p.x,0)).a;
-    a += texture(TEXTURE,UV+vec2(-p.x,0)).a;
-    a += texture(TEXTURE,UV+vec2(0,p.y)).a;
-    a += texture(TEXTURE,UV+vec2(0,-p.y)).a;
-
-	// Using found alpha value,
-    a = step(a,.5);//Clamp the a value
-    tex_col.rgb = mix(outline_col.xyz, tex_col.rgb, tex_col.a);
-    tex_col.a = step(a, tex_col.a);
-
-	// Get palette color
-    COLOR = tex_col;
-}
-"
 
 [resource]
 shader = SubResource( 1 )
-shader_param/outline_col = Plane( 0, 0, 0, 0 )

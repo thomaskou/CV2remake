@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://addons/color_grading_lut/filter_node/color_grading_filter.gd" type="Script" id=1]
+[ext_resource path="res://src/assets/sprites/misc/cv2r_lut.png" type="Texture" id=2]
+[ext_resource path="res://src/scripts/global/ScreenShaders.gd" type="Script" id=3]
+[ext_resource path="res://addons/color_grading_lut/filter_node/color_grading_lut.shader" type="Shader" id=4]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 4 )
+shader_param/lut_size = 16.0
+shader_param/filter_alpha = 1.0
+shader_param/lut = ExtResource( 2 )
+
+[node name="ScreenShaders" type="CanvasLayer"]
+layer = 128
+script = ExtResource( 3 )
+
+[node name="BlackOverlay" type="ColorRect" parent="."]
+visible = false
+margin_right = 320.0
+margin_bottom = 180.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorGradingFilter" type="ColorRect" parent="."]
+material = SubResource( 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = 1.52588e-05
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+lut = ExtResource( 2 )

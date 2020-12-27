@@ -1,4 +1,9 @@
-extends CanvasLayer
+extends Node
+
+
+################################################################################
+# Constants
+################################################################################
 
 const SCREEN_WIDTH: int = 320
 const SCREEN_HEIGHT: int = 192
@@ -8,9 +13,14 @@ const ROOM_MARGIN_TOP: int = 6
 const ROOM_MARGIN_RIGHT: int = 0
 const ROOM_MARGIN_BOTTOM: int = 6
 
+
+################################################################################
+# Variables
+################################################################################
+
 onready var GameState: Node = get_node("/root/Main/GameState")
+onready var ScreenShaders: Node = get_node("/root/Main/ScreenShaders")
 onready var Player: Node = get_node("/root/Main/Gameplay/Player")
-onready var BlackScreen: Node = get_node("./BlackScreen")
 var AreaNode: Node
 var Room: Node
 var ScreenMap: Node
@@ -18,12 +28,47 @@ var coords_region: Vector2
 export var coords_world: Vector2
 export var room_limits: Rect2
 
+
+################################################################################
+# Process
+################################################################################
+
 func _process(_delta):
 	vertical_screen_transition()
 	update_area()
 	update_room()
 	get_coords_region()
 	get_coords_world()
+
+
+################################################################################
+# Room loading
+################################################################################
+
+func unload_room() -> void:
+	AreaNode.remove_child(Room)
+	Room.queue_free()
+
+func load_room(new_room_data: Dictionary) -> void:
+	Room = load(new_room_data["filename"]).instance()
+	Room.name = "Room"
+	Room.position = new_room_data["position"]
+	set_room_limits()
+	AreaNode.add_child(Room)
+
+func room_transition(new_room_data: Dictionary) -> void:
+	ScreenShaders.black_fadein(0)
+	unload_room()
+	load_room(new_room_data)
+	GameState.room_transitioning = true
+	yield(get_tree().create_timer(8.0/60), "timeout")
+	ScreenShaders.black_fadeout(0)
+	GameState.room_transitioning = false
+
+
+################################################################################
+# Room transitions
+################################################################################
 
 func vertical_screen_transition() -> void:
 	if room_limits != null:
@@ -43,26 +88,20 @@ func update_room() -> void:
 		floor(Player.position.y / SCREEN_HEIGHT)
 	)
 	if AreaNode.room_map.has(player_coords):
-		var get_room: Node = AreaNode.room_map[player_coords]
-		if get_room != null and Room != get_room:
-			room_transition(get_room)
+		var get_room_data: Dictionary = AreaNode.room_map[player_coords]
+		if get_room_data != null:
+			if Room == null:
+				load_room(get_room_data)
+			elif Room.filename != get_room_data["filename"]:
+				room_transition(get_room_data)
 
-func room_transition(new_room: Node) -> void:
-	BlackScreen.visible = true
-	AreaNode.remove_child(Room)
-	AreaNode.add_child(new_room)
-	Room = get_node("/root/Main/Gameplay/Area/Room")
-	ScreenMap = Room.get_node("./Screens")
-	set_room_limits()
-	GameState.room_transitioning = true
-	# 6-frame timeout while game is not processing
-	yield(get_tree().create_timer(1.0/10), "timeout")
-	GameState.room_transitioning = false
-	# 2-frame timeout while game is processing
-	yield(get_tree().create_timer(1.0/30), "timeout")
-	BlackScreen.visible = false
+
+################################################################################
+# Room coordinates/limits helpers
+################################################################################
 
 func set_room_limits() -> void:
+	ScreenMap = Room.get_node("./Screens")
 	var limits: Rect2 = ScreenMap.get_used_rect()
 	var cell_size: Vector2 = ScreenMap.cell_size
 	room_limits.position.x = Room.position.x + ScreenMap.position.x + (limits.position.x * cell_size.x) + ROOM_MARGIN_LEFT
