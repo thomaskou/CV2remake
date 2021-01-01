@@ -18,6 +18,13 @@ func _ready() -> void:
 	map_key("input_down", KEY_DOWN)
 	
 	map_key("input_jump", KEY_Z)
+	map_key("input_attack", KEY_X)
+	
+	map_key("input_bumper_left", KEY_Q)
+	map_key("input_bumper_right", KEY_E)
+	map_key("input_menu_modifier", KEY_SHIFT)
+	map_key("input_menu_confirm", KEY_Z)
+	map_key("input_menu_deny", KEY_Z)
 	
 	map_key("input_debug1", KEY_1)
 	map_key("input_debug2", KEY_2)

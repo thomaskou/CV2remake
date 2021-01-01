@@ -1,27 +1,36 @@
 {
     "position": { "room": "debug", "coords": [0,0] },
     "stats": {
-        "xp": 0, "hp": 96, "mp": 50, "gold": 0, "status": 0, "max_rp": 10, 
-        "+hp_max": 0, "+mp_max": 0,
-        "+str": 0, "+con": 0, "+int": 0, "+mnd": 0, "+lck": 0
+        "xp": 2960100, "hp": 96, "mp": 50, "gold": 0, "status": 0, "max_rp": 10, 
+        "+hp_max": 20, "+mp_max": 20,
+        "+str": 0, "+con": 0, "+int": 0, "+mnd": 0, "+lck": 0,
+        "+resist": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     },
     "equipped": {
-        "relics": ["u_slide", "u_djump"],
+        "relics": [ ],
         "weapon": "",
         "subwep": "",
         "armor": "",
         "spell": ""
     },
     "inventory": {
-        "relics": ["u_slide", "u_djump"],
-        "weapons": [],
-        "subweps": [],
-        "armor": [],
-        "spells": [],
-        "items": []
+        "relics": { },
+        "weapons": { },
+        "subweps": { },
+        "armor": { },
+        "spells": { },
+        "items": { }
     },
-    "map": [],
+    "map": [ ],
     "flags": {
-        "debug_mode": true
+    },
+    "debug": {
+        "debug_mode": true,
+        "debug_all_relics": true,
+        "debug_all_weapons": true,
+        "debug_all_subweps": true,
+        "debug_all_armor": true,
+        "debug_all_spells": true,
+        "debug_all_items": true
     }
 }

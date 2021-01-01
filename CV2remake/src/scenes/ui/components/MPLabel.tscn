@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://src/assets/fonts/font_squarebit.tres" type="DynamicFont" id=1]
-[ext_resource path="res://src/assets/fonts/font_pansyhand.tres" type="DynamicFont" id=2]
+[ext_resource path="res://src/assets/fonts/font_pansyhand.tres" type="DynamicFont" id=1]
+[ext_resource path="res://src/assets/fonts/font_squarebit.tres" type="DynamicFont" id=2]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Node2D
@@ -20,7 +20,7 @@ script = SubResource( 1 )
 margin_top = -6.0
 margin_right = 10.0
 margin_bottom = 8.0
-custom_fonts/font = ExtResource( 2 )
+custom_fonts/font = ExtResource( 1 )
 text = "MP"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -31,7 +31,7 @@ margin_left = 12.0
 margin_top = -6.0
 margin_right = 33.0
 margin_bottom = 8.0
-custom_fonts/font = ExtResource( 2 )
+custom_fonts/font = ExtResource( 1 )
 text = "9999"
 align = 2
 __meta__ = {
@@ -43,7 +43,7 @@ margin_left = 34.0
 margin_top = -1.0
 margin_right = 40.0
 margin_bottom = 7.0
-custom_fonts/font = ExtResource( 1 )
+custom_fonts/font = ExtResource( 2 )
 text = "/"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -54,7 +54,7 @@ margin_left = 41.0
 margin_top = -6.0
 margin_right = 62.0
 margin_bottom = 8.0
-custom_fonts/font = ExtResource( 2 )
+custom_fonts/font = ExtResource( 1 )
 text = "9999"
 __meta__ = {
 "_edit_use_anchors_": false

@@ -25,7 +25,7 @@ __meta__ = {
 }
 
 [node name="Frame" type="NinePatchRect" parent="."]
-margin_right = 52.0
+margin_right = 48.0
 margin_bottom = 88.0
 texture = ExtResource( 1 )
 patch_margin_left = 6
@@ -130,12 +130,12 @@ __meta__ = {
 [node name="ATKText" type="Label" parent="."]
 margin_left = 29.0
 margin_top = 1.0
-margin_right = 45.0
+margin_right = 41.0
 margin_bottom = 15.0
-rect_min_size = Vector2( 16, 14 )
+rect_min_size = Vector2( 12, 14 )
 custom_fonts/font = ExtResource( 2 )
 custom_colors/font_color = Color( 0.988235, 0.972549, 0.988235, 1 )
-text = "9999"
+text = "999"
 align = 2
 __meta__ = {
 "_edit_use_anchors_": false
@@ -144,12 +144,12 @@ __meta__ = {
 [node name="DEFText" type="Label" parent="."]
 margin_left = 29.0
 margin_top = 11.0
-margin_right = 45.0
+margin_right = 41.0
 margin_bottom = 25.0
-rect_min_size = Vector2( 16, 0 )
+rect_min_size = Vector2( 12, 0 )
 custom_fonts/font = ExtResource( 2 )
 custom_colors/font_color = Color( 0.988235, 0.972549, 0.988235, 1 )
-text = "9999"
+text = "999"
 align = 2
 __meta__ = {
 "_edit_use_anchors_": false
@@ -158,12 +158,12 @@ __meta__ = {
 [node name="STRText" type="Label" parent="."]
 margin_left = 29.0
 margin_top = 29.0
-margin_right = 45.0
+margin_right = 41.0
 margin_bottom = 43.0
-rect_min_size = Vector2( 16, 0 )
+rect_min_size = Vector2( 12, 0 )
 custom_fonts/font = ExtResource( 2 )
 custom_colors/font_color = Color( 0.988235, 0.972549, 0.988235, 1 )
-text = "9999"
+text = "999"
 align = 2
 __meta__ = {
 "_edit_use_anchors_": false
@@ -172,12 +172,12 @@ __meta__ = {
 [node name="CONText" type="Label" parent="."]
 margin_left = 29.0
 margin_top = 39.0
-margin_right = 45.0
+margin_right = 41.0
 margin_bottom = 53.0
-rect_min_size = Vector2( 16, 0 )
+rect_min_size = Vector2( 12, 0 )
 custom_fonts/font = ExtResource( 2 )
 custom_colors/font_color = Color( 0.988235, 0.972549, 0.988235, 1 )
-text = "9999"
+text = "999"
 align = 2
 __meta__ = {
 "_edit_use_anchors_": false
@@ -186,12 +186,12 @@ __meta__ = {
 [node name="INTText" type="Label" parent="."]
 margin_left = 29.0
 margin_top = 49.0
-margin_right = 45.0
+margin_right = 41.0
 margin_bottom = 63.0
-rect_min_size = Vector2( 16, 0 )
+rect_min_size = Vector2( 12, 0 )
 custom_fonts/font = ExtResource( 2 )
 custom_colors/font_color = Color( 0.988235, 0.972549, 0.988235, 1 )
-text = "9999"
+text = "999"
 align = 2
 __meta__ = {
 "_edit_use_anchors_": false
@@ -200,12 +200,12 @@ __meta__ = {
 [node name="MNDText" type="Label" parent="."]
 margin_left = 29.0
 margin_top = 59.0
-margin_right = 45.0
+margin_right = 41.0
 margin_bottom = 73.0
-rect_min_size = Vector2( 16, 0 )
+rect_min_size = Vector2( 12, 0 )
 custom_fonts/font = ExtResource( 2 )
 custom_colors/font_color = Color( 0.988235, 0.972549, 0.988235, 1 )
-text = "9999"
+text = "999"
 align = 2
 __meta__ = {
 "_edit_use_anchors_": false
@@ -214,12 +214,12 @@ __meta__ = {
 [node name="LCKText" type="Label" parent="."]
 margin_left = 29.0
 margin_top = 69.0
-margin_right = 45.0
+margin_right = 41.0
 margin_bottom = 83.0
-rect_min_size = Vector2( 16, 0 )
+rect_min_size = Vector2( 12, 0 )
 custom_fonts/font = ExtResource( 2 )
 custom_colors/font_color = Color( 0.988235, 0.972549, 0.988235, 1 )
-text = "9999"
+text = "999"
 align = 2
 __meta__ = {
 "_edit_use_anchors_": false
@@ -228,9 +228,9 @@ __meta__ = {
 [node name="ColorRect" type="ColorRect" parent="."]
 margin_left = 8.0
 margin_top = 28.0
-margin_right = 44.0
+margin_right = 40.0
 margin_bottom = 29.0
-color = Color( 0.470588, 0.501961, 0.517647, 1 )
+color = Color( 0.67451, 0.501961, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

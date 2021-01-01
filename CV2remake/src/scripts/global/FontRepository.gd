@@ -5,6 +5,17 @@ export var fonts: Dictionary
 func _ready():
 	prepare_nums0_gray()
 	prepare_cv3()
+	load_other_fonts()
+	
+func load_other_fonts() -> void:
+	fonts["kingisdead"] = ResourceLoader.load("res://src/assets/fonts/font_kingisdead.tres")
+	fonts["m3x6"] = ResourceLoader.load("res://src/assets/fonts/font_m3x6.tres")
+	fonts["m5x7"] = ResourceLoader.load("res://src/assets/fonts/font_m5x7.tres")
+	fonts["m6x11"] = ResourceLoader.load("res://src/assets/fonts/font_m6x11.tres")
+	fonts["pansyhand"] = ResourceLoader.load("res://src/assets/fonts/font_pansyhand.tres")
+	fonts["sinsgold"] = ResourceLoader.load("res://src/assets/fonts/font_sinsgold.tres")
+	fonts["squarebit"] = ResourceLoader.load("res://src/assets/fonts/font_squarebit.tres")
+	fonts["venice"] = ResourceLoader.load("res://src/assets/fonts/font_venice.fnt")
 
 func prepare_nums0_gray() -> void:
 	var font: BitmapFont = ResourceLoader.load("res://src/assets/fonts/font_nums0_gray.tres")

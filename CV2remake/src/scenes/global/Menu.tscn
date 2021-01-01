@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/scripts/global/menu/Menu.gd" type="Script" id=1]
-[ext_resource path="res://src/assets/fonts/font_cv3.tres" type="BitmapFont" id=2]
-[ext_resource path="res://src/scenes/components/HPMPStatus.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/scenes/components/StatsBox.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/scenes/components/XPBox.tscn" type="PackedScene" id=5]
-[ext_resource path="res://src/assets/sprites/images/img_simon_portrait.png" type="Texture" id=6]
+[ext_resource path="res://src/assets/fonts/font_sinsgold.tres" type="DynamicFont" id=2]
+[ext_resource path="res://src/scenes/ui/MenuStatus.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/assets/sprites/ui/menu_frame2.png" type="Texture" id=4]
+[ext_resource path="res://src/scenes/ui/MenuEquip.tscn" type="PackedScene" id=5]
 
 [node name="Menu" type="CanvasLayer"]
 layer = 100
@@ -25,111 +24,129 @@ __meta__ = {
 margin_top = 16.0
 margin_right = 1600.0
 margin_bottom = 180.0
-rect_min_size = Vector2( 320, 164 )
+custom_constants/separation = 0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Status" type="Control" parent="Display/Screens"]
-margin_right = 320.0
+[node name="Status" parent="Display/Screens" instance=ExtResource( 3 )]
+
+[node name="Equip" parent="Display/Screens" instance=ExtResource( 5 )]
+
+[node name="Relics" type="Control" parent="Display/Screens"]
+margin_left = 640.0
+margin_right = 960.0
 margin_bottom = 164.0
 rect_min_size = Vector2( 320, 164 )
 
-[node name="ColorRect" type="ColorRect" parent="Display/Screens/Status"]
-margin_left = 16.0
-margin_top = 24.0
-margin_right = 304.0
-margin_bottom = 84.0
-color = Color( 0.172549, 0.172549, 0.172549, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Items" type="Control" parent="Display/Screens"]
+margin_left = 960.0
+margin_right = 1280.0
+margin_bottom = 164.0
+rect_min_size = Vector2( 320, 164 )
 
-[node name="Portrait" type="TextureRect" parent="Display/Screens/Status"]
-margin_left = 124.0
-margin_top = -4.0
-margin_right = 198.0
-margin_bottom = 108.0
-texture = ExtResource( 6 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Journal" type="Control" parent="Display/Screens"]
+margin_left = 1280.0
+margin_right = 1600.0
+margin_bottom = 164.0
+rect_min_size = Vector2( 320, 164 )
 
-[node name="HPMPStatus" parent="Display/Screens/Status" instance=ExtResource( 3 )]
-margin_left = 28.0
-margin_top = 12.0
-margin_right = 28.0
-margin_bottom = 12.0
+[node name="System" type="Control" parent="Display/Screens"]
+margin_left = 1600.0
+margin_right = 1920.0
+margin_bottom = 164.0
+rect_min_size = Vector2( 320, 164 )
 
-[node name="XPBox" parent="Display/Screens/Status" instance=ExtResource( 5 )]
-margin_left = 28.0
-margin_top = 64.0
-margin_right = 28.0
-margin_bottom = 64.0
-
-[node name="StatsBox" parent="Display/Screens/Status" instance=ExtResource( 4 )]
-margin_left = 204.0
-margin_top = 12.0
-margin_right = 204.0
-margin_bottom = 12.0
-
-[node name="Tabs" type="CenterContainer" parent="Display"]
+[node name="Tabs" type="Control" parent="Display"]
 margin_right = 320.0
 margin_bottom = 16.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Labels" type="HBoxContainer" parent="Display/Tabs"]
-margin_left = 32.0
-margin_right = 288.0
+[node name="Background" type="ColorRect" parent="Display/Tabs"]
+margin_right = 320.0
 margin_bottom = 16.0
-rect_min_size = Vector2( 0, 16 )
-custom_constants/separation = 12
+rect_min_size = Vector2( 320, 16 )
+color = Color( 0, 0, 0, 1 )
+
+[node name="Bar" type="NinePatchRect" parent="Display/Tabs"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 319.0
+margin_bottom = 15.0
+texture = ExtResource( 4 )
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Status" type="Label" parent="Display/Tabs/Labels"]
-margin_top = 4.0
-margin_right = 43.0
-margin_bottom = 12.0
+[node name="Center" type="CenterContainer" parent="Display/Tabs"]
+margin_left = 1.0
+margin_right = 321.0
+margin_bottom = 13.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Labels" type="HBoxContainer" parent="Display/Tabs/Center"]
+margin_left = 38.0
+margin_right = 281.0
+margin_bottom = 13.0
+rect_min_size = Vector2( 0, 13 )
+custom_constants/separation = 16
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Status" type="Label" parent="Display/Tabs/Center/Labels"]
+margin_right = 26.0
+margin_bottom = 13.0
 custom_fonts/font = ExtResource( 2 )
 text = "Status"
 align = 1
 
-[node name="Equip" type="Label" parent="Display/Tabs/Labels"]
-margin_left = 55.0
-margin_top = 4.0
-margin_right = 91.0
-margin_bottom = 12.0
+[node name="Equip" type="Label" parent="Display/Tabs/Center/Labels"]
+margin_left = 42.0
+margin_right = 66.0
+margin_bottom = 13.0
 custom_fonts/font = ExtResource( 2 )
 text = "Equip"
 align = 1
 
-[node name="Items" type="Label" parent="Display/Tabs/Labels"]
-margin_left = 103.0
-margin_top = 4.0
-margin_right = 139.0
-margin_bottom = 12.0
+[node name="Relics" type="Label" parent="Display/Tabs/Center/Labels"]
+margin_left = 82.0
+margin_right = 110.0
+margin_bottom = 13.0
+custom_fonts/font = ExtResource( 2 )
+text = "Relics"
+align = 1
+
+[node name="Items" type="Label" parent="Display/Tabs/Center/Labels"]
+margin_left = 126.0
+margin_right = 149.0
+margin_bottom = 13.0
 custom_fonts/font = ExtResource( 2 )
 text = "Items"
 align = 1
 
-[node name="Journal" type="Label" parent="Display/Tabs/Labels"]
-margin_left = 151.0
-margin_top = 4.0
-margin_right = 201.0
-margin_bottom = 12.0
+[node name="Journal" type="Label" parent="Display/Tabs/Center/Labels"]
+margin_left = 165.0
+margin_right = 198.0
+margin_bottom = 13.0
 custom_fonts/font = ExtResource( 2 )
 text = "Journal"
 align = 1
 
-[node name="System" type="Label" parent="Display/Tabs/Labels"]
-margin_left = 213.0
-margin_top = 4.0
-margin_right = 256.0
-margin_bottom = 12.0
+[node name="System" type="Label" parent="Display/Tabs/Center/Labels"]
+margin_left = 214.0
+margin_right = 243.0
+margin_bottom = 13.0
 custom_fonts/font = ExtResource( 2 )
 text = "System"
 align = 1
+
+[node name="Tween" type="Tween" parent="."]

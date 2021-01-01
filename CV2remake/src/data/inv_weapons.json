@@ -18,57 +18,68 @@
     "whip_vk0": {
         "name": "Vampire Killer", "attrib": [], "sell": null,
         "stats": { "atk": 10 },
-        "description": "Belmont family whip. Its powers have been cursed by Dracula."
+        "description": "Belmont family whip. Its powers have been cursed by Dracula.",
+        "icon": "res://src/assets/sprites/inventory/weapon/whip_vk.png"
     },
     "whip_vk1": {
         "name": "Vampire Killer", "attrib": [], "sell": null,
         "stats": { "atk": 80 },
-        "description": "The legendary whip wielded by the Belmont family."
+        "description": "The legendary whip wielded by the Belmont family.",
+        "icon": "res://src/assets/sprites/inventory/weapon/whip_vk.png"
     },
     "whip_vk2": {
         "name": "Vampire Killer", "attrib": [], "sell": null,
         "stats": { "atk": 130 },
-        "description": "Legendary whip of the Belmonts. Its potential has been fully realized."
+        "description": "Legendary whip of the Belmonts. Its potential has been fully realized.",
+        "icon": "res://src/assets/sprites/inventory/weapon/whip_vk.png"
     },
     "whip_leather": {
         "name": "Leather Whip", "attrib": [], "sell": 250,
         "stats": { "atk": 22 },
-        "description": "Made from leather. A weapon for a warrior with panache."
+        "description": "Made from leather. A weapon for a warrior with panache.",
+        "icon": "res://src/assets/sprites/inventory/weapon/whip_leather.png"
     },
     "whip_thorn": {
         "name": "Whip of Thorns", "attrib": [], "sell": 750,
         "stats": { "atk": 35 },
-        "description": "Whip woven of leather and thorns."
+        "description": "Whip woven of leather and thorns.",
+        "icon": "res://src/assets/sprites/inventory/weapon/whip_thorn.png"
     },
     "whip_steel": {
         "name": "Steel Whip", "attrib": [], "sell": 1250,
         "stats": { "atk": 45 },
-        "description": "Whip fashioned from chains of steel."
+        "description": "Whip fashioned from chains of steel.",
+        "icon": "res://src/assets/sprites/inventory/weapon/whip_steel.png"
     },
     "whip_rose": {
         "name": "Rose Stem Whip", "attrib": [], "sell": 2000,
         "stats": { "atk": 60 },
-        "description": "Thorned whip that requires great skill to use."
+        "description": "Thorned whip that requires great skill to use.",
+        "icon": "res://src/assets/sprites/inventory/weapon/whip_rose.png"
     },
     "whip_stone": {
         "name": "Medusa Whip", "attrib": ["stone"], "sell": 3500,
         "stats": { "atk": 30 },
-        "description": "Whip that can turn its targets to stone."
+        "description": "Whip that can turn its targets to stone.",
+        "icon": "res://src/assets/sprites/inventory/weapon/whip_medusa.png"
     },
     "whip_nebula": {
         "name": "Nebula", "attrib": ["holy"], "sell": 5000,
         "stats": { "atk": 37 },
-        "description": "Chain that binds and destroys evil."
+        "description": "Chain that binds and destroys evil.",
+        "icon": "res://src/assets/sprites/inventory/weapon/whip_nebula.png"
     },
     "whip_fire": {
         "name": "Flame Whip", "attrib": ["fire"], "sell": 5000,
         "stats": { "atk": 65 },
-        "description": "Whip imbued with the power of flames."
+        "description": "Whip imbued with the power of flames.",
+        "icon": "res://src/assets/sprites/inventory/weapon/whip_fire.png"
     },
     "whip_dark": {
         "name": "Jet Black Whip", "attrib": ["dark", "poison"], "sell": 16650,
         "stats": { "atk": 44 },
-        "description": "Jet black whip imbued with the power of darkness."
+        "description": "Jet black whip imbued with the power of darkness.",
+        "icon": "res://src/assets/sprites/inventory/weapon/whip_dark.png"
     },
     "whip_morningstar": {
         "name": "Morningstar", "attrib": ["strike"], "sell": 5000,
@@ -78,7 +89,8 @@
     "whip_undead": {
         "name": "Undead Whip", "attrib": ["holy"], "sell": 25000,
         "stats": { "atk": 70 },
-        "description": "Holy whip that can kill even the undead."
+        "description": "Holy whip that can kill even the undead.",
+        "icon": "res://src/assets/sprites/inventory/weapon/whip_undead.png"
     },
 
 
@@ -86,22 +98,26 @@
     "dagger_baselard": {
         "name": "Baselard", "attrib": ["pierce"], "sell": 300,
         "stats": { "atk": 19 },
-        "description": "Dagger with an I-shaped shaft."
+        "description": "Dagger with an I-shaped shaft.",
+        "icon": "res://src/assets/sprites/inventory/weapon/dagger_baselard.png"
     },
     "dagger_combat": {
         "name": "Combat Dagger", "attrib": ["pierce"], "sell": 500,
         "stats": { "atk": 24 },
-        "description": "Knife designed for close-quarters combat."
+        "description": "Knife designed for close-quarters combat.",
+        "icon": "res://src/assets/sprites/inventory/weapon/dagger_combat.png"
     },
     "dagger_cutall": {
         "name": "Cutall", "attrib": ["pierce"], "sell": 1350,
         "stats": { "atk": 48 },
-        "description": "Dagger of Indian origins."
+        "description": "Dagger of Indian origins.",
+        "icon": "res://src/assets/sprites/inventory/weapon/dagger_cutall.png"
     },
     "dagger_cinquedea": {
         "name": "Cinquedea", "attrib": ["pierce"], "sell": 1875,
         "stats": { "atk": 59 },
-        "description": "Elaborate dagger encrusted with jewels."
+        "description": "Elaborate dagger encrusted with jewels.",
+        "icon": "res://src/assets/sprites/inventory/weapon/dagger_cinquedea.png"
     },
 
 
@@ -109,97 +125,116 @@
     "sword_short": {
         "name": "Short Sword", "attrib": ["slash"], "sell": 100,
         "stats": { "atk": 16 },
-        "description": "Sword with a short blade."
+        "description": "Sword with a short blade.",
+        "icon": "res://src/assets/sprites/inventory/weapon/sword_short.png"
     },
     "sword_cutlass": {
         "name": "Cutlass", "attrib": ["slash"], "sell": 550,
         "stats": { "atk": 21 },
-        "description": "Short sword used by sailors."
+        "description": "Short sword used by sailors.",
+        "icon": "res://src/assets/sprites/inventory/weapon/sword_cutlass.png"
     },
     "sword_long": {
         "name": "Long Sword", "attrib": ["slash"], "sell": 875,
         "stats": { "atk": 29 },
-        "description": "Common long sword."
+        "description": "Common long sword.",
+        "icon": "res://src/assets/sprites/inventory/weapon/sword_long_por.png"
     },
     "sword_fragarach": {
         "name": "Fragarach", "attrib": ["slash"], "sell": 1750,
         "stats": { "atk": 32 },
-        "description": "Demonic sword in the shape of a cross."
+        "description": "Demonic sword in the shape of a cross.",
+        "icon": "res://src/assets/sprites/inventory/weapon/sword_fragarach.png"
     },
     "sword_mystletain": {
         "name": "Mystletain", "attrib": ["slash", "holy"], "sell": 2250,
         "stats": { "atk": 28 },
-        "description": "Sword hewn from the wood of a divine tree."
+        "description": "Sword hewn from the wood of a divine tree.",
+        "icon": "res://src/assets/sprites/inventory/weapon/sword_mystletain.png"
     },
     "sword_fire0": {
         "name": "Laevatain", "attrib": ["slash", "fire"], "sell": 3400,
         "stats": { "atk": 25, "int": 5 },
-        "description": "Intensely hot sword that scorches everything it touches."
+        "description": "Intensely hot sword that scorches everything it touches.",
+        "icon": "res://src/assets/sprites/inventory/weapon/sword_laevatain_dos.png"
     },
     "sword_gladius": {
         "name": "Gladius", "attrib": ["slash"], "sell": 1450,
         "stats": { "atk": 35, "def": 2 },
-        "description": "Sword used in ancient Rome."
+        "description": "Sword used in ancient Rome.",
+        "icon": "res://src/assets/sprites/inventory/weapon/sword_gladius_por.png"
     },
     "sword_gold": {
         "name": "Joyeuse", "attrib": ["slash"], "sell": 25000,
         "stats": { "atk": 43, "lck": 5 },
-        "description": "Extravagantly beautiful sword. Quite valuable."
+        "description": "Extravagantly beautiful sword. Quite valuable.",
+        "icon": "res://src/assets/sprites/inventory/weapon/sword_joyeuse.png"
     },
     "sword_stone": {
         "name": "Milican's Sword", "attrib": ["slash", "stone"], "sell": 5000,
         "stats": { "atk": 40 },
-        "description": "Sword that sometimes turns those it strikes to stone."
+        "description": "Sword that sometimes turns those it strikes to stone.",
+        "icon": "res://src/assets/sprites/inventory/weapon/sword_milican.png"
     },
     "sword_ice": {
         "name": "Rahab's Frost", "attrib": ["slash", "ice"], "sell": 5500,
         "stats": { "atk": 40, "int": 5 },
-        "description": "Icy blade made from the fang of the water-dragon Rahab."
+        "description": "Icy blade made from the fang of the water-dragon Rahab.",
+        "icon": "res://src/assets/sprites/inventory/weapon/sword_rahab.png"
     },
     "sword_fire1": {
         "name": "Agni's Flame", "attrib": ["slash", "fire"], "sell": 5500,
         "stats": { "atk": 40, "int": 5 },
-        "description": "Flaming blade of Agni, the god of fire."
+        "description": "Flaming blade of Agni, the god of fire.",
+        "icon": "res://src/assets/sprites/inventory/weapon/sword_laevatain_aos.png"
     },
     "sword_poison": {
         "name": "Hrunting", "attrib": ["slash", "poison"], "sell": 6250,
         "stats": { "atk": 52 },
-        "description": "Poisoned blade preferred by assassins."
+        "description": "Poisoned blade preferred by assassins.",
+        "icon": "res://src/assets/sprites/inventory/weapon/sword_hrunting.png"
     },
     "sword_heaven": {
         "name": "Heaven's Sword", "attrib": ["slash", "holy"], "sell": 9500,
         "stats": { "atk": 35 },
-        "description": "Demon-slaying sword once wielded by an angel."
+        "description": "Demon-slaying sword once wielded by an angel.",
+        "icon": "res://src/assets/sprites/inventory/weapon/sword_heaven.png"
     },
     "sword_burtgang": {
         "name": "Burtgang", "attrib": ["slash"], "sell": 7250,
         "stats": { "atk": 58, "def": 8, "con": 10 },
-        "description": "Sword blessed with divinity. It is designed for defense first."
+        "description": "Sword blessed with divinity. It is designed for defense first.",
+        "icon": "res://src/assets/sprites/inventory/weapon/sword_burtgang.png"
     },
     "sword_bakatwa": {
         "name": "Bakatwa", "attrib": ["slash"], "sell": 2500,
         "stats": { "atk": 68 },
-        "description": "Simple, effective sword that is easy to wield."
+        "description": "Simple, effective sword that is easy to wield.",
+        "icon": "res://src/assets/sprites/inventory/weapon/sword_bakatwa.png"
     },
     "sword_kaladbolg": {
         "name": "Kaladbolg", "attrib": ["slash"], "sell": 8250,
         "stats": { "atk": 65, "int": 8 },
-        "description": "Demonic sword tempered by fairies."
+        "description": "Demonic sword tempered by fairies.",
+        "icon": "res://src/assets/sprites/inventory/weapon/sword_kaladbolg_aos.png"
     },
     "sword_jagdplaute": {
         "name": "Jagdplaute", "attrib": ["slash"], "sell": 3200,
         "stats": { "atk": 75 },
-        "description": "Elegant yet deadly sword."
+        "description": "Elegant yet deadly sword.",
+        "icon": "res://src/assets/sprites/inventory/weapon/sword_jagdplaute.png"
     },
     "sword_stellar": {
         "name": "Stellar Sword", "attrib": ["slash", "holy"], "sell": 17500,
         "stats": { "atk": 70 },
-        "description": "Family heirloom of the Kischine bloodline."
+        "description": "Family heirloom of the Kischine bloodline.",
+        "icon": "res://src/assets/sprites/inventory/weapon/sword_stellar.png"
     },
     "sword_damascus": {
         "name": "Damascus Sword", "attrib": ["slash"], "sell": 12500,
         "stats": { "atk": 88 },
-        "description": "Superior sword that never loses its razor-sharp edge."
+        "description": "Superior sword that never loses its razor-sharp edge.",
+        "icon": "res://src/assets/sprites/inventory/weapon/sword_damascus_sotn.png"
     },
 
 
@@ -207,7 +242,8 @@
     "auto_valmanway": {
         "name": "Valmanway", "attrib": ["slash"], "sell": 44000,
         "stats": { "atk": 36 },
-        "description": "Sword whose name means \"Blessed Wind\"."
+        "description": "Sword whose name means \"Blessed Wind\".",
+        "icon": "res://src/assets/sprites/inventory/weapon/auto_valmanway.png"
     },
     
 
