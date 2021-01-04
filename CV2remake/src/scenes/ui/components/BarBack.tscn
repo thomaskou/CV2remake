@@ -1,6 +1,7 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://src/assets/sprites/ui/menu_bar.png" type="Texture" id=1]
+[ext_resource path="res://src/assets/sprites/ui/menu_bar_gold.png" type="Texture" id=1]
+
 
 [node name="BarBack" type="TextureRect"]
 margin_right = 72.0

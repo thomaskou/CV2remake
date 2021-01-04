@@ -1,15 +1,15 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/assets/fonts/font_sinsgold.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/assets/fonts/font_m3x6.tres" type="DynamicFont" id=2]
-[ext_resource path="res://src/assets/sprites/ui/menu_frame4.png" type="Texture" id=3]
+[ext_resource path="res://src/assets/sprites/ui/menu_frame0_alt.png" type="Texture" id=3]
 [ext_resource path="res://src/assets/sprites/inventory/default.png" type="Texture" id=4]
 [ext_resource path="res://src/scripts/global/menu/MenuEquip.gd" type="Script" id=5]
 [ext_resource path="res://src/scenes/ui/components/StatsBoxDiff.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/assets/fonts/font_squarebit.tres" type="DynamicFont" id=7]
 
 [node name="Equip" type="Control"]
-margin_left = 320.0
-margin_right = 640.0
+margin_right = 320.0
 margin_bottom = 164.0
 rect_min_size = Vector2( 320, 164 )
 script = ExtResource( 5 )
@@ -19,18 +19,18 @@ __meta__ = {
 
 [node name="Grids" type="Control" parent="."]
 margin_left = 12.0
-margin_top = 20.0
-margin_right = 218.0
-margin_bottom = 108.0
-rect_min_size = Vector2( 208, 88 )
+margin_top = 16.0
+margin_right = 220.0
+margin_bottom = 112.0
+rect_min_size = Vector2( 208, 96 )
 rect_clip_content = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Box" type="Control" parent="Grids"]
-margin_bottom = 88.0
-rect_min_size = Vector2( 0, 88 )
+margin_bottom = 96.0
+rect_min_size = Vector2( 0, 96 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -57,8 +57,8 @@ __meta__ = {
 }
 
 [node name="Armor" type="GridContainer" parent="Grids/Box"]
-margin_left = 452.0
-margin_right = 660.0
+margin_left = 448.0
+margin_right = 656.0
 rect_min_size = Vector2( 208, 0 )
 custom_constants/vseparation = 2
 custom_constants/hseparation = 2
@@ -68,8 +68,8 @@ __meta__ = {
 }
 
 [node name="Spells" type="GridContainer" parent="Grids/Box"]
-margin_left = 680.0
-margin_right = 888.0
+margin_left = 672.0
+margin_right = 880.0
 rect_min_size = Vector2( 208, 0 )
 custom_constants/vseparation = 2
 custom_constants/hseparation = 2
@@ -79,31 +79,30 @@ __meta__ = {
 }
 
 [node name="Description" type="Control" parent="."]
-margin_top = 128.0
-margin_bottom = 128.0
+margin_top = 112.0
+margin_bottom = 112.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Frame" type="NinePatchRect" parent="Description"]
-margin_left = 4.0
-margin_top = -12.0
-margin_right = 316.0
-margin_bottom = 40.0
+margin_right = 320.0
+margin_bottom = 52.0
+rect_pivot_offset = Vector2( 224, 19 )
 texture = ExtResource( 3 )
-patch_margin_left = 17
-patch_margin_top = 17
-patch_margin_right = 17
-patch_margin_bottom = 17
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Sprite" type="TextureRect" parent="Description"]
-margin_left = 16.0
-margin_top = -2.0
-margin_right = 48.0
-margin_bottom = 30.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 42.0
+margin_bottom = 42.0
 rect_min_size = Vector2( 32, 32 )
 texture = ExtResource( 4 )
 stretch_mode = 1
@@ -112,10 +111,10 @@ __meta__ = {
 }
 
 [node name="Name" type="Label" parent="Description"]
-margin_left = 56.0
-margin_top = -7.0
-margin_right = 109.0
-margin_bottom = 7.0
+margin_left = 50.0
+margin_top = 5.0
+margin_right = 103.0
+margin_bottom = 18.0
 custom_fonts/font = ExtResource( 2 )
 text = "Vampire Killer"
 __meta__ = {
@@ -123,15 +122,44 @@ __meta__ = {
 }
 
 [node name="DescText" type="Label" parent="Description"]
-margin_left = 56.0
-margin_top = 6.0
-margin_right = 238.0
-margin_bottom = 35.0
+margin_left = 50.0
+margin_top = 18.0
+margin_right = 232.0
+margin_bottom = 47.0
 custom_fonts/font = ExtResource( 1 )
 custom_constants/line_spacing = -1
 text = "Lorem ipsum dolor sit amet,
 lorem ipsum dolor sit amet."
 autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StatsText" type="Label" parent="Description"]
+margin_left = 232.0
+margin_top = 8.0
+margin_right = 313.0
+margin_bottom = 23.0
+grow_horizontal = 0
+custom_fonts/font = ExtResource( 7 )
+custom_colors/font_color = Color( 0.470588, 0.501961, 0.517647, 1 )
+text = "ATK 44, DEF 44, STR 4, CON 4, INT 44, LCK 44"
+align = 2
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AttribGrid" type="GridContainer" parent="Description"]
+margin_left = 312.0
+margin_top = 28.0
+margin_right = 312.0
+margin_bottom = 44.0
+grow_horizontal = 0
+grow_vertical = 0
+custom_constants/vseparation = 1
+custom_constants/hseparation = 1
+columns = 4
 __meta__ = {
 "_edit_use_anchors_": false
 }

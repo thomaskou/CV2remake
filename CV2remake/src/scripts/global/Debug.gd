@@ -22,6 +22,12 @@ func mp_hotkeys(down: String, up: String) -> void:
 		GameState.mp += 1
 
 func xp_hotkeys(down: String, up: String) -> void:
+	if Input.is_action_pressed(down):
+		GameState.xp -= 5
+	if Input.is_action_pressed(up):
+		GameState.xp += 5
+
+func xp_skip_hotkeys(down: String, up: String) -> void:
 	if Input.is_action_just_pressed(down):
 		GameState.skip_to_previous_level()
 	if Input.is_action_just_pressed(up):

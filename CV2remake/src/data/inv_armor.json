@@ -1,7 +1,303 @@
 {
     "default": {
-        "name": "DEFAULT",
+        "name": "DEFAULT", "attrib": [], "sell": null,
         "description": "LOREM IPSUM DOLOR SIT AMET.",
         "icon": "res://src/assets/sprites/inventory/default.png"
+    },
+
+
+    
+    "casual": {
+        "name": "Casual Clothes", "sell": null,
+        "stats": { "def": 1 },
+        "description": "Clothes worn regularly.",
+        "icon": "res://src/assets/sprites/inventory/armor/por_casual.png"
+    },
+    "hobo": {
+        "name": "Zombie Rags", "sell": 50,
+        "stats": { "def": 2 },
+        "description": "Ragged, worn clothes. Your mother would be ashamed.",
+        "icon": "res://src/assets/sprites/inventory/armor/por_hobo.png"
+    },
+    "cloth": {
+        "name": "Cloth Tunic", "sell": 150,
+        "stats": { "def": 4 },
+        "description": "Simple garment made of cloth.",
+        "icon": "res://src/assets/sprites/inventory/armor/dos_cloth.png"
+    },
+    "houppelande": {
+        "name": "Houppelande", "sell": 375,
+        "stats": { "def": 5 },
+        "description": "Roomy robe with large, hanging sleeves.",
+        "icon": "res://src/assets/sprites/inventory/armor/por_houppelande.png"
+    },
+    "justaucorps": {
+        "name": "Justaucorps", "sell": 1250,
+        "stats": { "def": 8, "int": 2, "mnd": 2 },
+        "description": "Luxurious suit with extravagant detailing throughout.",
+        "icon": "res://src/assets/sprites/inventory/armor/por_justaucorps.png"
+    },
+    "warfatigues": {
+        "name": "War Fatigues", "sell": 2450,
+        "stats": { "def": 10 },
+        "description": "Battle wear with certain areas reinforced for added protection.",
+        "icon": "res://src/assets/sprites/inventory/armor/hod_warfatigues.png"
+    },
+    "surcoat": {
+        "name": "Surcoat", "sell": 7000,
+        "stats": { "def": 18, "int": 5, "mnd": 5 },
+        "description": "Garment bearing a noble family crest.",
+        "icon": "res://src/assets/sprites/inventory/armor/por_surcoat.png"
+    },
+    "feather": {
+        "name": "Feather Gear", "sell": 4950,
+        "stats": { "def": 32 },
+        "description": "Magical clothes that extend the distance you fall back when hit.",
+        "icon": "res://src/assets/sprites/inventory/armor/por_feathergear.png"
+    },
+
+
+    
+    "robe_silk": {
+        "name": "Silk Robe", "sell": 400,
+        "stats": { "def": 4, "int": 2 },
+        "description": "Robe made of woven silk.",
+        "icon": "res://src/assets/sprites/inventory/armor/aos_silk.png"
+    },
+    "robe_mage": {
+        "name": "Mage Robe", "sell": 1150,
+        "stats": { "def": 10, "int": 5 },
+        "description": "Robe worn by mages.",
+        "icon": "res://src/assets/sprites/inventory/armor/dos_mage.png"
+    },
+    "robe_elf": {
+        "name": "Elfin Robe", "sell": 2500,
+        "stats": { "def": 16, "int": 8 },
+        "description": "Garment woven by elves.",
+        "icon": "res://src/assets/sprites/inventory/armor/dos_elfin.png"
+    },
+    "robe_kalasiris": {
+        "name": "Kalasiris", "sell": 3950,
+        "stats": { "def": 20 },
+        "description": "Translucent robe worn by ancient Egyptian nobility.",
+        "icon": "res://src/assets/sprites/inventory/armor/por_kalasiris.png"
+    },
+    "robe_fire": {
+        "name": "Wyrm Robe", "attrib": ["fire"], "sell": 7500,
+        "stats": { "def": 22 },
+        "description": "Fire-resistant robe made from the hide of a wyrm.",
+        "icon": "res://src/assets/sprites/inventory/armor/dos_wyrm.png"
+    },
+    "robe_water": {
+        "name": "Aquarius", "attrib": ["ice"], "sell": 7500,
+        "stats": { "def": 28 },
+        "description": "Water-resistant robe imbued with elemental power.",
+        "icon": "res://src/assets/sprites/inventory/armor/dos_aquarius.png"
+    },
+    "robe_serenity": {
+        "name": "Serenity Robe", "sell": 11500,
+        "stats": { "def": 34, "int": 10 },
+        "description": "Blessed frock that calms the spirit.",
+        "icon": "res://src/assets/sprites/inventory/armor/dos_serenity.png"
+    },
+    "robe_death": {
+        "name": "Death's Robe", "sell": 21000,
+        "stats": { "atk": 6, "def": 42, "str": 4, "con": 4, "int": 13, "lck": 4 },
+        "description": "Raiment once worn by Death.",
+        "icon": "res://src/assets/sprites/inventory/armor/dos_death.png"
+    },
+
+
+
+    "mail_leather": {
+        "name": "Leather Plate", "sell": 125,
+        "stats": { "def": 4 },
+        "description": "Breastplate made of tanned leather.",
+        "icon": "res://src/assets/sprites/inventory/armor/por_leather.png"
+    },
+    "mail_copper": {
+        "name": "Copper Plate", "sell": 500,
+        "stats": { "def": 9 },
+        "description": "Breastplate made of burnished copper.",
+        "icon": "res://src/assets/sprites/inventory/armor/por_copper.png"
+    },
+    "mail_iron": {
+        "name": "Iron Plate", "sell": 1000,
+        "stats": { "def": 15 },
+        "description": "Standard breastplate made of iron.",
+        "icon": "res://src/assets/sprites/inventory/armor/por_iron.png"
+    },
+    "mail_crimson": {
+        "name": "Crimson Mail", "sell": 1500,
+        "stats": { "def": 15, "str": 2, "mnd": 3 },
+        "description": "Beautiful suit of armor in translucent red.",
+        "icon": "res://src/assets/sprites/inventory/armor/ooe_crimson.png"
+    },
+    "mail_ring": {
+        "name": "Ring Mail", "sell": 1400,
+        "stats": { "def": 16 },
+        "description": "Suit with metal rings sewn on.",
+        "icon": "res://src/assets/sprites/inventory/armor/dos_ring.png"
+    },
+    "mail_silver": {
+        "name": "Silver Plate", "sell": 2000,
+        "stats": { "def": 18 },
+        "description": "Breastplate made of sterling sliver.",
+        "icon": "res://src/assets/sprites/inventory/armor/por_silver.png"
+    },
+    "mail_scale": {
+        "name": "Scale Mail", "sell": 2100,
+        "stats": { "def": 20 },
+        "description": "Mail suit with scale-like plates sewn on.",
+        "icon": "res://src/assets/sprites/inventory/armor/dos_scale.png"
+    },
+    "mail_chain": {
+        "name": "Chain Mail", "sell": 3800,
+        "stats": { "def": 24 },
+        "description": "Mail fashioned out of a mesh of metal links.",
+        "icon": "res://src/assets/sprites/inventory/armor/dos_chain.png"
+    },
+    "mail_gold": {
+        "name": "Gold Plate", "sell": 4200,
+        "stats": { "def": 26 },
+        "description": "Breastplate covered in real gold.",
+        "icon": "res://src/assets/sprites/inventory/armor/por_gold.png"
+    },
+    "mail_holy": {
+        "name": "Holy Mail", "attrib": ["holy"], "sell": 7500,
+        "stats": { "def": 25, "mnd": 10 },
+        "description": "Strong against holy attacks.",
+        "icon": "res://src/assets/sprites/inventory/armor/por_holy.png"
+    },
+    "mail_hauberk": {
+        "name": "Hauberk", "sell": 4900,
+        "stats": { "def": 31 },
+        "description": "Chain mail made for easy movement.",
+        "icon": "res://src/assets/sprites/inventory/armor/dos_hauberk.png"
+    },
+    "mail_lorica": {
+        "name": "Lorica", "sell": 5000,
+        "stats": { "def": 32, "str": 3, "con": 3 },
+        "description": "Armor with a muscular design. Worn by Roman officers.",
+        "icon": "res://src/assets/sprites/inventory/armor/por_lorica.png"
+    },
+    "mail_fire": {
+        "name": "Fire Mail", "attrib": ["fire"], "sell": 5400,
+        "stats": { "def": 34 },
+        "description": "Strong against fire attacks.",
+        "icon": "res://src/assets/sprites/inventory/armor/sotn_fire.png"
+    },
+    "mail_cuirass": {
+        "name": "Cuirass", "sell": 7000,
+        "stats": { "def": 38 },
+        "description": "Torso armor with a rounded profile.",
+        "icon": "res://src/assets/sprites/inventory/armor/dos_cuirass.png"
+    },
+    "mail_lightning": {
+        "name": "Lightning Mail", "attrib": ["thunder"], "sell": 7400,
+        "stats": { "def": 38 },
+        "description": "Strong against lightning attacks.",
+        "icon": "res://src/assets/sprites/inventory/armor/sotn_lightning.png"
+    },
+    "mail_ice": {
+        "name": "Ice Mail", "attrib": ["ice"], "sell": 7400,
+        "stats": { "def": 38 },
+        "description": "Strong against ice attacks.",
+        "icon": "res://src/assets/sprites/inventory/armor/sotn_ice.png"
+    },
+    "mail_dark": {
+        "name": "Dark Mail", "attrib": ["dark"], "sell": 7400,
+        "stats": { "def": 38 },
+        "description": "Strong against dark attacks.",
+        "icon": "res://src/assets/sprites/inventory/armor/sotn_dark.png"
+    },
+    "mail_platinum": {
+        "name": "Platinum Plate", "sell": 6000,
+        "stats": { "def": 45 },
+        "description": "Breastplate made of platinum.",
+        "icon": "res://src/assets/sprites/inventory/armor/por_platinum.png"
+    },
+    "mail_samurai": {
+        "name": "Samurai Plate", "sell": 7000,
+        "stats": { "def": 35, "con": 10, "mnd": 10 },
+        "description": "Traditional body armor worn by samurai warriors of the far east.",
+        "icon": "res://src/assets/sprites/inventory/armor/por_samurai.png"
+    },
+    "mail_eversing": {
+        "name": "Eversing", "sell": 15000,
+        "stats": { "def": 46 },
+        "description": "Armor tempered by a waterfall over many millennia.",
+        "icon": "res://src/assets/sprites/inventory/armor/dos_eversing.png"
+    },
+    "mail_diamond": {
+        "name": "Diamond Plate", "sell": 17500,
+        "stats": { "def": 49 },
+        "description": "Breastplate made of diamond.",
+        "icon": "res://src/assets/sprites/inventory/armor/sotn_diamond.png"
+    },
+    "mail_mojo": {
+        "name": "Mojo Mail", "attrib": ["dark"], "sell": 225000,
+        "stats": { "def": 49, "con": 10, "int": 10 },
+        "description": "Breastplate imbued with dark powers. Increases magic attack power.",
+        "icon": "res://src/assets/sprites/inventory/armor/sotn_mojo.png"
+    },
+    "mail_alucard": {
+        "name": "Alucard Mail", "attrib": ["fire", "ice", "lightning"], "sell": 30000,
+        "stats": { "def": 52, "mnd": 8 },
+        "description": "Strong against fire, lightning, and ice attacks.",
+        "icon": "res://src/assets/sprites/inventory/armor/sotn_alucard.png"
+    },
+    "mail_demon": {
+        "name": "Demon's Mail", "sell": 33000,
+        "stats": { "def": 56 },
+        "description": "Suit of mail imbued with dark powers.",
+        "icon": "res://src/assets/sprites/inventory/armor/dos_demon.png"
+    },
+
+
+
+    "mail_berserk": {
+        "name": "Berserker Mail", "sell": 7500,
+        "stats": { "str": 30, "con": -30, "mnd": -30 },
+        "description": "Armor that increases damage, both dealt and received.",
+        "icon": "res://src/assets/sprites/inventory/armor/por_berserk.png"
+    },
+    "mail_heal": {
+        "name": "Healing Mail", "sell": 10000,
+        "stats": { "def": 12 },
+        "description": "Armor that heals HP as the wearer walks.",
+        "icon": "res://src/assets/sprites/inventory/armor/por_heal.png"
+    },
+    "mail_mirror": {
+        "name": "Mirror Cuirass", "attrib": ["stone"], "sell": 5000,
+        "stats": { "def": 16 },
+        "description": "Mirrored armor that protects the wearer from petrification.",
+        "icon": "res://src/assets/sprites/inventory/armor/ooe_mirror.png"
+    },
+    "mail_spike": {
+        "name": "Spiked Mail", "sell": 8250,
+        "stats": { "con": -20, "mnd": -20 },
+        "description": "Armor covered in spikes that damage anything they touch. Wear with caution.",
+        "icon": "res://src/assets/sprites/inventory/armor/cotm_spike.png"
+    },
+    "mail_heavy": {
+        "name": "Heavy Armor", "sell": 2500,
+        "stats": { "def": 55, "str": 5, "mnd": 40 },
+        "description": "Cumbersome armor. High defense, but slows down the wearer.",
+        "icon": "res://src/assets/sprites/inventory/armor/por_heavy.png"
+    },
+    "mail_block": {
+        "name": "Impervious Mail", "sell": 12500,
+        "stats": { "def": 8 },
+        "description": "Armor that can completely block some attacks.",
+        "icon": "res://src/assets/sprites/inventory/armor/dos_blocking.png"
+    },
+
+
+    
+    "ancient": {
+        "name": "Ancient Armor", "sell": 7500,
+        "description": "Any damage taken reduces HP by 10% of the maximum HP.",
+        "icon": "res://src/assets/sprites/inventory/armor/por_ancient.png"
     }
 }

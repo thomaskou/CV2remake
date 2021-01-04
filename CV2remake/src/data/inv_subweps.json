@@ -1,6 +1,6 @@
 {
     "default": {
-        "name": "DEFAULT",
+        "name": "DEFAULT", "attrib": [],
         "description": "LOREM IPSUM DOLOR SIT AMET.",
         "icon": "res://src/assets/sprites/inventory/default.png"
     },

@@ -289,44 +289,94 @@ func get_max_hp() -> int:
 func get_max_mp() -> int:
 	return MP_PER_LEVEL*(level-1) + MP_PER_PLUS*plus_mp_max + BASE_MP
 
+func get_base_atk() -> int:
+	return int(floor(get_str()/2.0))
+
 func get_atk() -> int:
-	var value: int = int(floor(get_str()/2.0))
-	if equip_weapon != "": value += DataRepository.InvWeapons[equip_weapon]["stats"]["atk"]
-	if equip_armor != "": value += DataRepository.InvArmor[equip_armor]["stats"]["atk"]
-	return value
+	var value: int = get_base_atk()
+	if equip_weapon != "": value += get_equipped_weapon()["stats"]["atk"]
+	if equip_armor != "": value += get_equipped_armor()["stats"]["atk"]
+	return int(max(value, 0))
+
+func get_base_def() -> int:
+	return int(floor(get_con()/2.0))
 
 func get_def() -> int:
-	var value: int = int(floor(get_con()/2.0))
-	if equip_weapon != "": value += DataRepository.InvWeapons[equip_weapon]["stats"]["def"]
-	if equip_armor != "": value += DataRepository.InvArmor[equip_armor]["stats"]["def"]
-	return value
+	var value: int = get_base_def()
+	if equip_weapon != "": value += get_equipped_weapon()["stats"]["def"]
+	if equip_armor != "": value += get_equipped_armor()["stats"]["def"]
+	return int(max(value, 0))
+
+func get_base_str() -> int:
+	return int(round(STR_PER_LEVEL*(level-1))) + plus_str + BASE_STR
 
 func get_str() -> int:
-	var value: int = int(round(STR_PER_LEVEL*(level-1))) + plus_str + BASE_STR
-	if equip_weapon != "": value += DataRepository.InvWeapons[equip_weapon]["stats"]["str"]
-	if equip_armor != "": value += DataRepository.InvArmor[equip_armor]["stats"]["str"]
-	return value
+	var value: int = get_base_str()
+	if equip_weapon != "": value += get_equipped_weapon()["stats"]["str"]
+	if equip_armor != "": value += get_equipped_armor()["stats"]["str"]
+	return int(max(value, 0))
+
+func get_base_con() -> int:
+	return int(round(CON_PER_LEVEL*(level-1))) + plus_con + BASE_CON
 
 func get_con() -> int:
-	var value: int = int(round(CON_PER_LEVEL*(level-1))) + plus_con + BASE_CON
-	if equip_weapon != "": value += DataRepository.InvWeapons[equip_weapon]["stats"]["con"]
-	if equip_armor != "": value += DataRepository.InvArmor[equip_armor]["stats"]["con"]
-	return value
+	var value: int = get_base_con()
+	if equip_weapon != "": value += get_equipped_weapon()["stats"]["con"]
+	if equip_armor != "": value += get_equipped_armor()["stats"]["con"]
+	return int(max(value, 0))
+
+func get_base_int() -> int:
+	return int(round(INT_PER_LEVEL*(level-1))) + plus_int + BASE_INT
 
 func get_int() -> int:
-	var value: int = int(round(INT_PER_LEVEL*(level-1))) + plus_int + BASE_INT
-	if equip_weapon != "": value += DataRepository.InvWeapons[equip_weapon]["stats"]["int"]
-	if equip_armor != "": value += DataRepository.InvArmor[equip_armor]["stats"]["int"]
-	return value
+	var value: int = get_base_int()
+	if equip_weapon != "": value += get_equipped_weapon()["stats"]["int"]
+	if equip_armor != "": value += get_equipped_armor()["stats"]["int"]
+	return int(max(value, 0))
+
+func get_base_mnd() -> int:
+	return int(round(MND_PER_LEVEL*(level-1))) + plus_mnd + BASE_MND
 
 func get_mnd() -> int:
-	var value: int = int(round(MND_PER_LEVEL*(level-1))) + plus_mnd + BASE_MND
-	if equip_weapon != "": value += DataRepository.InvWeapons[equip_weapon]["stats"]["mnd"]
-	if equip_armor != "": value += DataRepository.InvArmor[equip_armor]["stats"]["mnd"]
-	return value
+	var value: int = get_base_mnd()
+	if equip_weapon != "": value += get_equipped_weapon()["stats"]["mnd"]
+	if equip_armor != "": value += get_equipped_armor()["stats"]["mnd"]
+	return int(max(value, 0))
+
+func get_base_lck() -> int:
+	return int(round(LCK_PER_LEVEL*(level-1))) + plus_lck + BASE_LCK
 
 func get_lck() -> int:
-	var value: int = int(round(LCK_PER_LEVEL*(level-1))) + plus_lck + BASE_LCK
-	if equip_weapon != "": value += DataRepository.InvWeapons[equip_weapon]["stats"]["lck"]
-	if equip_armor != "": value += DataRepository.InvArmor[equip_armor]["stats"]["lck"]
-	return value
+	var value: int = get_base_lck()
+	if equip_weapon != "": value += get_equipped_weapon()["stats"]["lck"]
+	if equip_armor != "": value += get_equipped_armor()["stats"]["lck"]
+	return int(max(value, 0))
+
+func get_base_stat_by_name(name: String) -> int:
+	return call("get_base_" + name)
+
+func get_stat_by_name(name: String) -> int:
+	return call("get_" + name)
+
+func get_base_stat_by_index(index: int) -> int:
+	return get_base_stat_by_name(DataRepository.DataEnums["stats"][index])
+
+func get_stat_by_index(index: int) -> int:
+	return get_stat_by_name(DataRepository.DataEnums["stats"][index])
+
+
+################################################################################
+# Equipment
+################################################################################
+
+func get_equipped_weapon() -> Dictionary:
+	return DataRepository.InvWeapons[equip_weapon]
+
+func get_equipped_subwep() -> Dictionary:
+	return DataRepository.InvSubweps[equip_subwep]
+
+func get_equipped_armor() -> Dictionary:
+	return DataRepository.InvArmor[equip_armor]
+
+func get_equipped_spell() -> Dictionary:
+	return DataRepository.InvSpells[equip_spell]

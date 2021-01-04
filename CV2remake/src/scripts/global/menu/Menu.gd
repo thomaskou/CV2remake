@@ -11,8 +11,8 @@ const FADE_GAME_FRAMES: int = 2
 const FADE_WAIT_FRAMES: int = 2
 const FADE_MENU_FRAMES: int = 2
 
-const TAB_COLOR_INACTIVE: Color = Color(96.0/255,96.0/255,96.0/255)
-const TAB_COLOR_ACTIVE: Color = Color(252.0/255, 248.0/255, 252.0/255)
+const TAB_COLOR_INACTIVE: Color = Color("606060")
+const TAB_COLOR_ACTIVE: Color = Color("fcf8fc")
 const TAB_TRANSITION_FRAMES: int = 12
 
 

@@ -1,25 +1,10 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://src/assets/sprites/ui/menu_frame0.png" type="Texture" id=1]
+[ext_resource path="res://src/assets/sprites/ui/menu_frame0_alt.png" type="Texture" id=1]
 [ext_resource path="res://src/assets/fonts/font_pansyhand.tres" type="DynamicFont" id=2]
-
-[sub_resource type="GDScript" id=1]
-script/source = "extends Control
-
-onready var GameState: Node = get_node(\"/root/Main/GameState\")
-
-func _process(_delta):
-	$ATKLeft.text = String(GameState.get_atk())
-	$DEFLeft.text = String(GameState.get_def())
-	$STRLeft.text = String(GameState.stat_str)
-	$CONLeft.text = String(GameState.stat_con)
-	$INTLeft.text = String(GameState.stat_int)
-	$MNDLeft.text = String(GameState.stat_mnd)
-	$LCKLeft.text = String(GameState.stat_lck)
-"
+[ext_resource path="res://src/assets/sprites/ui/menu_stats_arrow_same.png" type="Texture" id=3]
 
 [node name="StatsBoxDiff" type="Control"]
-script = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -36,299 +21,388 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ATKLabel" type="Label" parent="."]
+[node name="Text" type="Control" parent="."]
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ATK" type="Control" parent="Text"]
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Text/ATK"]
 margin_left = 8.0
-margin_top = 1.0
+margin_top = 2.0
 margin_right = 23.0
-margin_bottom = 15.0
+margin_bottom = 16.0
 rect_min_size = Vector2( 15, 14 )
 custom_fonts/font = ExtResource( 2 )
-custom_colors/font_color = Color( 0.988235, 0.972549, 0.988235, 1 )
+custom_colors/font_color = Color( 0.894118, 0.376471, 0.0941176, 1 )
 text = "ATK"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="DEFLabel" type="Label" parent="."]
+[node name="Left" type="Label" parent="Text/ATK"]
+margin_left = 29.0
+margin_top = 2.0
+margin_right = 41.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 12, 14 )
+custom_fonts/font = ExtResource( 2 )
+text = "999"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Right" type="Label" parent="Text/ATK"]
+margin_left = 53.0
+margin_top = 2.0
+margin_right = 65.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 12, 14 )
+custom_fonts/font = ExtResource( 2 )
+text = "999"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Arrow" type="TextureRect" parent="Text/ATK"]
+margin_left = 44.0
+margin_top = 7.0
+margin_right = 50.0
+margin_bottom = 14.0
+rect_pivot_offset = Vector2( 3, 5 )
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DEF" type="Control" parent="Text"]
+
+[node name="Label" type="Label" parent="Text/DEF"]
 margin_left = 8.0
-margin_top = 11.0
+margin_top = 12.0
 margin_right = 23.0
-margin_bottom = 25.0
+margin_bottom = 26.0
 rect_min_size = Vector2( 15, 0 )
 custom_fonts/font = ExtResource( 2 )
-custom_colors/font_color = Color( 0.988235, 0.972549, 0.988235, 1 )
+custom_colors/font_color = Color( 0.407843, 0.533333, 0.988235, 1 )
 text = "DEF"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="STRLabel" type="Label" parent="."]
+[node name="Left" type="Label" parent="Text/DEF"]
+margin_left = 29.0
+margin_top = 12.0
+margin_right = 41.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 12, 0 )
+custom_fonts/font = ExtResource( 2 )
+text = "999"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Right" type="Label" parent="Text/DEF"]
+margin_left = 53.0
+margin_top = 12.0
+margin_right = 65.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 12, 0 )
+custom_fonts/font = ExtResource( 2 )
+text = "999"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Arrow" type="TextureRect" parent="Text/DEF"]
+margin_left = 44.0
+margin_top = 17.0
+margin_right = 50.0
+margin_bottom = 24.0
+rect_pivot_offset = Vector2( 3, 5 )
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="STR" type="Control" parent="Text"]
+
+[node name="Label" type="Label" parent="Text/STR"]
 margin_left = 8.0
 margin_top = 29.0
 margin_right = 23.0
 margin_bottom = 43.0
 rect_min_size = Vector2( 15, 0 )
 custom_fonts/font = ExtResource( 2 )
-custom_colors/font_color = Color( 0.988235, 0.972549, 0.988235, 1 )
 text = "STR"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CONLabel" type="Label" parent="."]
+[node name="Left" type="Label" parent="Text/STR"]
+margin_left = 29.0
+margin_top = 29.0
+margin_right = 41.0
+margin_bottom = 43.0
+rect_min_size = Vector2( 12, 0 )
+custom_fonts/font = ExtResource( 2 )
+text = "999"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Right" type="Label" parent="Text/STR"]
+margin_left = 53.0
+margin_top = 29.0
+margin_right = 65.0
+margin_bottom = 43.0
+rect_min_size = Vector2( 12, 0 )
+custom_fonts/font = ExtResource( 2 )
+text = "999"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Arrow" type="TextureRect" parent="Text/STR"]
+margin_left = 44.0
+margin_top = 34.0
+margin_right = 50.0
+margin_bottom = 41.0
+rect_pivot_offset = Vector2( 3, 5 )
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CON" type="Control" parent="Text"]
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Text/CON"]
 margin_left = 8.0
 margin_top = 39.0
 margin_right = 23.0
 margin_bottom = 53.0
 rect_min_size = Vector2( 15, 0 )
 custom_fonts/font = ExtResource( 2 )
-custom_colors/font_color = Color( 0.988235, 0.972549, 0.988235, 1 )
 text = "CON"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="INTLabel" type="Label" parent="."]
+[node name="Left" type="Label" parent="Text/CON"]
+margin_left = 29.0
+margin_top = 39.0
+margin_right = 41.0
+margin_bottom = 53.0
+rect_min_size = Vector2( 12, 0 )
+custom_fonts/font = ExtResource( 2 )
+text = "999"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Right" type="Label" parent="Text/CON"]
+margin_left = 53.0
+margin_top = 39.0
+margin_right = 65.0
+margin_bottom = 53.0
+rect_min_size = Vector2( 12, 0 )
+custom_fonts/font = ExtResource( 2 )
+text = "999"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Arrow" type="TextureRect" parent="Text/CON"]
+margin_left = 44.0
+margin_top = 44.0
+margin_right = 50.0
+margin_bottom = 51.0
+rect_pivot_offset = Vector2( 3, 5 )
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="INT" type="Control" parent="Text"]
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Text/INT"]
 margin_left = 8.0
 margin_top = 49.0
 margin_right = 23.0
 margin_bottom = 63.0
 rect_min_size = Vector2( 15, 0 )
 custom_fonts/font = ExtResource( 2 )
-custom_colors/font_color = Color( 0.988235, 0.972549, 0.988235, 1 )
 text = "INT"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MNDLabel" type="Label" parent="."]
+[node name="Left" type="Label" parent="Text/INT"]
+margin_left = 29.0
+margin_top = 49.0
+margin_right = 41.0
+margin_bottom = 63.0
+rect_min_size = Vector2( 12, 0 )
+custom_fonts/font = ExtResource( 2 )
+text = "999"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Right" type="Label" parent="Text/INT"]
+margin_left = 53.0
+margin_top = 49.0
+margin_right = 65.0
+margin_bottom = 63.0
+rect_min_size = Vector2( 12, 0 )
+custom_fonts/font = ExtResource( 2 )
+text = "999"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Arrow" type="TextureRect" parent="Text/INT"]
+margin_left = 44.0
+margin_top = 54.0
+margin_right = 50.0
+margin_bottom = 61.0
+rect_pivot_offset = Vector2( 3, 5 )
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MND" type="Control" parent="Text"]
+
+[node name="Label" type="Label" parent="Text/MND"]
 margin_left = 8.0
 margin_top = 59.0
 margin_right = 23.0
 margin_bottom = 73.0
 rect_min_size = Vector2( 15, 0 )
 custom_fonts/font = ExtResource( 2 )
-custom_colors/font_color = Color( 0.988235, 0.972549, 0.988235, 1 )
 text = "MND"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LCKLabel" type="Label" parent="."]
+[node name="Left" type="Label" parent="Text/MND"]
+margin_left = 29.0
+margin_top = 59.0
+margin_right = 41.0
+margin_bottom = 73.0
+rect_min_size = Vector2( 12, 0 )
+custom_fonts/font = ExtResource( 2 )
+text = "999"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Right" type="Label" parent="Text/MND"]
+margin_left = 53.0
+margin_top = 59.0
+margin_right = 65.0
+margin_bottom = 73.0
+rect_min_size = Vector2( 12, 0 )
+custom_fonts/font = ExtResource( 2 )
+text = "999"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Arrow" type="TextureRect" parent="Text/MND"]
+margin_left = 44.0
+margin_top = 64.0
+margin_right = 50.0
+margin_bottom = 71.0
+rect_pivot_offset = Vector2( 3, 5 )
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LCK" type="Control" parent="Text"]
+
+[node name="Label" type="Label" parent="Text/LCK"]
 margin_left = 8.0
 margin_top = 69.0
 margin_right = 23.0
 margin_bottom = 83.0
 rect_min_size = Vector2( 15, 0 )
 custom_fonts/font = ExtResource( 2 )
-custom_colors/font_color = Color( 0.988235, 0.972549, 0.988235, 1 )
 text = "LCK"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ATKLeft" type="Label" parent="."]
-margin_left = 29.0
-margin_top = 1.0
-margin_right = 41.0
-margin_bottom = 15.0
-rect_min_size = Vector2( 12, 14 )
-custom_fonts/font = ExtResource( 2 )
-custom_colors/font_color = Color( 0.988235, 0.972549, 0.988235, 1 )
-text = "999"
-align = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="DEFLeft" type="Label" parent="."]
-margin_left = 29.0
-margin_top = 11.0
-margin_right = 41.0
-margin_bottom = 25.0
-rect_min_size = Vector2( 12, 0 )
-custom_fonts/font = ExtResource( 2 )
-custom_colors/font_color = Color( 0.988235, 0.972549, 0.988235, 1 )
-text = "999"
-align = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="STRLeft" type="Label" parent="."]
-margin_left = 29.0
-margin_top = 29.0
-margin_right = 41.0
-margin_bottom = 43.0
-rect_min_size = Vector2( 12, 0 )
-custom_fonts/font = ExtResource( 2 )
-custom_colors/font_color = Color( 0.988235, 0.972549, 0.988235, 1 )
-text = "999"
-align = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="CONLeft" type="Label" parent="."]
-margin_left = 29.0
-margin_top = 39.0
-margin_right = 41.0
-margin_bottom = 53.0
-rect_min_size = Vector2( 12, 0 )
-custom_fonts/font = ExtResource( 2 )
-custom_colors/font_color = Color( 0.988235, 0.972549, 0.988235, 1 )
-text = "999"
-align = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="INTLeft" type="Label" parent="."]
-margin_left = 29.0
-margin_top = 49.0
-margin_right = 41.0
-margin_bottom = 63.0
-rect_min_size = Vector2( 12, 0 )
-custom_fonts/font = ExtResource( 2 )
-custom_colors/font_color = Color( 0.988235, 0.972549, 0.988235, 1 )
-text = "999"
-align = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="MNDLeft" type="Label" parent="."]
-margin_left = 29.0
-margin_top = 59.0
-margin_right = 41.0
-margin_bottom = 73.0
-rect_min_size = Vector2( 12, 0 )
-custom_fonts/font = ExtResource( 2 )
-custom_colors/font_color = Color( 0.988235, 0.972549, 0.988235, 1 )
-text = "999"
-align = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="LCKLeft" type="Label" parent="."]
+[node name="Left" type="Label" parent="Text/LCK"]
 margin_left = 29.0
 margin_top = 69.0
 margin_right = 41.0
 margin_bottom = 83.0
 rect_min_size = Vector2( 12, 0 )
 custom_fonts/font = ExtResource( 2 )
-custom_colors/font_color = Color( 0.988235, 0.972549, 0.988235, 1 )
 text = "999"
 align = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ATKRight" type="Label" parent="."]
-margin_left = 53.0
-margin_top = 1.0
-margin_right = 65.0
-margin_bottom = 15.0
-rect_min_size = Vector2( 12, 14 )
-custom_fonts/font = ExtResource( 2 )
-custom_colors/font_color = Color( 0.988235, 0.972549, 0.988235, 1 )
-text = "999"
-align = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="DEFRight" type="Label" parent="."]
-margin_left = 53.0
-margin_top = 11.0
-margin_right = 65.0
-margin_bottom = 25.0
-rect_min_size = Vector2( 12, 0 )
-custom_fonts/font = ExtResource( 2 )
-custom_colors/font_color = Color( 0.988235, 0.972549, 0.988235, 1 )
-text = "999"
-align = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="STRRight" type="Label" parent="."]
-margin_left = 53.0
-margin_top = 29.0
-margin_right = 65.0
-margin_bottom = 43.0
-rect_min_size = Vector2( 12, 0 )
-custom_fonts/font = ExtResource( 2 )
-custom_colors/font_color = Color( 0.988235, 0.972549, 0.988235, 1 )
-text = "999"
-align = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="CONRight" type="Label" parent="."]
-margin_left = 53.0
-margin_top = 39.0
-margin_right = 65.0
-margin_bottom = 53.0
-rect_min_size = Vector2( 12, 0 )
-custom_fonts/font = ExtResource( 2 )
-custom_colors/font_color = Color( 0.988235, 0.972549, 0.988235, 1 )
-text = "999"
-align = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="INTRight" type="Label" parent="."]
-margin_left = 53.0
-margin_top = 49.0
-margin_right = 65.0
-margin_bottom = 63.0
-rect_min_size = Vector2( 12, 0 )
-custom_fonts/font = ExtResource( 2 )
-custom_colors/font_color = Color( 0.988235, 0.972549, 0.988235, 1 )
-text = "999"
-align = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="MNDRight" type="Label" parent="."]
-margin_left = 53.0
-margin_top = 59.0
-margin_right = 65.0
-margin_bottom = 73.0
-rect_min_size = Vector2( 12, 0 )
-custom_fonts/font = ExtResource( 2 )
-custom_colors/font_color = Color( 0.988235, 0.972549, 0.988235, 1 )
-text = "999"
-align = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="LCKRight" type="Label" parent="."]
+[node name="Right" type="Label" parent="Text/LCK"]
 margin_left = 53.0
 margin_top = 69.0
 margin_right = 65.0
 margin_bottom = 83.0
 rect_min_size = Vector2( 12, 0 )
 custom_fonts/font = ExtResource( 2 )
-custom_colors/font_color = Color( 0.988235, 0.972549, 0.988235, 1 )
 text = "999"
-align = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ColorRect" type="ColorRect" parent="."]
-margin_left = 8.0
+[node name="Arrow" type="TextureRect" parent="Text/LCK"]
+margin_left = 44.0
+margin_top = 74.0
+margin_right = 50.0
+margin_bottom = 81.0
+rect_pivot_offset = Vector2( 3, 5 )
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LineTop" type="ColorRect" parent="."]
+margin_left = 7.0
 margin_top = 28.0
-margin_right = 64.0
+margin_right = 65.0
 margin_bottom = 29.0
-color = Color( 0.67451, 0.501961, 0, 1 )
+color = Color( 0, 0.470588, 0.988235, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LineBottom" type="ColorRect" parent="."]
+margin_left = 7.0
+margin_top = 29.0
+margin_right = 65.0
+margin_bottom = 30.0
+color = Color( 0, 0, 0.768627, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

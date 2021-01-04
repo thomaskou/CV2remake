@@ -1,0 +1,15 @@
+{
+    "icons_attrib_gold": {
+        "pierce": "res://src/assets/sprites/ui/icon/attrib_gold_pierce.png",
+        "slash": "res://src/assets/sprites/ui/icon/attrib_gold_slash.png",
+        "strike": "res://src/assets/sprites/ui/icon/attrib_gold_strike.png",
+        "dark": "res://src/assets/sprites/ui/icon/attrib_gold_dark.png",
+        "fire": "res://src/assets/sprites/ui/icon/attrib_gold_fire.png",
+        "holy": "res://src/assets/sprites/ui/icon/attrib_gold_holy.png",
+        "ice": "res://src/assets/sprites/ui/icon/attrib_gold_ice.png",
+        "thunder": "res://src/assets/sprites/ui/icon/attrib_gold_thunder.png",
+        "curse": "res://src/assets/sprites/ui/icon/attrib_gold_curse.png",
+        "poison": "res://src/assets/sprites/ui/icon/attrib_gold_poison.png",
+        "stone": "res://src/assets/sprites/ui/icon/attrib_gold_stone.png"
+    }
+}

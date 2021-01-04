@@ -1,0 +1,4 @@
+{
+    "status": ["Good", "Poison", "Curse", "Stone"],
+    "stats": ["atk", "def", "str", "con", "int", "mnd", "lck"]
+}

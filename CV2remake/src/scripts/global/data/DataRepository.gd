@@ -1,7 +1,7 @@
 extends Node
 
-export var Enums: Dictionary
-
+export var DataEnums: Dictionary
+export var DataTextures: Dictionary
 export var DataLevels: Array
 
 export var InvArmor: Dictionary
@@ -14,8 +14,12 @@ export var InvWeapons: Dictionary
 func _ready():
 	var file: File = File.new()
 	
-	file.open("res://src/data/enums.json", File.READ)
-	Enums = JSON.parse(file.get_as_text()).result
+	file.open("res://src/data/data_enums.json", File.READ)
+	DataEnums = JSON.parse(file.get_as_text()).result
+	file.close()
+	
+	file.open("res://src/data/data_textures.json", File.READ)
+	DataTextures = JSON.parse(file.get_as_text()).result
 	file.close()
 	
 	file.open("res://src/data/data_levels.json", File.READ)
@@ -55,6 +59,7 @@ func _ready():
 	InvSpells = JSON.parse(file.get_as_text()).result
 	for name in InvSpells:
 		var item: Dictionary = InvSpells[name]
+		item["stats"] = create_default_stats(item["stats"]) if item.has("stats") else create_default_stats(Dictionary())
 		for property in InvSpells["default"]:
 			if !item.has(property):
 				item[property] = InvSpells["default"][property]
@@ -64,6 +69,7 @@ func _ready():
 	InvSubweps = JSON.parse(file.get_as_text()).result
 	for name in InvSubweps:
 		var item: Dictionary = InvSubweps[name]
+		item["stats"] = create_default_stats(item["stats"]) if item.has("stats") else create_default_stats(Dictionary())
 		for property in InvSubweps["default"]:
 			if !item.has(property):
 				item[property] = InvSubweps["default"][property]

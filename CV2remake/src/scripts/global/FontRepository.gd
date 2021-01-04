@@ -8,6 +8,7 @@ func _ready():
 	load_other_fonts()
 	
 func load_other_fonts() -> void:
+	fonts["cvgba"] = ResourceLoader.load("res://src/assets/fonts/font_cvgba.tres")
 	fonts["kingisdead"] = ResourceLoader.load("res://src/assets/fonts/font_kingisdead.tres")
 	fonts["m3x6"] = ResourceLoader.load("res://src/assets/fonts/font_m3x6.tres")
 	fonts["m5x7"] = ResourceLoader.load("res://src/assets/fonts/font_m5x7.tres")

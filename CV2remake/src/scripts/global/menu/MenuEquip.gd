@@ -13,10 +13,22 @@ const TILE_DIMENSIONS: Vector2 = Vector2(24,24)
 const TILE_SPACING: int = 2
 const TAB_TRANSITION_FRAMES: int = 8
 const GRID_SCROLL_FRAMES: int = 6
-const GRID_SCROLL_MARGIN: int = 6
+const GRID_TILE_MARGIN: int = 10
+const GRID_SCROLL_MARGIN: int = 4
 
 const INPUT_HOLD_WAIT: int = 18
 const INPUT_HOLD_INTERVAL: int = 6
+
+const TILE_BG_NORMAL: Color = Color("2c2c2c")
+const TILE_BG_EQUIPPED: Color = Color("606060")
+const TILE_BORDER: Color = Color("fcf8fc")
+
+const STAT_COLOR_WORSE: Color = Color("e40060")
+const STAT_COLOR_SAME: Color = Color("fcf8fc")
+const STAT_COLOR_BETTER: Color = Color("38c0fc")
+const STAT_ARROW_WORSE_PATH: String = "res://src/assets/sprites/ui/menu_stats_arrow_down.png"
+const STAT_ARROW_SAME_PATH: String = "res://src/assets/sprites/ui/menu_stats_arrow_same.png"
+const STAT_ARROW_BETTER_PATH: String = "res://src/assets/sprites/ui/menu_stats_arrow_up.png"
 
 
 ################################################################################
@@ -29,11 +41,11 @@ onready var GameState: Node = get_node("/root/Main/GameState")
 onready var Menu: Node = get_node("/root/Main/Menu")
 
 export onready var tab: int = 0
-onready var GridsBox: Node = get_node("Grids/Box")
-onready var WeaponsGrid: Node = get_node("Grids/Box/Weapons")
-onready var SubwepsGrid: Node = get_node("Grids/Box/Subweps")
-onready var ArmorGrid: Node = get_node("Grids/Box/Armor")
-onready var SpellsGrid: Node = get_node("Grids/Box/Spells")
+onready var GridsBox: Control = get_node("Grids/Box")
+onready var WeaponsGrid: GridContainer = get_node("Grids/Box/Weapons")
+onready var SubwepsGrid: GridContainer = get_node("Grids/Box/Subweps")
+onready var ArmorGrid: GridContainer = get_node("Grids/Box/Armor")
+onready var SpellsGrid: GridContainer = get_node("Grids/Box/Spells")
 
 onready var index: Array = [0,0,0,0]
 onready var grid: Array = [WeaponsGrid, SubwepsGrid, ArmorGrid, SpellsGrid]
@@ -41,6 +53,10 @@ onready var grid: Array = [WeaponsGrid, SubwepsGrid, ArmorGrid, SpellsGrid]
 onready var style_normal: StyleBox = create_style_normal()
 onready var style_selected: StyleBox = create_style_selected()
 onready var style_equipped: StyleBox = create_style_equipped()
+
+onready var stat_arrow_worse: Texture = load(STAT_ARROW_WORSE_PATH)
+onready var stat_arrow_same: Texture = load(STAT_ARROW_SAME_PATH)
+onready var stat_arrow_better: Texture = load(STAT_ARROW_BETTER_PATH)
 
 var input_menu_modifier: bool
 var input_confirm: bool
@@ -117,12 +133,12 @@ func check_tab_input() -> void:
 	if input_left_press and !input_right_press:
 		var previous_tab: int = tab
 		tab = int(max(0, tab-1))
-		update_description(tab)
+		update_display_data(tab)
 		tween_from_previous_tab(previous_tab)
 	if input_right_press and !input_left_press:
 		var previous_tab: int = tab
 		tab = int(min(tab+1, GridsBox.get_child_count()-1))
-		update_description(tab)
+		update_display_data(tab)
 		tween_from_previous_tab(previous_tab)
 
 func check_confirm_input() -> void:
@@ -146,6 +162,7 @@ func check_confirm_input() -> void:
 			if item.name == old_name:
 				item.get_node("BG").add_stylebox_override("panel", style_normal)
 		grid[tab].get_child(index[tab]).get_node("BG").add_stylebox_override("panel", style_equipped)
+		render_stats_box(tab)
 
 func input_counters() -> void:
 	if input_confirm:
@@ -216,48 +233,42 @@ func tween_from_previous_tab(previous_tab: int) -> void:
 
 func initiate_selected_item(current_tab: int) -> void:
 	grid[current_tab].get_child(index[current_tab]).get_node("Border").visible = true
-	update_description(current_tab)
+	update_display_data(current_tab)
 	initiate_scroll_grid(current_tab)
-
-func initiate_scroll_grid(current_tab: int) -> void:
-	var tile_height = TILE_DIMENSIONS.y+TILE_SPACING
-	var selected_height: int = int(floor(index[current_tab]/GRID_COLUMNS)) * tile_height
-	var max_height: int = (int(floor(grid[current_tab].get_child_count()/GRID_COLUMNS))-1) * tile_height
-	grid[current_tab].rect_position.y = tile_height+GRID_SCROLL_MARGIN-int(clamp(selected_height, tile_height, max_height))
 
 func update_selected_item(previous_index: int) -> void:
 	grid[tab].get_child(previous_index).get_node("Border").visible = false
 	grid[tab].get_child(index[tab]).get_node("Border").visible = true
-	update_description(tab)
+	update_display_data(tab)
 	scroll_grid(previous_index)
+
+func get_scroll_height(selected_index: int) -> int:
+	var tile_height = TILE_DIMENSIONS.y+TILE_SPACING
+	return int(floor(selected_index/GRID_COLUMNS)) * tile_height
+
+func get_scroll_position(new_height: int, current_tab: int) -> int:
+	var tile_height = TILE_DIMENSIONS.y+TILE_SPACING
+	var min_height: int = tile_height + GRID_TILE_MARGIN - GRID_SCROLL_MARGIN
+	var max_height: int = (int(floor(max(0,grid[current_tab].get_child_count()-1)/GRID_COLUMNS))-1) * tile_height - GRID_TILE_MARGIN + GRID_SCROLL_MARGIN
+	return tile_height+GRID_TILE_MARGIN-int(clamp(new_height, min_height, max_height))
+
+func initiate_scroll_grid(current_tab: int) -> void:
+	grid[current_tab].rect_position.y = get_scroll_position(get_scroll_height(index[tab]), current_tab)
 
 func scroll_grid(previous_index: int) -> void:
 	var tile_height = TILE_DIMENSIONS.y+TILE_SPACING
-	var previous_height: int = int(floor(previous_index/GRID_COLUMNS)) * tile_height
-	var selected_height: int = int(floor(index[tab]/GRID_COLUMNS)) * tile_height
+	var previous_height: int = get_scroll_height(previous_index)
+	var selected_height: int = get_scroll_height(index[tab])
 	if previous_height != selected_height:
-		var max_height: int = (int(floor(grid[tab].get_child_count()/GRID_COLUMNS))-1) * tile_height
 		$TweenGrid.interpolate_property(
 			grid[tab], "rect_position",
 			grid[tab].rect_position,
-			Vector2(grid[tab].rect_position.x, tile_height+GRID_SCROLL_MARGIN-int(clamp(selected_height, tile_height, max_height))),
+			Vector2(grid[tab].rect_position.x, get_scroll_position(selected_height, tab)),
 			GRID_SCROLL_FRAMES/60.0, 0
 		)
 		$TweenGrid.start()
 		yield($TweenGrid, "tween_all_completed")
 		$TweenGrid.reset_all()
-
-func update_description(current_tab: int) -> void:
-	var repository: Dictionary
-	match tab:
-		0: repository = DataRepository.InvWeapons
-		1: repository = DataRepository.InvSubweps
-		2: repository = DataRepository.InvArmor
-		3: repository = DataRepository.InvSpells
-	var data: Dictionary = repository[grid[current_tab].get_child(index[current_tab]).name]
-	get_node("Description/Sprite").texture = load(data["icon"])
-	get_node("Description/Name").text = data.name
-	get_node("Description/DescText").text = data.description
 
 func create_item_tile(name: String, data: Dictionary, equipped: bool) -> Node:
 	# Create outer node
@@ -312,19 +323,101 @@ func create_item_tile(name: String, data: Dictionary, equipped: bool) -> Node:
 func create_style_normal() -> StyleBox:
 	var style = StyleBoxFlat.new()
 	style.set_corner_radius_all(3)
-	style.bg_color = Color(44.0/255, 44.0/255, 44.0/255, 1)
+	style.bg_color = TILE_BG_NORMAL
 	return style
 
 func create_style_selected() -> StyleBox:
 	var style = StyleBoxFlat.new()
 	style.set_border_width_all(1)
 	style.set_corner_radius_all(3)
-	style.border_color = Color(252.0/255, 248.0/255, 252.0/255, 1)
+	style.border_color = TILE_BORDER
 	style.bg_color = Color(0,0,0,0)
 	return style
 
 func create_style_equipped() -> StyleBox:
 	var style = StyleBoxFlat.new()
 	style.set_corner_radius_all(3)
-	style.bg_color = Color(96.0/255, 96.0/255, 96.0/255, 1)
+	style.bg_color = TILE_BG_EQUIPPED
 	return style
+
+
+################################################################################
+# Description, stats, metadata
+################################################################################
+
+func update_display_data(current_tab: int) -> void:
+	update_description(current_tab)
+	update_stats_text(current_tab)
+	update_attributes(current_tab)
+	render_stats_box(current_tab)
+
+func update_description(current_tab: int) -> void:
+	var data: Dictionary = get_selected_data(current_tab)
+	get_node("Description/Sprite").texture = load(data["icon"])
+	get_node("Description/Name").text = data.name
+	get_node("Description/DescText").text = data.description
+
+func update_stats_text(current_tab: int) -> void:
+	var StatsText: Label = get_node("Description/StatsText")
+	var text_arr: Array = []
+	var stats: Dictionary = get_selected_data(current_tab)["stats"]
+	for stat in stats:
+		if stats[stat] != 0:
+			text_arr.append(stat.to_upper() + " " + String(stats[stat]))
+	var text: String = ""
+	for i in text_arr.size():
+		if text_arr.size() > 2 and i == ceil(text_arr.size() / 2.0): text += ",\n"
+		elif i > 0: text += ", "
+		text += text_arr[i]
+	StatsText.text = text
+
+func update_attributes(current_tab: int) -> void:
+	var AttribGrid: GridContainer = get_node("Description/AttribGrid")
+	for child in AttribGrid.get_children():
+		AttribGrid.remove_child(child)
+		child.queue_free()
+	var attribs: Array = get_selected_data(current_tab)["attrib"]
+	for attrib in attribs:
+		var icon: TextureRect = TextureRect.new()
+		icon.texture = load(DataRepository.DataTextures["icons_attrib_gold"][attrib])
+		AttribGrid.add_child(icon)
+	AttribGrid.rect_size = Vector2(attribs.size()*16, 16)
+	AttribGrid.rect_position = Vector2(312 - attribs.size()*16, 28)
+
+func render_stats_box(current_tab: int) -> void:
+	var data: Dictionary = get_selected_data(current_tab)
+	var StatsText: Control = get_node("StatsBoxDiff/Text")
+	for i in range(7):
+		var stat_name: String = DataRepository.DataEnums["stats"][i]
+		var current_stat: int = GameState.get_stat_by_name(stat_name)
+		var new_stat: int = int(max(GameState.get_base_stat_by_name(stat_name) + data["stats"][stat_name], 0))
+		StatsText.get_child(i).get_node("Left").text = String(current_stat)
+		StatsText.get_child(i).get_node("Right").text = String(new_stat)
+		var text_color: Color
+		var stat_arrow: Texture
+		match sign(new_stat - current_stat):
+			-1.0:
+				text_color = STAT_COLOR_WORSE
+				stat_arrow = stat_arrow_worse
+			0.0:
+				text_color = STAT_COLOR_SAME
+				stat_arrow = stat_arrow_same
+			1.0:
+				text_color = STAT_COLOR_BETTER
+				stat_arrow = stat_arrow_better
+		StatsText.get_child(i).get_node("Right").add_color_override("font_color", text_color)
+		StatsText.get_child(i).get_node("Arrow").texture = stat_arrow
+
+
+################################################################################
+# Helper methods
+################################################################################
+
+func get_selected_data(current_tab: int) -> Dictionary:
+	var repository: Dictionary
+	match tab:
+		0: repository = DataRepository.InvWeapons
+		1: repository = DataRepository.InvSubweps
+		2: repository = DataRepository.InvArmor
+		3: repository = DataRepository.InvSpells
+	return repository[grid[current_tab].get_child(index[current_tab]).name]
