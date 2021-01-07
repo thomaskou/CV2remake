@@ -1,8 +1,11 @@
 {
-    "default": {
+    "_default": {
         "name": "DEFAULT", "attrib": [], "sell": null,
         "description": "LOREM IPSUM DOLOR SIT AMET.",
         "icon": "res://src/assets/sprites/inventory/default.png"
+    },
+    "_void": {
+        "name": "", "description": "", "icon": ""
     },
 
 
@@ -242,7 +245,7 @@
         "icon": "res://src/assets/sprites/inventory/armor/sotn_mojo.png"
     },
     "mail_alucard": {
-        "name": "Alucard Mail", "attrib": ["fire", "ice", "lightning"], "sell": 30000,
+        "name": "Alucard Mail", "attrib": ["fire", "ice", "thunder"], "sell": 30000,
         "stats": { "def": 52, "mnd": 8 },
         "description": "Strong against fire, lightning, and ice attacks.",
         "icon": "res://src/assets/sprites/inventory/armor/sotn_alucard.png"

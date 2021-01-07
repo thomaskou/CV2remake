@@ -1,48 +1,90 @@
 extends Node
 
+
+################################################################################
+# Enums, constants, & variables
+################################################################################
+
 enum Sprites {
-	STANDING, WALKING,
-	JUMPING,
-	CROUCHING, SLIDING
+	NONE,
+	STANDING, WALKING, JUMPING, ATK_STAND, ATK_JUMP,
+	CROUCHING, ATK_CROUCH,
+	SLIDING,
 }
 
+const COLLISION_NORMAL_SPRITES: Array = [
+	Sprites.STANDING, Sprites.WALKING, Sprites.ATK_STAND,
+	Sprites.JUMPING, Sprites.ATK_JUMP]
+const COLLISION_CROUCHING_SPRITES: Array = [Sprites.CROUCHING, Sprites.ATK_CROUCH]
+const COLLISION_SLIDING_SPRITES: Array = [Sprites.SLIDING]
+
 onready var Player: Node = get_parent()
+onready var current: int = Sprites.NONE
+onready var previous: int = Sprites.NONE
+
+var collision: Dictionary
 var sprites: Dictionary
-var current_sprite: Node
+
+
+################################################################################
+# Ready
+################################################################################
 
 func _ready():
-	sprites[Sprites.STANDING] = get_node("../Sprite_Standing")
-	sprites[Sprites.WALKING] = get_node("../Sprite_Walking")
-	sprites[Sprites.JUMPING] = get_node("../Sprite_Jumping")
-	sprites[Sprites.CROUCHING] = get_node("../Sprite_Crouching")
-	sprites[Sprites.SLIDING] = get_node("../Sprite_Sliding")
+	create_collision_dict()
+	create_sprite_dict()
+
+func create_collision_dict() -> void:
+	for sprite in COLLISION_NORMAL_SPRITES: collision[sprite] = get_node("../CollisionNormal")
+	for sprite in COLLISION_CROUCHING_SPRITES: collision[sprite] = get_node("../CollisionCrouching")
+	for sprite in COLLISION_SLIDING_SPRITES: collision[sprite] = get_node("../CollisionSliding")
+
+func create_sprite_dict() -> void:
+	sprites[Sprites.STANDING] = get_node("../Sprites/Standing")
+	sprites[Sprites.WALKING] = get_node("../Sprites/Walking")
+	sprites[Sprites.JUMPING] = get_node("../Sprites/Jumping")
+	sprites[Sprites.CROUCHING] = get_node("../Sprites/Crouching")
+	sprites[Sprites.SLIDING] = get_node("../Sprites/Sliding")
+	sprites[Sprites.ATK_STAND] = get_node("../Sprites/AttackStand")
+	sprites[Sprites.ATK_JUMP] = get_node("../Sprites/AttackJump")
+	sprites[Sprites.ATK_CROUCH] = get_node("../Sprites/AttackCrouch")
+
+
+################################################################################
+# Methods
+################################################################################
+
+func get_collision() -> CollisionShape2D:
+	return collision[current]
+
+
+################################################################################
+# Update sprite
+################################################################################
 	
 func update_sprite() -> void:
 	
-	if is_instance_valid(current_sprite):
-		current_sprite.visible = false
-		current_sprite.disabled = true
+	previous = current
 	
 	match Player.state:
-		
-		Player.PlayerStates.AIR:
-			current_sprite = sprites[Sprites.JUMPING]
-		
-		Player.PlayerStates.GROUND:
-			if Player.velocity.x != 0.0:
-				current_sprite = sprites[Sprites.WALKING]
-			else:
-				current_sprite = sprites[Sprites.STANDING]
-		
-		Player.PlayerStates.CROUCH:
-			current_sprite = sprites[Sprites.CROUCHING]
-		
-		Player.PlayerStates.CROUCH_STUN:
-			current_sprite = sprites[Sprites.CROUCHING]
-		
-		Player.PlayerStates.SLIDE:
-			current_sprite = sprites[Sprites.SLIDING]
+		Player.PlayerStates.AIR: current = Sprites.JUMPING
+		Player.PlayerStates.AIR_ATK: current = Sprites.ATK_JUMP
+		Player.PlayerStates.AIR_ATK_STUN: current = Sprites.JUMPING
+		Player.PlayerStates.GROUND: current = Sprites.WALKING if Player.velocity.x != 0.0 else Sprites.STANDING
+		Player.PlayerStates.GROUND_ATK: current = Sprites.ATK_STAND
+		Player.PlayerStates.GROUND_ATK_STUN: current = Sprites.STANDING
+		Player.PlayerStates.CROUCH: current = Sprites.CROUCHING
+		Player.PlayerStates.CROUCH_ATK: current = Sprites.ATK_CROUCH
+		Player.PlayerStates.CROUCH_ATK_STUN: current = Sprites.CROUCHING
+		Player.PlayerStates.CROUCH_STUN: current = Sprites.CROUCHING
+		Player.PlayerStates.SLIDE: current = Sprites.SLIDING
 	
-	current_sprite.get_child(0).flip_h = Player.facing_dir == Player.PlayerFacingDir.LEFT
-	current_sprite.visible = true
-	current_sprite.disabled = false
+	sprites[current].flip_h = Player.facing_dir == Player.PlayerFacingDir.LEFT
+	
+	if current != previous:
+		collision[current].disabled = false
+		sprites[current].visible = true
+		if sprites[current] is AnimatedSprite: sprites[current].frame = 0
+		if previous != Sprites.NONE:
+			if collision[current] != collision[previous]: collision[previous].disabled = true
+			sprites[previous].visible = false

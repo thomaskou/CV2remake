@@ -43,7 +43,7 @@ pause_mode = 1
 [node name="Area" parent="Gameplay" instance=ExtResource( 3 )]
 
 [node name="Player" parent="Gameplay" instance=ExtResource( 4 )]
-position = Vector2( 1216, 128 )
+position = Vector2( 2168, 336 )
 z_index = 100
 
 [node name="Camera" type="Camera2D" parent="Gameplay/Player"]

@@ -1,4 +1,85 @@
 {
+    "player_attack": {
+        "ground": {
+            "strike": [
+                { "center": [0,8], "offset": [0,-16], "sprite": "res://src/assets/sprites/simon/whip_stand_0.png" },
+                { "center": [8,4], "offset": [0,-16], "sprite": "res://src/assets/sprites/simon/whip_stand_1.png" },
+                { "center": [25,4], "offset": [0,-16], "sprite": "res://src/assets/sprites/simon/whip_stand_2.png" },
+                { "center": [29,14], "offset": [0,-16], "sprite": "res://src/assets/sprites/simon/whip_stand_3.png" }
+            ],
+            "swing1": [
+                { "center": [8,11], "offset": [0,-16], "sprite": "res://src/assets/sprites/simon/swing1_stand_0.png" },
+                { "center": [10,11], "offset": [0,-16], "sprite": "res://src/assets/sprites/simon/swing1_stand_1.png" },
+                { "center": [15,10], "offset": [0,-16], "sprite": "res://src/assets/sprites/simon/swing1_stand_2.png" },
+                { "center": [18,11], "offset": [0,-16], "sprite": "res://src/assets/sprites/simon/swing1_stand_3.png" }
+            ],
+            "swing2": [
+                { "center": [10,13], "offset": [0,-16], "sprite": "res://src/assets/sprites/simon/swing2_stand_0.png" },
+                { "center": [13,5], "offset": [0,-16], "sprite": "res://src/assets/sprites/simon/swing2_stand_1.png" },
+                { "center": [17,5], "offset": [0,-16], "sprite": "res://src/assets/sprites/simon/swing2_stand_2.png" },
+                { "center": [22,5], "offset": [0,-16], "sprite": "res://src/assets/sprites/simon/swing2_stand_3.png" },
+                { "center": [31,25], "offset": [0,-16], "sprite": "res://src/assets/sprites/simon/swing2_stand_4.png" }
+            ],
+            "slash": [],
+            "thrust": [],
+            "polearm": [],
+            "punch": [],
+            "auto": []
+        },
+        "air": {
+            "strike": [
+                { "center": [0,7], "offset": [0,-16], "sprite": "res://src/assets/sprites/simon/whip_ascending_0.png" },
+                { "center": [8,3], "offset": [0,-16], "sprite": "res://src/assets/sprites/simon/whip_ascending_1.png" },
+                { "center": [25,3], "offset": [0,-16], "sprite": "res://src/assets/sprites/simon/whip_ascending_2.png" },
+                { "center": [29,15], "offset": [0,-16], "sprite": "res://src/assets/sprites/simon/whip_ascending_3.png" }
+            ],
+            "swing1": [
+                { "center": [8,10], "offset": [0,-16], "sprite": "res://src/assets/sprites/simon/swing1_ascending_0.png" },
+                { "center": [10,10], "offset": [0,-16], "sprite": "res://src/assets/sprites/simon/swing1_ascending_1.png" },
+                { "center": [15,9], "offset": [0,-16], "sprite": "res://src/assets/sprites/simon/swing1_ascending_2.png" },
+                { "center": [18,10], "offset": [0,-16], "sprite": "res://src/assets/sprites/simon/swing1_ascending_3.png" }
+            ],
+            "swing2": [
+                { "center": [10,12], "offset": [0,-16], "sprite": "res://src/assets/sprites/simon/swing2_ascending_0.png" },
+                { "center": [13,4], "offset": [0,-16], "sprite": "res://src/assets/sprites/simon/swing2_ascending_1.png" },
+                { "center": [17,4], "offset": [0,-16], "sprite": "res://src/assets/sprites/simon/swing2_ascending_2.png" },
+                { "center": [22,4], "offset": [0,-16], "sprite": "res://src/assets/sprites/simon/swing2_ascending_3.png" },
+                { "center": [31,24], "offset": [0,-16], "sprite": "res://src/assets/sprites/simon/swing2_ascending_4.png" }],
+            "slash": [],
+            "thrust": [],
+            "polearm": [],
+            "punch": [],
+            "auto": []
+        },
+        "crouch": {
+            "strike": [
+                { "center": [0,15], "offset": [0,-16], "sprite": "res://src/assets/sprites/simon/whip_crouch_0.png" },
+                { "center": [8,11], "offset": [0,-16], "sprite": "res://src/assets/sprites/simon/whip_crouch_1.png" },
+                { "center": [25,11], "offset": [0,-16], "sprite": "res://src/assets/sprites/simon/whip_crouch_2.png" },
+                { "center": [29,21], "offset": [0,-16], "sprite": "res://src/assets/sprites/simon/whip_crouch_3.png" }
+            ],
+            "swing1": [
+                { "center": [8,18], "offset": [0,-16], "sprite": "res://src/assets/sprites/simon/swing1_crouch_0.png" },
+                { "center": [10,18], "offset": [0,-16], "sprite": "res://src/assets/sprites/simon/swing1_crouch_1.png" },
+                { "center": [15,17], "offset": [0,-16], "sprite": "res://src/assets/sprites/simon/swing1_crouch_2.png" },
+                { "center": [18,18], "offset": [0,-16], "sprite": "res://src/assets/sprites/simon/swing1_crouch_3.png" }
+            ],
+            "swing2": [
+                { "center": [10,17], "offset": [0,-16], "sprite": "res://src/assets/sprites/simon/swing2_crouch_0.png" },
+                { "center": [13,9], "offset": [0,-16], "sprite": "res://src/assets/sprites/simon/swing2_crouch_1.png" },
+                { "center": [17,9], "offset": [0,-16], "sprite": "res://src/assets/sprites/simon/swing2_crouch_2.png" },
+                { "center": [20,10], "offset": [0,-16], "sprite": "res://src/assets/sprites/simon/swing2_crouch_3.png" },
+                { "center": [28,29], "offset": [0,-16], "sprite": "res://src/assets/sprites/simon/swing2_crouch_4.png" }],
+            "slash": [],
+            "thrust": [],
+            "polearm": [],
+            "punch": [],
+            "auto": []
+        }
+    },
+
+
+
     "icons_attrib_gold": {
         "pierce": "res://src/assets/sprites/ui/icon/attrib_gold_pierce.png",
         "slash": "res://src/assets/sprites/ui/icon/attrib_gold_slash.png",

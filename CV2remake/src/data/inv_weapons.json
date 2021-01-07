@@ -1,16 +1,21 @@
 {
-    "default": {
+    "_default": {
         "name": "DEFAULT", "attrib": [], "sell": null,
-        "type": "slash", "move": false, "stun": false,
+        "type": "strike", "move": false, "stun": false, "delay": 0,
         "description": "LOREM IPSUM DOLOR SIT AMET.",
-        "icon": "res://src/assets/sprites/inventory/default.png"
+        "icon": "res://src/assets/sprites/inventory/default.png",
+        "sprite": { "path": "", "frames": [], "center": [] }
+    },
+    "_void": {
+        "name": "", "description": "", "icon": "",
+        "type": "punch", "move": false, "stun": false
     },
 
 
     
     "oakstake": {
         "name": "Oak Stake", "attrib": ["pierce"], "sell": 25,
-        "type": "slash",
+        "type": "thrust",
         "stats": { "atk": 13 },
         "description": "According to folklore, it slays vampires when driven into their hearts.",
         "icon": "res://src/assets/sprites/inventory/weapon/cv2r_oakstake.png"
@@ -20,91 +25,156 @@
 
     "whip_vk0": {
         "name": "Vampire Killer", "attrib": [], "sell": null,
-        "type": "strike", "stun": true,
+        "type": "strike", "stun": true, "delay": 0,
         "stats": { "atk": 10 },
         "description": "Belmont family whip. Its powers have been cursed by Dracula.",
-        "icon": "res://src/assets/sprites/inventory/weapon/por_vk.png"
+        "icon": "res://src/assets/sprites/inventory/weapon/por_vk.png",
+        "sprite": {
+            "path": "res://src/assets/sprites/weapon/cv1_vk",
+            "frames": [
+                { "time_sprite": [6,4], "player_frames": [0,1], "images": [0,1] },
+                { "time_sprite": [2], "player_frames": [2], "images": [1] },
+                { "time_sprite": [16], "player_frames": [3], "images": [2] }
+            ],
+            "center": [[7,2], [15,1], [0,4]]
+        }
     },
     "whip_vk1": {
         "name": "Vampire Killer", "attrib": [], "sell": null,
-        "type": "strike", "stun": true,
+        "type": "strike", "stun": true, "delay": 0,
         "stats": { "atk": 80 },
         "description": "The legendary whip wielded by the Belmont family.",
-        "icon": "res://src/assets/sprites/inventory/weapon/por_vk.png"
+        "icon": "res://src/assets/sprites/inventory/weapon/por_vk.png",
+        "sprite": {
+            "path": "res://src/assets/sprites/weapon/cv1_vk_flash_longer",
+            "frames": [
+                { "time_sprite": [6,4], "player_frames": [0,1], "images": [0,1] },
+                { "time_sprite": [2], "player_frames": [2], "images": [1] },
+                { "time_sprite": [2,2,2,2], "time": 16, "player_frames": [3], "images": [2,3,4,5] }
+            ],
+            "center": [[7,2], [15,1], [0,4], [0,4], [0,4], [0,4]],
+            "effects": { "ghost_frames": 2 }
+        }
     },
     "whip_vk2": {
         "name": "Vampire Killer", "attrib": [], "sell": null,
-        "type": "strike", "stun": true,
+        "type": "strike", "stun": true, "delay": 0,
         "stats": { "atk": 130 },
         "description": "Legendary whip of the Belmonts. Its potential has been fully realized.",
-        "icon": "res://src/assets/sprites/inventory/weapon/por_vk.png"
+        "icon": "res://src/assets/sprites/inventory/weapon/por_vk.png",
+        "sprite": {
+            "path": "res://src/assets/sprites/weapon/cv1_vk_flash_longest",
+            "frames": [
+                { "time_sprite": [4,2], "player_frames": [0,1], "images": [0,1] },
+                { "time_sprite": [2], "player_frames": [2], "images": [1] },
+                { "time_sprite": [2,2,2,2], "time": 14, "player_frames": [3], "images": [2,3,4,5] }
+            ],
+            "center": [[7,2], [15,1], [0,4], [0,4], [0,4], [0,4]],
+            "effects": { "ghost_frames": 2 }
+        }
     },
     "whip_leather": {
         "name": "Leather Whip", "attrib": [], "sell": 250,
-        "type": "strike", "stun": true,
+        "type": "strike", "stun": true, "delay": 0,
         "stats": { "atk": 22 },
         "description": "Made from leather. A weapon for a warrior with panache.",
-        "icon": "res://src/assets/sprites/inventory/weapon/por_leatherwhip.png"
+        "icon": "res://src/assets/sprites/inventory/weapon/por_leatherwhip.png",
+        "sprite": {
+            "path": "res://src/assets/sprites/weapon/cv1_leather_long",
+            "frames": [
+                { "time_sprite": [6,4], "player_frames": [0,1], "images": [0,1] },
+                { "time_sprite": [2], "player_frames": [2], "images": [1] },
+                { "time_sprite": [16], "player_frames": [3], "images": [2] }
+            ],
+            "center": [[7,2], [15,1], [0,6]]
+        }
     },
     "whip_thorn": {
         "name": "Whip of Thorns", "attrib": [], "sell": 750,
-        "type": "strike", "stun": true,
+        "type": "strike", "stun": true, "delay": 0,
         "stats": { "atk": 35 },
         "description": "Whip woven of leather and thorns.",
         "icon": "res://src/assets/sprites/inventory/weapon/cv2r_thornwhip.png"
     },
     "whip_steel": {
         "name": "Steel Whip", "attrib": [], "sell": 1250,
-        "type": "strike", "stun": true,
+        "type": "strike", "stun": true, "delay": 0,
         "stats": { "atk": 45 },
         "description": "Whip fashioned from chains of steel.",
-        "icon": "res://src/assets/sprites/inventory/weapon/por_steelwhip.png"
+        "icon": "res://src/assets/sprites/inventory/weapon/por_steelwhip.png",
+        "sprite": {
+            "path": "res://src/assets/sprites/weapon/cv2r_steelwhip",
+            "frames": [
+                { "time_sprite": [6,4], "player_frames": [0,1], "images": [0,1] },
+                { "time_sprite": [2], "player_frames": [2], "images": [1] },
+                { "time_sprite": [16], "player_frames": [3], "images": [2] }
+            ],
+            "center": [[7,2], [15,1], [0,2]]
+        }
     },
     "whip_rose": {
         "name": "Rose Stem Whip", "attrib": [], "sell": 2000,
-        "type": "strike", "stun": true,
+        "type": "strike", "stun": true, "delay": 0,
         "stats": { "atk": 60 },
         "description": "Thorned whip that requires great skill to use.",
-        "icon": "res://src/assets/sprites/inventory/weapon/por_rosewhip.png"
+        "icon": "res://src/assets/sprites/inventory/weapon/por_rosewhip.png",
+        "sprite": {
+            "path": "res://src/assets/sprites/weapon/cotm_thorn",
+            "frames": [
+                { "time_sprite": [3,3,3], "player_frames": [0,1] },
+                { "time_sprite": [2], "player_frames": [2] },
+                { "time_sprite": [2,3,3,3,3,3,2], "player_frames": [3] }
+            ],
+            "center": [[36,4], [29,1], [42,8], [32,16], [7,17], [0,6], [0,7], [0,10], [0,11], [0,10], [0,9]]
+        }
     },
     "whip_stone": {
         "name": "Medusa Whip", "attrib": ["stone"], "sell": 3500,
-        "type": "strike", "stun": true,
+        "type": "strike", "stun": true, "delay": 0,
         "stats": { "atk": 30 },
         "description": "Whip that can turn its targets to stone.",
         "icon": "res://src/assets/sprites/inventory/weapon/por_medusawhip.png"
     },
     "whip_nebula": {
         "name": "Nebula", "attrib": ["holy"], "sell": 5000,
-        "type": "custom", "stun": true,
+        "type": "custom", "stun": true, "delay": 0,
         "stats": { "atk": 37 },
         "description": "Chain that binds and destroys evil.",
         "icon": "res://src/assets/sprites/inventory/weapon/por_nebula.png"
     },
     "whip_fire": {
         "name": "Flame Whip", "attrib": ["fire"], "sell": 5000,
-        "type": "strike", "stun": true,
+        "type": "strike", "stun": true, "delay": 0,
         "stats": { "atk": 65 },
         "description": "Whip imbued with the power of flames.",
         "icon": "res://src/assets/sprites/inventory/weapon/por_flamewhip.png"
     },
     "whip_dark": {
         "name": "Jet Black Whip", "attrib": ["dark", "poison"], "sell": 16650,
-        "type": "strike", "stun": true,
+        "type": "strike", "stun": true, "delay": 0,
         "stats": { "atk": 44 },
         "description": "Jet black whip imbued with the power of darkness.",
         "icon": "res://src/assets/sprites/inventory/weapon/por_jetblackwhip.png"
     },
     "whip_morningstar": {
         "name": "Morningstar", "attrib": ["strike"], "sell": 5000,
-        "type": "strike", "stun": true,
+        "type": "strike", "stun": true, "delay": 0,
         "stats": { "atk": 65 },
         "description": "Whip with a vicious, star-shaped head.",
-        "icon": "res://src/assets/sprites/inventory/weapon/cv2r_morningstar.png"
+        "icon": "res://src/assets/sprites/inventory/weapon/cv2r_morningstar.png",
+        "sprite": {
+            "path": "res://src/assets/sprites/weapon/cv1_vk_gray_longer",
+            "frames": [
+                { "time_sprite": [6,4], "player_frames": [0,1], "images": [0,1] },
+                { "time_sprite": [2], "player_frames": [2], "images": [1] },
+                { "time_sprite": [16], "player_frames": [3], "images": [2,3,4,5] }
+            ],
+            "center": [[7,2], [15,1], [0,4]]
+        }
     },
     "whip_undead": {
         "name": "Undead Whip", "attrib": ["holy"], "sell": 25000,
-        "type": "strike", "stun": true,
+        "type": "strike", "stun": true, "delay": 0,
         "stats": { "atk": 70 },
         "description": "Holy whip that can kill even the undead.",
         "icon": "res://src/assets/sprites/inventory/weapon/por_undeadwhip.png"
@@ -369,49 +439,49 @@
 
 
 
-    "stab_rapier": {
+    "thrust_rapier": {
         "name": "Rapier", "attrib": ["pierce"], "sell": 240,
         "type": "thrust",
         "stats": { "atk": 16 },
         "description": "Thrusting sword with a tapered blade.",
         "icon": "res://src/assets/sprites/inventory/weapon/aos_rapier.png"
     },
-    "stab_fleuret": {
+    "thrust_fleuret": {
         "name": "Fleuret", "attrib": ["pierce"], "sell": 490,
         "type": "thrust",
         "stats": { "atk": 20 },
         "description": "Light and flexible sword. Blunted with a tip that resembles a blossom.",
         "icon": "res://src/assets/sprites/inventory/weapon/dos_fleuret.png"
     },
-    "stab_gauche": {
+    "thrust_gauche": {
         "name": "Main Gauche", "attrib": ["pierce"], "sell": 900,
         "type": "thrust",
         "stats": { "atk": 24, "def": 3 },
         "description": "Sword designed for superior defense.",
         "icon": "res://src/assets/sprites/inventory/weapon/dos_maingauche.png"
     },
-    "stab_small": {
+    "thrust_small": {
         "name": "Small Sword", "attrib": ["pierce"], "sell": 1550,
         "type": "thrust",
         "stats": { "atk": 28 },
         "description": "Light and easy-to-handle sword.",
         "icon": "res://src/assets/sprites/inventory/weapon/dos_smallsword.png"
     },
-    "stab_estoc": {
+    "thrust_estoc": {
         "name": "Estoc", "attrib": ["pierce"], "sell": 2200,
         "type": "thrust",
         "stats": { "atk": 32 },
         "description": "Blade primarily designed as a stabbing weapon.",
         "icon": "res://src/assets/sprites/inventory/weapon/aos_estoc.png"
     },
-    "stab_garian": {
+    "thrust_garian": {
         "name": "Garian Sword", "attrib": ["pierce"], "sell": 4250,
         "type": "thrust",
         "stats": { "atk": 40 },
         "description": "Flexible, articulated sword made for executions.",
         "icon": "res://src/assets/sprites/inventory/weapon/dos_garian.png"
     },
-    "stab_naga": {
+    "thrust_naga": {
         "name": "Kris Naga", "attrib": ["pierce"], "sell": 9750,
         "type": "thrust",
         "stats": { "atk": 45 },
@@ -421,213 +491,257 @@
 
 
 
-    "great_broad": {
+    "swing1_broad": {
         "name": "Broadsword", "attrib": ["slash"], "sell": 200,
-        "type": "overhead",
+        "type": "swing1", "delay": 10,
         "stats": { "atk": 20 },
         "description": "Simple sword often used by mercenaries.",
-        "icon": "res://src/assets/sprites/inventory/weapon/sotn_broadsword.png"
+        "icon": "res://src/assets/sprites/inventory/weapon/sotn_broadsword.png",
+        "sprite": {
+            "path": "res://src/assets/sprites/weapon/aos_broadsword",
+            "frames": [
+                { "time_sprite": [3,2,5], "player_frames": [1,2], "images": [0,1,2], "angle": [-45, 135] },
+                { "time_sprite": [2,2,6], "player_frames": [3], "images": [2,1,0], "angle": [135] }
+            ],
+            "center": [[14,22], [14,22], [14,22]]
+        }
     },
-    "great_scimitar": {
+    "swing1_scimitar": {
         "name": "Scimitar", "attrib": ["slash"], "sell": 375,
-        "type": "overhead",
+        "type": "swing1", "delay": 10,
         "stats": { "atk": 25 },
         "description": "Curved, single-edged sword.",
-        "icon": "res://src/assets/sprites/inventory/weapon/aos_scimitar.png"
+        "icon": "res://src/assets/sprites/inventory/weapon/aos_scimitar.png",
+        "sprite": {
+            "path": "res://src/assets/sprites/weapon/aos_scimitar",
+            "frames": [
+                { "time_sprite": [10], "player_frames": [1,2], "images": [0], "angle": [-45, 135] },
+                { "time_sprite": [10], "player_frames": [3], "images": [0], "angle": [135] }
+            ],
+            "center": [[6,19]]
+        }
     },
-    "great_claymore": {
+    "swing2_claymore": {
         "name": "Claymore", "attrib": ["slash"], "sell": 550,
-        "type": "overhead", "stun": true,
+        "type": "swing2", "stun": true,
         "stats": { "atk": 30 },
         "description": "Large Scottish blade.",
         "icon": "res://src/assets/sprites/inventory/weapon/por_claymore.png"
     },
-    "great_falchion": {
+    "swing2_falchion": {
         "name": "Falchion", "attrib": ["slash"], "sell": 700,
-        "type": "overhead",
+        "type": "swing2", "stun": true,
         "stats": { "atk": 42 },
         "description": "Norman sword with a wide, crescent-shaped blade.",
         "icon": "res://src/assets/sprites/inventory/weapon/por_falchion.png"
     },
-    "great_great": {
+    "swing2_great": {
         "name": "Great Sword", "attrib": ["slash"], "sell": 1700,
-        "type": "overhead", "stun": true,
+        "type": "swing2", "stun": true,
         "stats": { "atk": 55 },
         "description": "Massive sword designed to smash through its targets.",
         "icon": "res://src/assets/sprites/inventory/weapon/por_greatsword.png"
     },
-    "great_fire": {
+    "swing2_fire": {
         "name": "Flamberge", "attrib": ["slash", "fire"], "sell": 2250,
-        "type": "overhead",
+        "type": "swing2", "stun": true,
         "stats": { "atk": 58 },
         "description": "Massive, flame-edged sword.",
         "icon": "res://src/assets/sprites/inventory/weapon/sotn_flamberge.png"
     },
-    "great_durandal": {
+    "swing2_durandal": {
         "name": "Durandal", "attrib": ["slash"], "sell": 2000,
-        "type": "overhead",
+        "type": "swing2", "stun": true,
         "stats": { "atk": 61 },
         "description": "Sword of giants that was tempered by fairies.",
         "icon": "res://src/assets/sprites/inventory/weapon/dos_durandal.png"
     },
-    "great_joyeuse": {
+    "swing1_joyeuse": {
         "name": "Joyeuse", "attrib": ["slash"], "sell": 25000,
-        "type": "overhead",
+        "type": "swing1", "delay": 10,
         "stats": { "atk": 64, "lck": 5 },
         "description": "Extravagantly beautiful sword. Quite valuable.",
-        "icon": "res://src/assets/sprites/inventory/weapon/aos_joyeuse.png"
+        "icon": "res://src/assets/sprites/inventory/weapon/aos_joyeuse.png",
+        "sprite": {
+            "path": "res://src/assets/sprites/weapon/aos_joyeuse",
+            "frames": [
+                { "time_sprite": [3,2,5], "player_frames": [1,2], "images": [0,1,2], "angle": [-45, 135] },
+                { "time_sprite": [2,2,6], "player_frames": [3], "images": [2,1,0], "angle": [135] }
+            ],
+            "center": [[6,23], [7,23], [14,23]]
+        }
     },
-    "great_zweihander": {
+    "swing2_zweihander": {
         "name": "Zweihander", "attrib": ["slash"], "sell": 2200,
-        "type": "overhead", "stun": true,
+        "type": "swing2", "stun": true,
         "stats": { "atk": 69 },
         "description": "German two-handed sword.",
         "icon": "res://src/assets/sprites/inventory/weapon/sotn_zweihander.png"
     },
-    "great_obsidian": {
+    "swing2_obsidian": {
         "name": "Obsidian Sword", "attrib": ["slash"], "sell": 5000,
-        "type": "overhead", "stun": true,
+        "type": "swing2", "stun": true,
         "stats": { "atk": 73 },
         "description": "Two-handed blade, forged of volcanic glass.",
         "icon": "res://src/assets/sprites/inventory/weapon/sotn_obsidiansword.png"
     },
-    "great_glamdring": {
+    "swing1_glamdring": {
         "name": "Glamdring", "attrib": ["slash"], "sell": 8000,
-        "type": "overhead",
+        "type": "swing1",
         "stats": { "atk": 75, "def": 2 },
         "description": "Dark blade said to have been forged by elves.",
         "icon": "res://src/assets/sprites/inventory/weapon/sotn_glamdring.png"
     },
-    "great_dainslef": {
+    "swing2_dainslef": {
         "name": "Dainslef", "attrib": ["slash", "curse"], "sell": 5250,
-        "type": "overhead",
+        "type": "swing2", "stun": true,
         "stats": { "atk": 72, "str": 6, "con": 6, "int": 6 },
         "description": "Demonic sword of finality.",
         "icon": "res://src/assets/sprites/inventory/weapon/dos_dainslef.png"
     },
-    "great_ascalon": {
+    "swing2_ascalon": {
         "name": "Ascalon", "attrib": ["slash"], "sell": 5900,
-        "type": "overhead",
+        "type": "swing2",
         "stats": { "atk": 80 },
         "description": "Famous sword of the dragon slayers.",
-        "icon": "res://src/assets/sprites/inventory/weapon/dos_ascalon.png"
+        "icon": "res://src/assets/sprites/inventory/weapon/dos_ascalon.png",
+        "sprite": {
+            "path": "res://src/assets/sprites/weapon/dos_ascalon",
+            "frames": [
+                { "time_sprite": [7], "player_frames": [0], "images": [0], "angle": [-135] },
+                { "time_sprite": [5], "player_frames": [1], "images": [0], "angle": [-115] },
+                { "time_sprite": [5], "player_frames": [2], "images": [0], "angle": [-90] },
+                { "time_sprite": [4], "player_frames": [3], "images": [0], "angle": [0] },
+                { "time_sprite": [21], "player_frames": [4], "images": [0], "angle": [90] },
+                { "time_sprite": [7], "player_frames": [4], "images": [0], "angle": [90], "opacity": [1,0] }
+            ],
+            "center": [[4,35]]
+        }
     },
-    "great_royal": {
+    "swing2_royal": {
         "name": "Royal Sword", "attrib": ["slash"], "sell": 7200,
-        "type": "overhead", "stun": true,
+        "type": "swing2", "stun": true,
         "stats": { "atk": 84, "str": 8, "con": 6, "int": 6 },
         "description": "Two-handed sword of kings.",
         "icon": "res://src/assets/sprites/inventory/weapon/por_royal.png"
     },
-    "great_final": {
+    "swing2_final": {
         "name": "Final Sword", "attrib": ["slash"], "sell": 13750,
-        "type": "overhead", "stun": true,
+        "type": "swing2", "stun": true,
         "stats": { "atk": 120 },
         "description": "Blade favoured by the Final Guards.",
         "icon": "res://src/assets/sprites/inventory/weapon/aos_final.png"
     },
-    "great_holy": {
+    "swing2_holy": {
         "name": "Holy Claymore", "attrib": ["slash", "holy"], "sell": 75000,
-        "type": "overhead", "stun": true,
+        "type": "swing2", "stun": true,
         "stats": { "atk": 100, "int": 10 },
         "description": "Enormous sword shaped like a cross.",
         "icon": "res://src/assets/sprites/inventory/weapon/por_holyclaymore.png"
     },
-    "great_claimh": {
+    "swing1_claimh": {
         "name": "Claimh Solais", "attrib": ["slash", "holy"], "sell": 82500,
-        "type": "overhead",
+        "type": "swing1", "delay": 10,
         "stats": { "atk": 82, "str": 6, "int": 6 },
         "description": "Indefatigable sword. Its blade glitters with light.",
-        "icon": "res://src/assets/sprites/inventory/weapon/aos_claimh.png"
+        "icon": "res://src/assets/sprites/inventory/weapon/aos_claimh.png",
+        "sprite": {
+            "path": "res://src/assets/sprites/weapon/aos_claimhsolais",
+            "frames": [
+                { "time_sprite": [4,4,2], "player_frames": [1,2], "images": [0,2,1], "angle": [-45, 135] },
+                { "time_sprite": [3,7], "player_frames": [3], "images": [1,0], "angle": [135] }
+            ],
+            "center": [[15,43], [15,43], [15,43]]
+        }
     },
 
 
 
-    "pole_spear": {
+    "polearm_spear": {
         "name": "Spear", "attrib": ["pierce"], "sell": 125,
         "type": "polearm",
         "stats": { "atk": 31 },
         "description": "Standard spear.",
         "icon": "res://src/assets/sprites/inventory/weapon/por_spear.png"
     },
-    "pole_partisan": {
+    "polearm_partisan": {
         "name": "Partisan", "attrib": ["pierce"], "sell": 375,
         "type": "polearm",
         "stats": { "atk": 40 },
         "description": "Polearm fitted with a broad blade.",
         "icon": "res://src/assets/sprites/inventory/weapon/por_partisan.png"
     },
-    "pole_halberd": {
+    "polearm_halberd": {
         "name": "Halberd", "attrib": ["pierce"], "sell": 1000,
         "type": "polearm", "stun": true,
         "stats": { "atk": 60 },
         "description": "Polearm ending in a wide axe blade.",
         "icon": "res://src/assets/sprites/inventory/weapon/por_halberd.png"
     },
-    "pole_lance": {
+    "polearm_lance": {
         "name": "Lance", "attrib": ["pierce"], "sell": 1500,
         "type": "polearm",
         "stats": { "atk": 60 },
         "description": "Spear used by cavalry knights.",
         "icon": "res://src/assets/sprites/inventory/weapon/por_lance.png"
     },
-    "pole_trident": {
+    "polearm_trident": {
         "name": "Trident", "attrib": ["pierce"], "sell": 2000,
         "type": "polearm",
         "stats": { "atk": 70 },
         "description": "Three-pronged spear.",
         "icon": "res://src/assets/sprites/inventory/weapon/por_trident.png"
     },
-    "pole_long": {
+    "polearm_long": {
         "name": "Long Spear", "attrib": ["pierce"], "sell": 2500,
         "type": "polearm",
         "stats": { "atk": 80 },
         "description": "Spear with an especially long shaft.",
         "icon": "res://src/assets/sprites/inventory/weapon/por_longspear.png"
     },
-    "pole_brionac": {
+    "polearm_brionac": {
         "name": "Brionac", "attrib": ["pierce"], "sell": 3500,
         "type": "polearm", "stun": true,
         "stats": { "atk": 84 },
         "description": "Demonic five-pronged spear.",
         "icon": "res://src/assets/sprites/inventory/weapon/dos_brionac.png"
     },
-    "pole_couse": {
+    "polearm_couse": {
         "name": "Couse", "attrib": ["pierce"], "sell": 3750,
         "type": "polearm", "stun": true,
         "stats": { "atk": 90 },
         "description": "Polearm fitted with a large, curved blade.",
         "icon": "res://src/assets/sprites/inventory/weapon/por_couse.png"
     },
-    "pole_geiborg": {
+    "polearm_geiborg": {
         "name": "Geiborg", "attrib": ["pierce"], "sell": 5250,
         "type": "polearm", "stun": true,
         "stats": { "atk": 96 },
         "description": "Spear tempered by witches.",
         "icon": "res://src/assets/sprites/inventory/weapon/dos_geiborg.png"
     },
-    "pole_sarissa": {
+    "polearm_sarissa": {
         "name": "Sarissa", "attrib": ["pierce"], "sell": 7500,
         "type": "polearm",
         "stats": { "atk": 100 },
         "description": "Macedonian long spear.",
         "icon": "res://src/assets/sprites/inventory/weapon/por_sarissa.png"
     },
-    "pole_longinus": {
+    "polearm_longinus": {
         "name": "Longinus", "attrib": ["pierce"], "sell": 12500,
         "type": "polearm", "stun": true,
         "stats": { "atk": 112 },
         "description": "Spear of divinity.",
         "icon": "res://src/assets/sprites/inventory/weapon/cv2r_longinus.png"
     },
-    "pole_gungner": {
+    "polearm_gungner": {
         "name": "Gungner", "attrib": ["pierce", "thunder"], "sell": 22500,
         "type": "polearm", "stun": true,
         "stats": { "atk": 68 },
         "description": "Divine thunderbolt that pierces everything it touches.",
         "icon": "res://src/assets/sprites/inventory/weapon/dos_gungner.png"
     },
-    "pole_alucard": {
+    "polearm_alucard": {
         "name": "Alucard's Spear", "attrib": ["pierce"], "sell": 25000,
         "type": "polearm", "stun": true,
         "stats": { "atk": 120 },
@@ -639,84 +753,96 @@
     
     "cudgel_axe": {
         "name": "Axe", "attrib": ["slash"], "sell": 200,
-        "type": "overhead", "stun": true,
+        "type": "swing2", "stun": true,
         "stats": { "atk": 50 },
         "description": "Heavy single-edged axe.",
-        "icon": "res://src/assets/sprites/inventory/weapon/por_axe.png"
+        "icon": "res://src/assets/sprites/inventory/weapon/por_axe.png",
+        "sprite": {
+            "path": "res://src/assets/sprites/weapon/por_axe",
+            "frames": [
+                { "time_sprite": [8], "player_frames": [0], "images": [0], "angle": [-135] },
+                { "time_sprite": [6], "player_frames": [1], "images": [0], "angle": [-115] },
+                { "time_sprite": [6], "player_frames": [2], "images": [0], "angle": [-90] },
+                { "time_sprite": [5], "player_frames": [3], "images": [0], "angle": [0] },
+                { "time_sprite": [26], "player_frames": [4], "images": [0], "angle": [90] },
+                { "time_sprite": [7], "player_frames": [4], "images": [0], "angle": [90], "opacity": [1,0] }
+            ],
+            "center": [[3,30]]
+        }
     },
     "cudgel_mace": {
         "name": "Mace", "attrib": ["strike"], "sell": 200,
-        "type": "overhead", "stun": true,
+        "type": "swing1", "stun": true,
         "stats": { "atk": 45 },
         "description": "Large metal club.",
         "icon": "res://src/assets/sprites/inventory/weapon/por_mace.png"
     },
     "cudgel_holy": {
         "name": "Holy Rod", "attrib": ["strike", "holy"], "sell": 2500,
-        "type": "overhead",
+        "type": "swing1",
         "stats": { "atk": 50, "int": 2 },
         "description": "Scepter anointed with divine power.",
         "icon": "res://src/assets/sprites/inventory/weapon/sotn_holyrod.png"
     },
     "cudgel_battle": {
         "name": "Battle Axe", "attrib": ["slash"], "sell": 1250,
-        "type": "overhead", "stun": true,
+        "type": "swing2", "stun": true,
         "stats": { "atk": 60 },
         "description": "Double-edged axe designed for combat.",
         "icon": "res://src/assets/sprites/inventory/weapon/por_battleaxe.png"
     },
     "cudgel_star": {
         "name": "Star Flail", "attrib": ["strike"], "sell": 4000,
-        "type": "overhead",
+        "type": "swing1",
         "stats": { "atk": 60 },
         "description": "Flail topped with spiked balls.",
         "icon": "res://src/assets/sprites/inventory/weapon/sotn_starflail.png"
     },
     "cudgel_moon": {
         "name": "Moon Rod", "attrib": ["strike"], "sell": 5000,
-        "type": "overhead",
+        "type": "swing1",
         "stats": { "atk": 70 },
         "description": "Scepter adorned with lunar markings.",
         "icon": "res://src/assets/sprites/inventory/weapon/sotn_moonrod.png"
     },
     "cudgel_bhuj": {
         "name": "Bhuj", "attrib": ["slash"], "sell": 3500,
-        "type": "overhead", "stun": true,
+        "type": "swing2", "stun": true,
         "stats": { "atk": 80 },
         "description": "Very heavy combat axe.",
         "icon": "res://src/assets/sprites/inventory/weapon/por_bhuj.png"
     },
     "cudgel_great": {
         "name": "Great Axe", "attrib": ["slash"], "sell": 4500,
-        "type": "overhead", "stun": true,
+        "type": "swing2", "stun": true,
         "stats": { "atk": 90 },
         "description": "Huge war axe. It is exceptionally heavy.",
         "icon": "res://src/assets/sprites/inventory/weapon/por_greataxe.png"
     },
     "cudgel_voulge": {
         "name": "Voulge", "attrib": ["slash", "dark"], "sell": 5750,
-        "type": "overhead", "stun": true,
+        "type": "swing2", "stun": true,
         "stats": { "atk": 100 },
         "description": "Axe with a hooked blade.",
         "icon": "res://src/assets/sprites/inventory/weapon/por_voulge.png"
     },
     "cudgel_mjollnjr": {
         "name": "Mjollnjr", "attrib": ["strike", "thunder"], "sell": 6750,
-        "type": "overhead", "stun": true,
+        "type": "swing2", "stun": true,
         "stats": { "atk": 40 },
         "description": "Mighty hammer of the thunder god.",
         "icon": "res://src/assets/sprites/inventory/weapon/dos_mjollnjr.png"
     },
     "cudgel_bullova": {
         "name": "Bullova", "attrib": ["slash"], "sell": 10000,
-        "type": "overhead", "stun": true,
+        "type": "swing2", "stun": true,
         "stats": { "atk": 115 },
         "description": "Axe with a crescent-shaped blade.",
         "icon": "res://src/assets/sprites/inventory/weapon/por_bullova.png"
     },
     "cudgel_gold": {
         "name": "Golden Axe", "attrib": ["slash"], "sell": 15000,
-        "type": "overhead", "stun": true,
+        "type": "swing2", "stun": true,
         "stats": { "atk": 130 },
         "description": "Axe with astounding destructive power, crafted from gold.",
         "icon": "res://src/assets/sprites/inventory/weapon/por_goldenaxe.png"
@@ -754,14 +880,14 @@
     },
     "katana_onikiri": {
         "name": "Onikiri", "attrib": ["slash"], "sell": 6500,
-        "type": "overhead",
+        "type": "swing1",
         "stats": { "atk": 43 },
         "description": "Carried to protect against demons.",
         "icon": "res://src/assets/sprites/inventory/weapon/aos_onikiri.png"
     },
     "katana_osafune": {
         "name": "Osafune", "attrib": ["slash"], "sell": 7250,
-        "type": "overhead",
+        "type": "swing1",
         "stats": { "atk": 48 },
         "description": "Japanese sword with the full name of Bizen Osafune Nagamitsu.",
         "icon": "res://src/assets/sprites/inventory/weapon/dos_osafune.png"

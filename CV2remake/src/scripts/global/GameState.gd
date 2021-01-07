@@ -131,40 +131,29 @@ func load_default_save() -> void:
 	plus_mnd = json["stats"]["+mnd"]
 	plus_lck = json["stats"]["+lck"]
 	
-	if debug_mode and json["debug"]["debug_all_relics"]:
-		load_all_relics()
+	if debug_mode and json["debug"]["debug_all_relics"]: load_all_relics()
 	else:
 		equip_relics = json["equipped"]["relics"]
 		inv_relics = json["inventory"]["relics"]
 	
-	if debug_mode and json["debug"]["debug_all_weapons"]:
-		load_all_weapons()
-	else:
-		inv_weapons = json["inventory"]["weapons"]
-	equip_weapon = json["equipped"]["weapon"]
+	if debug_mode and json["debug"]["debug_all_weapons"]: load_all_weapons()
+	else: inv_weapons = json["inventory"]["weapons"]
+	equip_weapon = json["equipped"]["weapon"] if json["equipped"]["weapon"] != "" else "_void"
 	
-	if debug_mode and json["debug"]["debug_all_subweps"]:
-		load_all_subweps()
-	else:
-		inv_subweps = json["inventory"]["subweps"]
-	equip_subwep = json["equipped"]["subwep"]
+	if debug_mode and json["debug"]["debug_all_subweps"]: load_all_subweps()
+	else: inv_subweps = json["inventory"]["subweps"]
+	equip_subwep = json["equipped"]["subwep"] if json["equipped"]["subwep"] != "" else "_void"
 	
-	if debug_mode and json["debug"]["debug_all_armor"]:
-		load_all_armor()
-	else:
-		inv_armor = json["inventory"]["armor"]
-	equip_armor = json["equipped"]["armor"]
+	if debug_mode and json["debug"]["debug_all_armor"]: load_all_armor()
+	else: inv_armor = json["inventory"]["armor"]
+	equip_armor = json["equipped"]["armor"] if json["equipped"]["armor"] != "" else "_void"
 	
-	if debug_mode and json["debug"]["debug_all_spells"]:
-		load_all_spells()
-	else:
-		inv_spells = json["inventory"]["spells"]
-	equip_spell = json["equipped"]["spell"]
+	if debug_mode and json["debug"]["debug_all_spells"]: load_all_spells()
+	else: inv_spells = json["inventory"]["spells"]
+	equip_spell = json["equipped"]["spell"] if json["equipped"]["spell"] != "" else "_void"
 	
-	if debug_mode and json["debug"]["debug_all_items"]:
-		load_all_items()
-	else:
-		inv_items = json["inventory"]["items"]
+	if debug_mode and json["debug"]["debug_all_items"]: load_all_items()
+	else: inv_items = json["inventory"]["items"]
 	
 	set_hp(json["stats"]["hp"])
 	set_mp(json["stats"]["mp"])
@@ -173,33 +162,39 @@ func load_default_save() -> void:
 
 func load_all_relics() -> void:
 	for key in DataRepository.InvRelics:
-		equip_relics.append(key)
-		inv_relics[key] = Dictionary()
+		if key != "_default":
+			equip_relics.append(key)
+			inv_relics[key] = Dictionary()
 
 func load_all_weapons() -> void:
 	for key in DataRepository.InvWeapons:
-		inv_weapons[key] = Dictionary()
-		inv_weapons[key]["count"] = 1
+		if key != "_default":
+			inv_weapons[key] = Dictionary()
+			inv_weapons[key]["count"] = 1
 
 func load_all_subweps() -> void:
 	for key in DataRepository.InvSubweps:
-		inv_subweps[key] = Dictionary()
-		inv_subweps[key]["count"] = 1
+		if key != "_default":
+			inv_subweps[key] = Dictionary()
+			inv_subweps[key]["count"] = 1
 
 func load_all_armor() -> void:
 	for key in DataRepository.InvArmor:
-		inv_armor[key] = Dictionary()
-		inv_armor[key]["count"] = 1
+		if key != "_default":
+			inv_armor[key] = Dictionary()
+			inv_armor[key]["count"] = 1
 
 func load_all_spells() -> void:
 	for key in DataRepository.InvSpells:
-		inv_spells[key] = Dictionary()
-		inv_spells[key]["count"] = 1
+		if key != "_default":
+			inv_spells[key] = Dictionary()
+			inv_spells[key]["count"] = 1
 
 func load_all_items() -> void:
 	for key in DataRepository.InvItems:
-		inv_items[key] = Dictionary()
-		inv_items[key]["count"] = 99
+		if key != "_default":
+			inv_items[key] = Dictionary()
+			inv_items[key]["count"] = 99
 
 
 ################################################################################
@@ -294,8 +289,8 @@ func get_base_atk() -> int:
 
 func get_atk() -> int:
 	var value: int = get_base_atk()
-	if equip_weapon != "": value += get_equipped_weapon()["stats"]["atk"]
-	if equip_armor != "": value += get_equipped_armor()["stats"]["atk"]
+	value += get_equipped_weapon()["stats"]["atk"]
+	value += get_equipped_armor()["stats"]["atk"]
 	return int(max(value, 0))
 
 func get_base_def() -> int:
@@ -303,8 +298,8 @@ func get_base_def() -> int:
 
 func get_def() -> int:
 	var value: int = get_base_def()
-	if equip_weapon != "": value += get_equipped_weapon()["stats"]["def"]
-	if equip_armor != "": value += get_equipped_armor()["stats"]["def"]
+	value += get_equipped_weapon()["stats"]["def"]
+	value += get_equipped_armor()["stats"]["def"]
 	return int(max(value, 0))
 
 func get_base_str() -> int:
@@ -312,8 +307,8 @@ func get_base_str() -> int:
 
 func get_str() -> int:
 	var value: int = get_base_str()
-	if equip_weapon != "": value += get_equipped_weapon()["stats"]["str"]
-	if equip_armor != "": value += get_equipped_armor()["stats"]["str"]
+	value += get_equipped_weapon()["stats"]["str"]
+	value += get_equipped_armor()["stats"]["str"]
 	return int(max(value, 0))
 
 func get_base_con() -> int:
@@ -321,8 +316,8 @@ func get_base_con() -> int:
 
 func get_con() -> int:
 	var value: int = get_base_con()
-	if equip_weapon != "": value += get_equipped_weapon()["stats"]["con"]
-	if equip_armor != "": value += get_equipped_armor()["stats"]["con"]
+	value += get_equipped_weapon()["stats"]["con"]
+	value += get_equipped_armor()["stats"]["con"]
 	return int(max(value, 0))
 
 func get_base_int() -> int:
@@ -330,8 +325,8 @@ func get_base_int() -> int:
 
 func get_int() -> int:
 	var value: int = get_base_int()
-	if equip_weapon != "": value += get_equipped_weapon()["stats"]["int"]
-	if equip_armor != "": value += get_equipped_armor()["stats"]["int"]
+	value += get_equipped_weapon()["stats"]["int"]
+	value += get_equipped_armor()["stats"]["int"]
 	return int(max(value, 0))
 
 func get_base_mnd() -> int:
@@ -339,8 +334,8 @@ func get_base_mnd() -> int:
 
 func get_mnd() -> int:
 	var value: int = get_base_mnd()
-	if equip_weapon != "": value += get_equipped_weapon()["stats"]["mnd"]
-	if equip_armor != "": value += get_equipped_armor()["stats"]["mnd"]
+	value += get_equipped_weapon()["stats"]["mnd"]
+	value += get_equipped_armor()["stats"]["mnd"]
 	return int(max(value, 0))
 
 func get_base_lck() -> int:
@@ -348,8 +343,8 @@ func get_base_lck() -> int:
 
 func get_lck() -> int:
 	var value: int = get_base_lck()
-	if equip_weapon != "": value += get_equipped_weapon()["stats"]["lck"]
-	if equip_armor != "": value += get_equipped_armor()["stats"]["lck"]
+	value += get_equipped_weapon()["stats"]["lck"]
+	value += get_equipped_armor()["stats"]["lck"]
 	return int(max(value, 0))
 
 func get_base_stat_by_name(name: String) -> int:
@@ -370,13 +365,13 @@ func get_stat_by_index(index: int) -> int:
 ################################################################################
 
 func get_equipped_weapon() -> Dictionary:
-	return DataRepository.InvWeapons[equip_weapon]
+	return DataRepository.InvWeapons[equip_weapon] if DataRepository.InvWeapons.has(equip_weapon) else DataRepository.InvWeapons["_void"]
 
 func get_equipped_subwep() -> Dictionary:
-	return DataRepository.InvSubweps[equip_subwep]
+	return DataRepository.InvSubweps[equip_subwep] if DataRepository.InvSubweps.has(equip_subwep) else DataRepository.InvSubweps["_void"]
 
 func get_equipped_armor() -> Dictionary:
-	return DataRepository.InvArmor[equip_armor]
+	return DataRepository.InvArmor[equip_armor] if DataRepository.InvArmor.has(equip_armor) else DataRepository.InvArmor["_void"]
 
 func get_equipped_spell() -> Dictionary:
-	return DataRepository.InvSpells[equip_spell]
+	return DataRepository.InvSpells[equip_spell] if DataRepository.InvSpells.has(equip_spell) else DataRepository.InvSpells["_void"]

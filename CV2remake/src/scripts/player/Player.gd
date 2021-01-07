@@ -8,9 +8,9 @@ extends KinematicBody2D
 
 enum PlayerStates {
 	DEFAULT,
-	GROUND, GROUND_ATK, GROUND_DASH, HURT_GROUND,
-	AIR, AIR_ATK, AIR_DASH, SJUMP, HURT_AIR,
-	CROUCH, CROUCH_ATK, SLIDE, HURT_CROUCH, CROUCH_STUN,
+	GROUND, GROUND_ATK, GROUND_ATK_STUN, GROUND_DASH, HURT_GROUND,
+	AIR, AIR_ATK, AIR_ATK_STUN, AIR_DASH, SJUMP, HURT_AIR,
+	CROUCH, CROUCH_ATK, CROUCH_ATK_STUN, SLIDE, HURT_CROUCH, CROUCH_STUN,
 }
 
 enum PlayerFacingDir {
@@ -20,21 +20,23 @@ enum PlayerFacingDir {
 
 ### MOVEMENT CONSTANTS
 
+const COLLISION_CHECK_MARGIN: float = 0.1
+
 const JUMP_VELOCITY: float = 310.0
 const DJUMP_VELOCITY: float = 250.0
 const GRAVITY: float = 14.0
 const FAST_GRAVITY: float = 160.0
 const AIR_FRICTION: float = 20.0
 const TERMINAL_VELOCITY: float = 500.0
-const COYOTE_TIME: int = 5
+const COYOTE_TIME_FRAMES: int = 5
 
 const WALK_SPEED: int = 120
-const GROUND_FRICTION: float = 50.0
+const GROUND_FRICTION: float = 20.0
 
-const SLIDE_TIME: int = 12
+const SLIDE_FRICTIONLESS_FRAMES: int = 12
 const SLIDE_SPEED: int = 220
 const SLIDE_FRICTION: float = 20.0
-const SLIDE_STUN_TIME: int = 4
+const SLIDE_STUN_FRAMES: int = 4
 
 
 ################################################################################
@@ -49,35 +51,20 @@ onready var previous_state: int = PlayerStates.DEFAULT
 
 var del: float
 
-
-### INPUT VARIABLES
-
 var input_left: bool
 var input_right: bool
 var input_up: bool
 var input_down: bool
-
 var input_jump: bool
 var input_jump_press: bool
-
-var input_debug1_press: bool
-
-
-### MOVEMENT VARIABLES
-
-export onready var velocity: Vector2 = Vector2(0, 0)
-
-onready var fast_fall: bool = false
-onready var coyote_time: int = -1
-var jump_count: int
-
-onready var slide_timer: int = 0
-onready var crouch_stun_timer: int = 0
-
-
-### MISCELLANEOUS VARIABLES
+var input_attack_press: bool
 
 onready var facing_dir: int = PlayerFacingDir.RIGHT
+onready var forced_sprite_update: bool = false
+
+export onready var velocity: Vector2 = Vector2(0, 0)
+onready var fast_fall: bool = false
+var jump_count: int
 
 
 ################################################################################
@@ -85,34 +72,64 @@ onready var facing_dir: int = PlayerFacingDir.RIGHT
 ################################################################################
 
 func _ready():
+	connect_timers()
 	reset_jump_count()
 
 
 ################################################################################
-# Methods
+# Input
+################################################################################
+
+func get_inputs() -> void:
+	input_left = Input.is_action_pressed("input_left")
+	input_right = Input.is_action_pressed("input_right")
+	input_up = Input.is_action_pressed("input_up")
+	input_down = Input.is_action_pressed("input_down")
+	input_jump = Input.is_action_pressed("input_jump")
+	input_jump_press = Input.is_action_just_pressed("input_jump")
+	input_attack_press = Input.is_action_just_pressed("input_attack")
+
+
+################################################################################
+# Movement helper methods
 ################################################################################
 
 ### CONDITIONS
 
 func on_ground() -> bool:
-	return test_move(transform, Vector2(0,0.9))
+	return test_move(transform, Vector2(0, 1 - COLLISION_CHECK_MARGIN))
 
 func on_semi_solid_ground() -> bool:
-	return on_ground() and check_semi_solid_at_tile_positions([Vector2(-5.9,0), Vector2(5.9,0)])
+	var collision_rect: Rect2 = get_collision_rect($SpriteHandler.get_collision())
+	var lower_left: Vector2 = collision_rect.position + Vector2(COLLISION_CHECK_MARGIN, collision_rect.size.y)
+	var lower_right: Vector2 = collision_rect.end - Vector2(COLLISION_CHECK_MARGIN, 0)
+	return on_ground() and is_tile_semi_solid_at_displacements([lower_left, lower_right])
 
-func under_ceiling() -> bool:
-	if test_move(transform, Vector2(0,-0.9)):
-		return test_move(transform, Vector2(0.1,-0.9))
-	return false
+func can_uncrouch() -> bool:
+	var collision_rect: Rect2 = get_collision_rect($CollisionNormal)
+	var upper_left: Vector2 = collision_rect.position + Vector2(COLLISION_CHECK_MARGIN, COLLISION_CHECK_MARGIN)
+	var upper_middle: Vector2 = collision_rect.position + Vector2(collision_rect.size.x / 2, COLLISION_CHECK_MARGIN)
+	var upper_right: Vector2 = collision_rect.position + Vector2(collision_rect.size.x - COLLISION_CHECK_MARGIN, COLLISION_CHECK_MARGIN)
+	return is_tile_semi_solid_at_displacements([upper_left, upper_middle, upper_right])
 
+func not_in_air() -> bool:
+	return (on_ground()
+		and (previous_state != PlayerStates.CROUCH or !on_semi_solid_ground())
+		and velocity.y >= 0.0)
 
 ### HELPERS
+
+func get_collision_rect(collision: CollisionShape2D) -> Rect2:
+	var extents: Vector2 = collision.shape.extents
+	return Rect2(Vector2(-extents.x, -2*extents.y), 2*extents)
 
 func get_room_collision() -> Node:
 	return get_node("/root/Main/Gameplay/Area/Room/Collision")
 
-func get_tile_id_at_player_displacement(tile_map: TileMap, displacement: Vector2) -> int:
+func get_tile_id_at_displacement(tile_map: TileMap, displacement: Vector2) -> int:
 	var Room: Node = get_node("/root/Main/Gameplay/Area/Room")
+	if !is_instance_valid(Room):
+		return -1
 	var col_position: Vector2 = tile_map.world_to_map(position + displacement - tile_map.position - Room.position)
 	return tile_map.get_cell(col_position.x, col_position.y)
 
@@ -120,14 +137,18 @@ func tile_is_none_or_semi_solid(tile_set: TileSet, tile_id: int) -> bool:
 	# NOTE: Assumes one-way shape ID is index 0 in the tile.
 	return tile_id == -1 or tile_set.tile_get_shape_one_way(tile_id, 0)
 
-func check_semi_solid_at_tile_positions(displacements: Array) -> bool:
+func is_tile_semi_solid_at_displacements(displacements: Array) -> bool:
 	var collider: TileMap = get_room_collision()
 	for displacement in displacements:
-		var tile_id: int = get_tile_id_at_player_displacement(collider, displacement)
+		var tile_id: int = get_tile_id_at_displacement(collider, displacement)
 		if !tile_is_none_or_semi_solid(collider.tile_set, tile_id):
 			return false
 	return true
 
+
+################################################################################
+# Movement
+################################################################################
 
 ### GENERAL
 
@@ -143,33 +164,42 @@ func reset_vspeed() -> void:
 	if velocity.y != 0:
 		velocity.y = 0
 
-func set_downward_slope_velocity(delta: float) -> void:
-	var test_y = round(abs(velocity.x))
-	while test_move(transform, delta * Vector2(round(velocity.x), round(test_y))):
-		if test_y <= 0:
-			break
-		test_y -= 1
-	velocity.y = test_y
 
+### MOVE
 
-### GROUND MOVEMENT
-
-func set_velocity_on_ground(speed: int, delta: float) -> void:
-	if !input_left and !input_right:
-		ground_friction()
-	else:
-		velocity.x = speed * (int(input_right) - int(input_left))
-	set_downward_slope_velocity(delta)
-
-func ground_friction() -> void:
-	if velocity.x != 0.0:
-		velocity.x -= sign(velocity.x) * min(GROUND_FRICTION, abs(velocity.x))
+func force_move() -> void:
+	move_local_x(round(velocity.x))
+	move_local_y(round(velocity.y))
 
 func move_on_ground() -> void:
 	move_and_slide_with_snap(velocity.round(), Vector2(0,-1))
 
+func move_in_air() -> void:
+	move_and_slide(velocity.round(), Vector2(0,-1))
 
-### AIR MOVEMENT
+
+### VELOCITY & ACCELERATION
+
+func set_velocity(speed: int, friction: int, check_input: bool, on_ground: bool) -> void:
+	if !on_ground and (is_on_ceiling() and velocity.y < 0): reset_vspeed()
+	if !check_input or (!input_left and !input_right): friction(friction)
+	else: velocity.x = speed * (int(input_right) - int(input_left))
+	if on_ground: manipulate_slope_velocity()
+	else: gravity()
+
+func set_velocity_while_sliding() -> void:
+	if $TimerSlideFrictionless.is_stopped():
+		friction(SLIDE_FRICTION)
+	manipulate_slope_velocity()
+
+func manipulate_slope_velocity() -> void:
+	var test_y = round(abs(velocity.x))
+	while test_move(transform, del * Vector2(round(velocity.x), round(test_y))):
+		if test_y < -abs(velocity.x) * 1.1:
+			test_y = 0
+			break
+		test_y -= 1
+	velocity.y = test_y if test_y >= 0 else test_y * 0.5
 
 func gravity() -> void:
 	if velocity.y < TERMINAL_VELOCITY:
@@ -177,27 +207,9 @@ func gravity() -> void:
 	elif velocity.y > TERMINAL_VELOCITY:
 		velocity.y = TERMINAL_VELOCITY
 
-func set_velocity_in_air(speed: int) -> void:
-	if under_ceiling() and velocity.y < 0:
-		reset_vspeed()
-	if !input_left and !input_right:
-		air_friction()
-	else:
-		velocity.x = speed * (int(input_right) - int(input_left))
-	gravity()
-
-func air_friction() -> void:
+func friction(friction: int) -> void:
 	if velocity.x != 0.0:
-		velocity.x -= sign(velocity.x) * min(AIR_FRICTION, abs(velocity.x))
-
-func move_in_air() -> void:
-	move_and_slide(velocity.round(), Vector2(0,-1))
-
-func do_coyote_time() -> void:
-	if coyote_time >= 0:
-		coyote_time -= 1
-	if coyote_time == 0:
-		jump_count -= 1
+		velocity.x -= sign(velocity.x) * min(friction, abs(velocity.x))
 
 
 ### JUMPING
@@ -219,56 +231,20 @@ func jump_after_input() -> void:
 			velocity.y = -DJUMP_VELOCITY
 		jump_count -= 1
 		fast_fall = false
-		coyote_time = -1
-
-
-### CROUCHING
-
-func can_uncrouch() -> bool:
-	return check_semi_solid_at_tile_positions([Vector2(-5.9,-27.9), Vector2(0,-27.9), Vector2(5.9,-27.9)])
-
-func set_velocity_in_air_while_crouching() -> void:
-	if !on_ground():
-		if under_ceiling() and velocity.y < 0:
-			reset_vspeed()
-		air_friction()
-		gravity()
-	else:
-		reset_vspeed()
-
-func start_crouch_stun(timer: int) -> void:
-	state = PlayerStates.CROUCH_STUN
-	crouch_stun_timer = timer
-
-func do_crouch_stun_timer() -> void:
-	if crouch_stun_timer > 0:
-		crouch_stun_timer -= 1
+		stop_coyote_time()
 
 
 ### SLIDING
 
 func begin_slide() -> void:
 	state = PlayerStates.SLIDE
-	slide_timer = SLIDE_TIME
+	start_slide_frictionless_timer(SLIDE_FRICTIONLESS_FRAMES)
 	match facing_dir:
 		PlayerFacingDir.LEFT: velocity.x = SLIDE_SPEED * -1
 		PlayerFacingDir.RIGHT: velocity.x = SLIDE_SPEED
 
-func do_slide_timer() -> void:
-	if slide_timer > 0:
-		slide_timer -= 1
 
-func slide_friction() -> void:
-	if velocity.x != 0.0:
-		velocity.x -= sign(velocity.x) * min(SLIDE_FRICTION, abs(velocity.x))
-
-func set_velocity_while_sliding(speed: int, delta: float) -> void:
-	if slide_timer <= 0:
-		slide_friction()
-	set_downward_slope_velocity(delta)
-
-
-### APPEARANCE
+### APPEARANCE (FACING DIRECTION)
 
 func set_facing_dir_movement() -> void:
 	if velocity.x < 0.0:
@@ -287,25 +263,13 @@ func set_facing_dir_static() -> void:
 # State transitions
 ################################################################################
 
-func snap_to_ground_or_fall(delta: float) -> void:
-	var collision = move_and_collide(delta * Vector2(0, abs(velocity.x)))
+func snap_to_ground_or_fall(snap_distance: float, air_state: int, crouch_state: int) -> void:
+	var collision = move_and_collide(Vector2(0, snap_distance))
 	if !is_instance_valid(collision):
-		move_and_collide(delta * Vector2(0, abs(velocity.x) * -1))
+		move_and_collide(del * Vector2(0, -snap_distance))
 		reset_vspeed()
-		coyote_time = COYOTE_TIME
-		if can_uncrouch():
-			state = PlayerStates.AIR
-		else:
-			state = PlayerStates.CROUCH
-
-func snap_to_ground_or_fall_after_slide() -> void:
-	var collision = move_and_collide(Vector2(0, 5))
-	if !is_instance_valid(collision):
-		move_and_collide(Vector2(0, -5))
-		reset_vspeed()
-		coyote_time = COYOTE_TIME
-		if can_uncrouch():
-			state = PlayerStates.AIR
+		start_coyote_time(COYOTE_TIME_FRAMES)
+		state = air_state if can_uncrouch() else crouch_state
 
 func slide_or_drop() -> void:
 	if can_uncrouch() and on_semi_solid_ground():
@@ -316,15 +280,86 @@ func slide_or_drop() -> void:
 	if GameState.has_slide:
 		begin_slide()
 
-func crouch_transitions() -> void:
-	if !on_ground():
-		if can_uncrouch():
-			state = PlayerStates.AIR
+
+################################################################################
+# Timers
+################################################################################
+
+func connect_timers() -> void:
+	$TimerAttack.connect("timeout", self, "_on_timeout_attack")
+	$TimerAttackStun.connect("timeout", self, "_on_timeout_attack_stun")
+	$TimerCoyote.connect("timeout", self, "_on_timeout_coyote")
+	$TimerCrouchStun.connect("timeout", self, "_on_timeout_crouch_stun")
+	$TimerSlideFrictionless.connect("timeout", self, "_on_timeout_slide_frictionless")
+
+
+### ATTACK
+
+func _on_timeout_attack() -> void:
+	$TimerAttack.stop()
+	if $AttackHandler.weapon_data["delay"] > 0:
+		match state:
+			PlayerStates.GROUND_ATK: state = PlayerStates.GROUND_ATK_STUN
+			PlayerStates.AIR_ATK: state = PlayerStates.AIR_ATK_STUN
+			PlayerStates.CROUCH_ATK: state = PlayerStates.CROUCH_ATK_STUN
+		$SpriteHandler.update_sprite()
+		$TimerAttackStun.start($AttackHandler.weapon_data["delay"]/60.0)
 	else:
-		if !input_down and can_uncrouch():
-			state = PlayerStates.GROUND
-		elif input_jump_press:
-			slide_or_drop()
+		_on_timeout_attack_stun()
+
+func _on_timeout_attack_stun() -> void:
+	$TimerAttackStun.stop()
+	match state:
+		PlayerStates.GROUND_ATK, PlayerStates.GROUND_ATK_STUN: state = PlayerStates.GROUND
+		PlayerStates.AIR_ATK, PlayerStates.AIR_ATK_STUN: state = PlayerStates.AIR
+		PlayerStates.CROUCH_ATK, PlayerStates.CROUCH_ATK_STUN: state = PlayerStates.CROUCH
+	$SpriteHandler.update_sprite()
+
+
+### COYOTE TIME
+
+func start_coyote_time(frames: int) -> void:
+	$TimerCoyote.start(frames/60.0)
+
+func stop_coyote_time() -> void:
+	$TimerCoyote.stop()
+
+func _on_timeout_coyote() -> void:
+	$TimerCoyote.stop()
+	jump_count -= 1
+
+
+### CROUCH STUN
+
+func start_crouch_stun(frames: int) -> void:
+	state = PlayerStates.CROUCH_STUN
+	$TimerCrouchStun.start(frames/60.0)
+
+func _on_timeout_crouch_stun() -> void:
+	$TimerCrouchStun.stop()
+	state = PlayerStates.CROUCH
+
+
+### SLIDE FRICTIONLESS
+
+func start_slide_frictionless_timer(frames: int) -> void:
+	$TimerSlideFrictionless.start(frames/60.0)
+
+func _on_timeout_slide_frictionless() -> void:
+	$TimerSlideFrictionless.stop()
+
+
+################################################################################
+# Miscellaneous
+################################################################################
+
+func force_sprite_update() -> void:
+	forced_sprite_update = true
+	$SpriteHandler.update_sprite()
+
+func stop_attack_if_not_attacking() -> void:
+	if !(state in [PlayerStates.GROUND_ATK, PlayerStates.AIR_ATK, PlayerStates.CROUCH_ATK]):
+		$AttackHandler.force_stop_attack()
 
 
 ################################################################################
@@ -333,110 +368,151 @@ func crouch_transitions() -> void:
 
 func _physics_process(delta):
 	
-	del = delta * 60
+	del = delta
+	get_inputs()
 	
 	
-	### SETTING INPUT VARIABLES
+	### STATE-SPECIFIC FUNCTIONALITY, PRE-TRANSITION
 	
-	input_left = Input.is_action_pressed("input_left")
-	input_right = Input.is_action_pressed("input_right")
-	input_up = Input.is_action_pressed("input_up")
-	input_down = Input.is_action_pressed("input_down")
-	
-	input_jump = Input.is_action_pressed("input_jump")
-	input_jump_press = Input.is_action_just_pressed("input_jump")
+	match state:
+		PlayerStates.CROUCH: set_facing_dir_static()
 	
 	
 	### STATE TRANSITIONS
 	
 	previous_state = state
-	var forced_sprite_update = false
+	var wep_stun: bool = $AttackHandler.weapon_data.has("stun") and $AttackHandler.weapon_data["stun"]
 	
 	match state:
 		
-		PlayerStates.DEFAULT:
-			state = PlayerStates.AIR
+		PlayerStates.DEFAULT: state = PlayerStates.AIR
 			
 		PlayerStates.AIR:
-			if (on_ground()
-					and (previous_state != PlayerStates.CROUCH or !on_semi_solid_ground())
-					and velocity.y >= 0.0):
+			if not_in_air():
 				state = PlayerStates.GROUND
+			elif input_attack_press:
+				state = PlayerStates.AIR_ATK
+				set_facing_dir_static()
+				force_sprite_update()
+				$AttackHandler.attack()
+		
+		PlayerStates.AIR_ATK:
+			if not_in_air():
+				if wep_stun: state = PlayerStates.GROUND_ATK
+				else: state = PlayerStates.GROUND
+				stop_attack_if_not_attacking()
+		
+		PlayerStates.AIR_ATK_STUN:
+			if not_in_air():
+				state = PlayerStates.GROUND_ATK_STUN if wep_stun else PlayerStates.GROUND
 		
 		PlayerStates.GROUND:
 			if !on_ground():
-				snap_to_ground_or_fall(delta)
-			if input_jump_press:
-				state = PlayerStates.AIR
-			elif input_down:
-				state = PlayerStates.CROUCH
+				snap_to_ground_or_fall(del*abs(velocity.x), PlayerStates.AIR, PlayerStates.CROUCH)
+			elif input_attack_press:
+				state = PlayerStates.GROUND_ATK
+				set_facing_dir_static()
+				force_sprite_update()
+				$AttackHandler.attack()
+			elif input_jump_press: state = PlayerStates.AIR
+			elif input_down: state = PlayerStates.CROUCH
+		
+		PlayerStates.GROUND_ATK:
+			if !on_ground():
+				snap_to_ground_or_fall(del*abs(velocity.x), PlayerStates.AIR_ATK, PlayerStates.CROUCH_ATK)
+				stop_attack_if_not_attacking()
+		
+		PlayerStates.GROUND_ATK_STUN:
+			if !on_ground():
+				var air_state: int = PlayerStates.AIR_ATK_STUN if wep_stun else PlayerStates.AIR
+				snap_to_ground_or_fall(del*abs(velocity.x), air_state, PlayerStates.CROUCH_ATK_STUN)
 		
 		PlayerStates.CROUCH:
-			crouch_transitions()
+			if !on_ground():
+				if can_uncrouch(): state = PlayerStates.AIR
+			elif input_attack_press:
+				state = PlayerStates.CROUCH_ATK
+				set_facing_dir_static()
+				force_sprite_update()
+				$AttackHandler.attack()
+			elif !input_down and can_uncrouch(): state = PlayerStates.GROUND
+			elif input_jump_press: slide_or_drop()
+		
+		PlayerStates.CROUCH_ATK:
+			if !on_ground() and can_uncrouch():
+				state = PlayerStates.AIR
+				stop_attack_if_not_attacking()
+		
+		PlayerStates.CROUCH_ATK_STUN:
+			if !on_ground() and can_uncrouch():
+				state = PlayerStates.AIR_ATK_STUN if wep_stun else PlayerStates.AIR
 		
 		PlayerStates.CROUCH_STUN:
-			if crouch_stun_timer <= 0:
-				crouch_stun_timer = 0
-				state = PlayerStates.CROUCH
-				crouch_transitions()
+			if !on_ground() and can_uncrouch():
+				state = PlayerStates.AIR
 		
 		PlayerStates.SLIDE:
 			if !on_ground():
-				snap_to_ground_or_fall(delta)
-			elif velocity.x == 0:
-				start_crouch_stun(SLIDE_STUN_TIME)
-				$SpriteHandler.update_sprite()
-				forced_sprite_update = true
-				snap_to_ground_or_fall_after_slide()
+				snap_to_ground_or_fall(del*abs(velocity.x), PlayerStates.AIR, PlayerStates.CROUCH)
+			if velocity.x == 0:
+				start_crouch_stun(SLIDE_STUN_FRAMES)
+				force_sprite_update()
+				snap_to_ground_or_fall(5, PlayerStates.AIR, state)
 	
 	
 	### SPRITES
+	
 	if forced_sprite_update == true:
 		forced_sprite_update = false
 	else:
 		$SpriteHandler.update_sprite()
 	
 	
-	### STATE FUNCTIONALITY
+	### MULTI-STATE FUNCTIONALITY, POST_TRANSITION
+	
+	if state != PlayerStates.AIR:
+		reset_jump_count()
+		stop_coyote_time()
+	
+	
+	### STATE-SPECIFIC FUNCTIONALITY, POST_TRANSITION
 	
 	match state:
 		
 		PlayerStates.AIR:
 			set_fast_fall()
-			do_coyote_time()
 			jump_after_input()
-			set_velocity_in_air(WALK_SPEED)
+			set_velocity(WALK_SPEED, AIR_FRICTION, true, false)
 			move_in_air()
 			set_facing_dir_movement()
 		
+		PlayerStates.AIR_ATK, PlayerStates.AIR_ATK_STUN:
+			set_fast_fall()
+			set_velocity(WALK_SPEED, AIR_FRICTION, true, false)
+			move_in_air()
+			
 		PlayerStates.GROUND:
-			reset_jump_count()
 			reset_vspeed()
-			set_velocity_on_ground(WALK_SPEED, delta)
+			set_velocity(WALK_SPEED, GROUND_FRICTION, true, true)
 			move_on_ground()
 			set_facing_dir_movement()
 		
-		PlayerStates.CROUCH:
-			reset_jump_count()
+		PlayerStates.GROUND_ATK, PlayerStates.GROUND_ATK_STUN:
+			set_velocity(WALK_SPEED, GROUND_FRICTION, false, true)
+			move_on_ground()
+			
+		PlayerStates.CROUCH, PlayerStates.CROUCH_STUN, PlayerStates.CROUCH_ATK, PlayerStates.CROUCH_ATK_STUN:
 			reset_hspeed()
-			set_velocity_in_air_while_crouching()
+			if !on_ground(): set_velocity(0, AIR_FRICTION, false, false)
+			else: reset_vspeed()
 			move_in_air()
-			set_facing_dir_static()
-		
-		PlayerStates.CROUCH_STUN:
-			do_crouch_stun_timer()
-			reset_jump_count()
-			reset_hspeed()
-			set_velocity_in_air_while_crouching()
-			move_in_air()
-		
+			
 		PlayerStates.SLIDE:
-			reset_jump_count()
 			reset_vspeed()
-			do_slide_timer()
-			set_velocity_while_sliding(SLIDE_SPEED, delta)
+			set_velocity_while_sliding()
 			move_on_ground()
 	
 	
 	### STATE-INDEPENDENT FUNCTIONALITY
+	
 	round_position()

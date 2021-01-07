@@ -390,7 +390,7 @@ func render_stats_box(current_tab: int) -> void:
 	for i in range(7):
 		var stat_name: String = DataRepository.DataEnums["stats"][i]
 		var current_stat: int = GameState.get_stat_by_name(stat_name)
-		var new_stat: int = int(max(GameState.get_base_stat_by_name(stat_name) + data["stats"][stat_name], 0))
+		var new_stat: int = int(max(current_stat - get_equipped_data(current_tab)["stats"][stat_name] + data["stats"][stat_name], 0))
 		StatsText.get_child(i).get_node("Left").text = String(current_stat)
 		StatsText.get_child(i).get_node("Right").text = String(new_stat)
 		var text_color: Color
@@ -412,6 +412,14 @@ func render_stats_box(current_tab: int) -> void:
 ################################################################################
 # Helper methods
 ################################################################################
+
+func get_equipped_data(current_tab: int) -> Dictionary:
+	match tab:
+		0: return GameState.get_equipped_weapon()
+		1: return GameState.get_equipped_subwep()
+		2: return GameState.get_equipped_armor()
+		3: return GameState.get_equipped_spell()
+	return Dictionary()
 
 func get_selected_data(current_tab: int) -> Dictionary:
 	var repository: Dictionary
