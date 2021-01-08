@@ -20,7 +20,11 @@
                 { "center": [22,5], "offset": [0,-16], "sprite": "res://src/assets/sprites/simon/swing2_stand_3.png" },
                 { "center": [31,25], "offset": [0,-16], "sprite": "res://src/assets/sprites/simon/swing2_stand_4.png" }
             ],
-            "slash": [],
+            "slash": [
+                { "center": [11,4], "offset": [0,-16], "sprite": "res://src/assets/sprites/simon/slash_stand_0.png" },
+                { "center": [28,10], "offset": [0,-16], "sprite": "res://src/assets/sprites/simon/slash_stand_1.png" },
+                { "center": [21,13], "offset": [0,-16], "sprite": "res://src/assets/sprites/simon/slash_stand_2.png" }
+            ],
             "thrust": [],
             "polearm": [],
             "punch": [],
@@ -45,7 +49,11 @@
                 { "center": [17,4], "offset": [0,-16], "sprite": "res://src/assets/sprites/simon/swing2_ascending_2.png" },
                 { "center": [22,4], "offset": [0,-16], "sprite": "res://src/assets/sprites/simon/swing2_ascending_3.png" },
                 { "center": [31,24], "offset": [0,-16], "sprite": "res://src/assets/sprites/simon/swing2_ascending_4.png" }],
-            "slash": [],
+            "slash": [
+                { "center": [11,3], "offset": [0,-16], "sprite": "res://src/assets/sprites/simon/slash_ascending_0.png" },
+                { "center": [28,9], "offset": [0,-16], "sprite": "res://src/assets/sprites/simon/slash_ascending_1.png" },
+                { "center": [21,12], "offset": [0,-16], "sprite": "res://src/assets/sprites/simon/slash_ascending_2.png" }
+            ],
             "thrust": [],
             "polearm": [],
             "punch": [],
@@ -70,7 +78,11 @@
                 { "center": [17,9], "offset": [0,-16], "sprite": "res://src/assets/sprites/simon/swing2_crouch_2.png" },
                 { "center": [20,10], "offset": [0,-16], "sprite": "res://src/assets/sprites/simon/swing2_crouch_3.png" },
                 { "center": [28,29], "offset": [0,-16], "sprite": "res://src/assets/sprites/simon/swing2_crouch_4.png" }],
-            "slash": [],
+            "slash": [
+                { "center": [13,11], "offset": [0,-16], "sprite": "res://src/assets/sprites/simon/slash_crouch_0.png" },
+                { "center": [28,17], "offset": [0,-16], "sprite": "res://src/assets/sprites/simon/slash_crouch_1.png" },
+                { "center": [21,20], "offset": [0,-16], "sprite": "res://src/assets/sprites/simon/slash_crouch_2.png" }
+            ],
             "thrust": [],
             "polearm": [],
             "punch": [],

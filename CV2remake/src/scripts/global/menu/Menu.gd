@@ -87,7 +87,7 @@ func tween_from_previous_tab(previous_tab: int) -> void:
 		Screens, "rect_position",
 		Vector2(-SCREEN_WIDTH*previous_tab, Screens.rect_position.y),
 		Vector2(-SCREEN_WIDTH*tab, Screens.rect_position.y),
-		TAB_TRANSITION_FRAMES/60.0, 4
+		TAB_TRANSITION_FRAMES/60.0, Tween.TRANS_QUAD
 	)
 	$Tween.start()
 	yield($Tween, "tween_all_completed")

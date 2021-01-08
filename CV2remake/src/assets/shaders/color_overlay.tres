@@ -1,0 +1,24 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform vec4 overlay: hint_color;
+
+void fragment() {
+	vec4 original = texture(TEXTURE, UV);
+	if (overlay.r < 0.5) { COLOR.r = 2.0*overlay.r*original.r; } else { COLOR.r = 1.0-2.0*(1.0-overlay.r)*(1.0-original.r); }
+	if (overlay.g < 0.5) { COLOR.g = 2.0*overlay.g*original.g; } else { COLOR.g = 1.0-2.0*(1.0-overlay.g)*(1.0-original.g); }
+	if (overlay.b < 0.5) { COLOR.b = 2.0*overlay.b*original.b; } else { COLOR.b = 1.0-2.0*(1.0-overlay.b)*(1.0-original.b); }
+	COLOR.r = overlay.r*0.5 + COLOR.r*0.5;
+	COLOR.g = overlay.g*0.5 + COLOR.g*0.5;
+	COLOR.b = overlay.b*0.5 + COLOR.b*0.5;
+	COLOR.r = COLOR.r*overlay.a + original.r*(1.0-overlay.a);
+	COLOR.g = COLOR.g*overlay.a + original.g*(1.0-overlay.a);
+	COLOR.b = COLOR.b*overlay.a + original.b*(1.0-overlay.a);
+	COLOR.a = original.a;
+}"
+
+[resource]
+shader = SubResource( 1 )
+shader_param/overlay = Color( 0, 0, 0, 0 )

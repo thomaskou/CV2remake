@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/assets/sprites/simon/swing1_arm.png" type="Texture" id=2]
+
+[node name="WeaponContainer" type="Node2D"]
+
+[node name="Weapon" type="Node2D" parent="."]
+
+[node name="SpriteGhost" type="Sprite" parent="Weapon"]
+modulate = Color( 1, 1, 1, 0.4 )
+
+[node name="Sprite" type="Sprite" parent="Weapon"]
+
+[node name="SpriteArm" type="Sprite" parent="Weapon"]
+visible = false
+rotation = -1.5708
+texture = ExtResource( 2 )
+centered = false
+offset = Vector2( -2, -2 )

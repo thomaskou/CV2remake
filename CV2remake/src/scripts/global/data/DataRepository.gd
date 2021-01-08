@@ -4,6 +4,8 @@ export var DataEnums: Dictionary
 export var DataTextures: Dictionary
 export var DataLevels: Array
 
+export var TemplateWeapons: Dictionary
+
 export var InvArmor: Dictionary
 export var InvItems: Dictionary
 export var InvRelics: Dictionary
@@ -27,79 +29,68 @@ func _ready():
 	DataLevels = JSON.parse(file.get_as_text()).result
 	file.close()
 	
+	file.open("res://src/data/template_weapons.json", File.READ)
+	TemplateWeapons = JSON.parse(file.get_as_text()).result
+	file.close()
+	
 	file.open("res://src/data/inv_armor.json", File.READ)
 	InvArmor = JSON.parse(file.get_as_text()).result
 	for name in InvArmor:
 		var item: Dictionary = InvArmor[name]
-		item["stats"] = create_default_stats(item["stats"]) if item.has("stats") else create_default_stats(Dictionary())
-		for property in InvArmor["_default"]:
-			if !item.has(property):
-				item[property] = InvArmor["_default"][property]
+		deep_copy_properties(item, InvArmor["_default"])
 	file.close()
 	
 	file.open("res://src/data/inv_items.json", File.READ)
 	InvItems = JSON.parse(file.get_as_text()).result
 	for name in InvItems:
 		var item: Dictionary = InvItems[name]
-		item["stats"] = create_default_stats(item["stats"]) if item.has("stats") else create_default_stats(Dictionary())
-		for property in InvItems["_default"]:
-			if !item.has(property):
-				item[property] = InvItems["_default"][property]
+		deep_copy_properties(item, InvItems["_default"])
 	file.close()
 	
 	file.open("res://src/data/inv_relics.json", File.READ)
 	InvRelics = JSON.parse(file.get_as_text()).result
 	for name in InvRelics:
 		var item: Dictionary = InvRelics[name]
-		for property in InvRelics["_default"]:
-			if !item.has(property):
-				item[property] = InvRelics["_default"][property]
+		deep_copy_properties(item, InvRelics["_default"])
 	file.close()
 	
 	file.open("res://src/data/inv_spells.json", File.READ)
 	InvSpells = JSON.parse(file.get_as_text()).result
 	for name in InvSpells:
 		var item: Dictionary = InvSpells[name]
-		item["stats"] = create_default_stats(item["stats"]) if item.has("stats") else create_default_stats(Dictionary())
-		for property in InvSpells["_default"]:
-			if !item.has(property):
-				item[property] = InvSpells["_default"][property]
+		deep_copy_properties(item, InvSpells["_default"])
 	file.close()
 	
 	file.open("res://src/data/inv_subweps.json", File.READ)
 	InvSubweps = JSON.parse(file.get_as_text()).result
 	for name in InvSubweps:
 		var item: Dictionary = InvSubweps[name]
-		item["stats"] = create_default_stats(item["stats"]) if item.has("stats") else create_default_stats(Dictionary())
-		for property in InvSubweps["_default"]:
-			if !item.has(property):
-				item[property] = InvSubweps["_default"][property]
+		deep_copy_properties(item, InvSubweps["_default"])
 	file.close()
 	
 	file.open("res://src/data/inv_weapons.json", File.READ)
 	InvWeapons = JSON.parse(file.get_as_text()).result
 	for name in InvWeapons:
 		var item: Dictionary = InvWeapons[name]
-		item["stats"] = create_default_stats(item["stats"]) if item.has("stats") else create_default_stats(Dictionary())
-		for property in InvWeapons["_default"]:
-			if !item.has(property):
-				item[property] = InvWeapons["_default"][property]
+		deep_copy_properties(item, InvWeapons["_default"])
 		generate_weapon_sprite_data(item)
 	file.close()
 
 
-func create_default_stats(stats: Dictionary) -> Dictionary:
-	if !stats.has("atk"): stats["atk"] = 0
-	if !stats.has("def"): stats["def"] = 0
-	if !stats.has("str"): stats["str"] = 0
-	if !stats.has("con"): stats["con"] = 0
-	if !stats.has("int"): stats["int"] = 0
-	if !stats.has("mnd"): stats["mnd"] = 0
-	if !stats.has("lck"): stats["lck"] = 0
-	return stats
+func deep_copy_properties(to: Dictionary, from: Dictionary, force: bool = false) -> Dictionary:
+	for property in from:
+		if from[property] is Dictionary:
+			to[property] = deep_copy_properties(to[property] if to.has(property) else Dictionary(), from[property], force)
+		elif force or !to.has(property):
+			to[property] = from[property]
+	return to
 
 
 func generate_weapon_sprite_data(weapon: Dictionary) -> void:
+	# Load from template
+	if weapon.has("template") and TemplateWeapons.has(weapon["template"]):
+		deep_copy_properties(weapon, TemplateWeapons[weapon["template"]], true)
+	
 	# Fields to add to the weapon data
 	var total_frames: int = 0
 	var total_sprites: int = 0
@@ -141,12 +132,3 @@ func generate_weapon_sprite_data(weapon: Dictionary) -> void:
 	weapon["sprite"]["total_frames"] = total_frames
 	weapon["sprite"]["frame_to_sprite"] = frame_to_sprite
 	weapon["sprite"]["frame_to_portion"] = frame_to_portion
-	if weapon["sprite"].has("effects"):
-		weapon["sprite"]["effects"] = create_default_weapon_sprite_effects(weapon["sprite"]["effects"])
-	else:
-		weapon["sprite"]["effects"] = create_default_weapon_sprite_effects(Dictionary())
-
-
-func create_default_weapon_sprite_effects(effects: Dictionary) -> Dictionary:
-	if !effects.has("ghost_frames"): effects["ghost_frames"] = -1
-	return effects

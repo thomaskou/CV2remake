@@ -35,6 +35,8 @@ script = ExtResource( 1 )
 [node name="SpriteHandler" type="Node" parent="."]
 script = ExtResource( 7 )
 
+[node name="TimerTrail" type="Timer" parent="SpriteHandler"]
+
 [node name="AttackHandler" type="Node" parent="."]
 script = ExtResource( 12 )
 

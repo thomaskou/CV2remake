@@ -11,9 +11,9 @@ onready var GameState: Node = get_node("/root/Main/GameState")
 onready var Player: Node = get_node("/root/Main/Gameplay/Player")
 onready var debug_mode: bool = GameState.debug_mode
 
-func _process(_delta):
+func _process(delta):
 	if debug_mode:
-		update_debug_text()
+		update_debug_text(delta)
 		toggle_debug_menu("input_debug1")
 		xp_hotkeys("input_debug5", "input_debug6")
 		hp_hotkeys("input_debug7", "input_debug8")
@@ -23,8 +23,12 @@ func toggle_debug_menu(input: String) -> void:
 	if Input.is_action_just_pressed(input):
 		$Background.visible = !$Background.visible
 
-func update_debug_text() -> void:
-	get_node("Background/Text").text = PLAYER_STATE_TO_STRING[Player.state]
+func update_debug_text(delta) -> void:
+	var text: String = ""
+	text += PLAYER_STATE_TO_STRING[Player.state]
+	text += "\nDELTA*60: " + String(delta*60)
+	if delta > 0: text += "\nFPS: " + String(1.0/delta)
+	get_node("Background/Text").text = text
 
 func hp_hotkeys(down: String, up: String) -> void:
 	if Input.is_action_pressed(down):

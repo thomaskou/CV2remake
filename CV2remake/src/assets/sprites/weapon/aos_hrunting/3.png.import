@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/0.png-76a984aab63dd1415e1e1005f13a028c.stex"
+path="res://.import/3.png-b23ccbb7a49a56509f3ba99e52e0316d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/assets/sprites/weapon/por_axe/0.png"
-dest_files=[ "res://.import/0.png-76a984aab63dd1415e1e1005f13a028c.stex" ]
+source_file="res://src/assets/sprites/weapon/aos_hrunting/3.png"
+dest_files=[ "res://.import/3.png-b23ccbb7a49a56509f3ba99e52e0316d.stex" ]
 
 [params]
 

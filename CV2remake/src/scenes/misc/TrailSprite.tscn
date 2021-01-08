@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/assets/shaders/color_overlay.tres" type="Material" id=1]
+
+[sub_resource type="GDScript" id=3]
+script/source = "extends Sprite
+
+func _ready():
+	material = material.duplicate()
+
+func begin(frames: int) -> void:
+	$Tween.interpolate_property(
+		self, \"modulate\", Color(1,1,1,modulate.a), Color(1,1,1,0), frames/60.0,
+		Tween.TRANS_SINE, Tween.EASE_OUT
+	)
+	$Tween.start()
+	yield($Tween, \"tween_all_completed\")
+	get_parent().remove_child(self)
+	queue_free()
+"
+
+[node name="TrailSprite" type="Sprite"]
+material = ExtResource( 1 )
+z_index = -1
+script = SubResource( 3 )
+
+[node name="Tween" type="Tween" parent="."]

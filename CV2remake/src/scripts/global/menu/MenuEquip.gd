@@ -220,7 +220,7 @@ func tween_from_previous_tab(previous_tab: int) -> void:
 		GridsBox, "rect_position",
 		Vector2(-(GRID_WIDTH+GRID_SPACING)*previous_tab, GridsBox.rect_position.y),
 		Vector2(-(GRID_WIDTH+GRID_SPACING)*tab, GridsBox.rect_position.y),
-		TAB_TRANSITION_FRAMES/60.0, 4
+		TAB_TRANSITION_FRAMES/60.0, Tween.TRANS_QUAD
 	)
 	$TweenTab.start()
 	yield($TweenTab, "tween_all_completed")
@@ -264,7 +264,7 @@ func scroll_grid(previous_index: int) -> void:
 			grid[tab], "rect_position",
 			grid[tab].rect_position,
 			Vector2(grid[tab].rect_position.x, get_scroll_position(selected_height, tab)),
-			GRID_SCROLL_FRAMES/60.0, 0
+			GRID_SCROLL_FRAMES/60.0, Tween.TRANS_LINEAR
 		)
 		$TweenGrid.start()
 		yield($TweenGrid, "tween_all_completed")

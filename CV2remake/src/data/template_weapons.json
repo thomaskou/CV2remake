@@ -1,0 +1,128 @@
+{
+    "slash_dos": {
+        "type": "slash", "delay": 5,
+        "sprite": {
+            "frames": [
+                { "time_sprite": [7], "player_frames": [0], "images": [0] },
+                { "time_sprite": [2], "player_frames": [1], "images": [1] },
+                { "time_sprite": [7], "player_frames": [1], "images": [2], "fade_previous": 7 },
+                { "time_sprite": [5], "player_frames": [2], "images": [2], "opacity": [1,0], "fade_previous": 5, "trail": { "step": 1, "frames": 2 }, "interpolate_trail": { "num": 4, "frames": 5 } },
+                { "time_sprite": [5], "player_frames": [2], "images": [2], "opacity": [0] }
+            ]
+        }
+    },
+    "swing1_aos_light_notrailsprite": {
+        "type": "swing1", "delay": 8,
+        "sprite": {
+            "frames": [
+                { "time_sprite": [8], "player_frames": [1,2], "images": [0], "angle": [-45, 135], "trail": { "num": 2, "frames": 4 } },
+                { "time_sprite": [8], "player_frames": [3], "images": [0], "angle": [135] }
+            ]
+        }
+    },
+    "swing1_aos_light_trailsprite": {
+        "type": "swing1", "delay": 8,
+        "sprite": {
+            "frames": [
+                { "time_sprite": [3,3,2], "player_frames": [1,2], "images": [0,2,1], "angle": [-45, 135], "trail": { "step": 1, "frames": 4 } },
+                { "time_sprite": [3,5], "player_frames": [3], "images": [1,0], "angle": [135] }
+            ]
+        }
+    },
+    "swing1_aos_medium_notrailsprite": {
+        "type": "swing1", "delay": 10,
+        "sprite": {
+            "frames": [
+                { "time_sprite": [10], "player_frames": [1,2], "images": [0], "angle": [-45, 135], "trail": { "step": 1, "frames": 4 } },
+                { "time_sprite": [10], "player_frames": [3], "images": [0], "angle": [135] }
+            ]
+        }
+    },
+    "swing1_aos_medium_trailsprite": {
+        "type": "swing1", "delay": 10,
+        "sprite": {
+            "frames": [
+                { "time_sprite": [4,4,2], "player_frames": [1,2], "images": [0,2,1], "angle": [-45, 135], "trail": { "step": 1, "frames": 4 } },
+                { "time_sprite": [3,7], "player_frames": [3], "images": [1,0], "angle": [135] }
+            ]
+        }
+    },
+    "swing2_dos_medium_notrailsprite": {
+        "type": "swing2",
+        "sprite": {
+            "frames": [
+                { "time_sprite": [7], "player_frames": [0], "images": [0], "angle": [-135, -115] },
+                { "time_sprite": [5], "player_frames": [1], "images": [0], "angle": [-115, -90], "trail": { "step": 1, "frames": 3 } },
+                { "time_sprite": [5], "player_frames": [2], "images": [0], "angle": [-90, 0], "trail": { "num": 2, "frames": 3 } },
+                { "time_sprite": [4], "player_frames": [3], "images": [0], "angle": [0, 90], "trail": { "num": 2, "frames": 4 } },
+                { "time_sprite": [20], "player_frames": [4], "images": [0], "angle": [90], "interpolate_trail": { "num": 4, "frames": 6 } },
+                { "time_sprite": [8], "player_frames": [4], "images": [0], "angle": [90], "opacity": [1,0] }
+            ]
+        }
+    },
+    "swing2_dos_medium_trailsprite": {
+        "type": "swing2",
+        "sprite": {
+            "frames": [
+                { "time_sprite": [7], "player_frames": [0], "images": [0], "angle": [-135, -115] },
+                { "time_sprite": [5], "player_frames": [1], "images": [0], "angle": [-115, -90], "trail": { "step": 1, "frames": 3 } },
+                { "time_sprite": [5], "player_frames": [2], "images": [1], "angle": [-90, 0], "trail": { "num": 2, "frames": 3 } },
+                { "time_sprite": [4], "player_frames": [3], "images": [2], "angle": [0, 90], "trail": { "num": 2, "frames": 4 } },
+                { "time_sprite": [2,2,16], "player_frames": [4], "images": [2,1,0], "angle": [90], "interpolate_trail": { "num": 3, "frames": 6 } },
+                { "time_sprite": [8], "player_frames": [4], "images": [0], "angle": [90], "opacity": [1,0] }
+            ]
+        }
+    },
+    "swing2_dos_heavy_notrailsprite": {
+        "type": "swing2",
+        "sprite": {
+            "frames": [
+                { "time_sprite": [8], "player_frames": [0], "images": [0], "angle": [-135, -115] },
+                { "time_sprite": [6], "player_frames": [1], "images": [0], "angle": [-115, -90], "trail": { "step": 1, "frames": 4 } },
+                { "time_sprite": [6], "player_frames": [2], "images": [0], "angle": [-90, 0], "trail": { "step": 1, "frames": 4 } },
+                { "time_sprite": [5], "player_frames": [3], "images": [0], "angle": [0, 90], "trail": { "step": 1, "frames": 4 } },
+                { "time_sprite": [25], "player_frames": [4], "images": [0], "angle": [90], "interpolate_trail": { "num": 4, "frames": 6 } },
+                { "time_sprite": [8], "player_frames": [4], "images": [0], "angle": [90], "opacity": [1,0] }
+            ]
+        }
+    },
+    "swing2_dos_heavy_trailsprite": {
+        "type": "swing2",
+        "sprite": {
+            "frames": [
+                { "time_sprite": [8], "player_frames": [0], "images": [0], "angle": [-135, -115] },
+                { "time_sprite": [6], "player_frames": [1], "images": [0], "angle": [-115, -90], "trail": { "step": 1, "frames": 4 } },
+                { "time_sprite": [6], "player_frames": [2], "images": [1], "angle": [-90, 0], "trail": { "step": 1, "frames": 4 } },
+                { "time_sprite": [5], "player_frames": [3], "images": [2], "angle": [0, 90], "trail": { "step": 1, "frames": 4 } },
+                { "time_sprite": [2,2,21], "player_frames": [4], "images": [2,1,0], "angle": [90], "interpolate_trail": { "num": 3, "frames": 6 } },
+                { "time_sprite": [8], "player_frames": [4], "images": [0], "angle": [90], "opacity": [1,0] }
+            ]
+        }
+    },
+    "swing2_mix_notrailsprite": {
+        "type": "swing2",
+        "sprite": {
+            "frames": [
+                { "time_sprite": [5], "player_frames": [0], "images": [0], "angle": [-135, -115] },
+                { "time_sprite": [4], "player_frames": [1], "images": [0], "angle": [-115, -90], "trail": { "step": 1, "frames": 2 } },
+                { "time_sprite": [4], "player_frames": [2], "images": [0], "angle": [-90, 0], "trail": { "num": 2, "frames": 3 } },
+                { "time_sprite": [4], "player_frames": [3], "images": [0], "angle": [0, 135], "trail": { "num": 2, "frames": 4 } },
+                { "time_sprite": [12], "player_frames": [4], "images": [0], "angle": [135], "interpolate_trail": { "num": 4, "frames": 6 } },
+                { "time_sprite": [8], "player_frames": [4], "images": [0], "angle": [135], "opacity": [1,0] }
+            ]
+        }
+    },
+    "swing2_mix_trailsprite": {
+        "type": "swing2",
+        "sprite": {
+            "frames": [
+                { "time_sprite": [5], "player_frames": [0], "images": [0], "angle": [-135, -115] },
+                { "time_sprite": [4], "player_frames": [1], "images": [0], "angle": [-115, -90], "trail": { "step": 1, "frames": 2 } },
+                { "time_sprite": [4], "player_frames": [2], "images": [1], "angle": [-90, 0], "trail": { "num": 2, "frames": 3 } },
+                { "time_sprite": [4], "player_frames": [3], "images": [2], "angle": [0, 135], "trail": { "num": 2, "frames": 4 } },
+                { "time_sprite": [2,2,8], "player_frames": [4], "images": [2,1,0], "angle": [135], "interpolate_trail": { "num": 3, "frames": 6 } },
+                { "time_sprite": [8], "player_frames": [4], "images": [0], "angle": [135], "opacity": [1,0] }
+            ]
+        }
+    }
+}

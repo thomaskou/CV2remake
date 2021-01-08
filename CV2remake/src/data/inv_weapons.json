@@ -2,9 +2,13 @@
     "_default": {
         "name": "DEFAULT", "attrib": [], "sell": null,
         "type": "strike", "move": false, "stun": false, "delay": 0,
+        "stats": { "atk": 0, "def": 0, "str": 0, "con": 0, "int": 0, "mnd": 0, "lck": 0 },
         "description": "LOREM IPSUM DOLOR SIT AMET.",
         "icon": "res://src/assets/sprites/inventory/default.png",
-        "sprite": { "path": "", "frames": [], "center": [] }
+        "sprite": {
+            "path": "", "frames": [], "center": [],
+            "effects": { "ghost_frames": -1, "trail_overlay": "#bcc0c4", "trail_alpha": 0.6 }
+        }
     },
     "_void": {
         "name": "", "description": "", "icon": "",
@@ -222,175 +226,198 @@
 
     "sword_short": {
         "name": "Short Sword", "attrib": ["slash"], "sell": 100,
-        "type": "slash",
+        "template": "slash_dos",
         "stats": { "atk": 16 },
         "description": "Sword with a short blade.",
-        "icon": "res://src/assets/sprites/inventory/weapon/aos_shortsword.png"
+        "icon": "res://src/assets/sprites/inventory/weapon/aos_shortsword.png",
+        "sprite": {
+            "path": "res://src/assets/sprites/weapon/por_shortsword_original",
+            "center": [[10,2], [31,5], [-1,2]]
+        }
     },
     "sword_cutlass": {
         "name": "Cutlass", "attrib": ["slash"], "sell": 550,
-        "type": "slash",
+        "template": "slash_dos",
         "stats": { "atk": 21 },
         "description": "Short sword used by sailors.",
         "icon": "res://src/assets/sprites/inventory/weapon/sotn_cutlass.png"
     },
     "sword_bastard": {
         "name": "Bastard Sword", "attrib": ["slash"], "sell": 640,
-        "type": "slash",
+        "template": "slash_dos",
         "stats": { "atk": 24 },
         "description": "Long sword with a broad blade and hilt.",
         "icon": "res://src/assets/sprites/inventory/weapon/sotn_bastard.png"
     },
     "sword_long": {
         "name": "Long Sword", "attrib": ["slash"], "sell": 875,
-        "type": "slash",
+        "template": "slash_dos",
         "stats": { "atk": 29 },
         "description": "Common long sword.",
         "icon": "res://src/assets/sprites/inventory/weapon/por_longsword.png"
     },
     "sword_fragarach": {
         "name": "Fragarach", "attrib": ["slash"], "sell": 1750,
-        "type": "slash",
+        "template": "slash_dos",
         "stats": { "atk": 32 },
         "description": "Demonic sword in the shape of a cross.",
         "icon": "res://src/assets/sprites/inventory/weapon/dos_fragarach.png"
     },
     "sword_mystletain": {
         "name": "Mystletain", "attrib": ["slash", "holy"], "sell": 2250,
-        "type": "slash",
+        "template": "slash_dos",
         "stats": { "atk": 28 },
         "description": "Sword hewn from the wood of a divine tree.",
         "icon": "res://src/assets/sprites/inventory/weapon/dos_mystletain.png"
     },
     "sword_fire0": {
         "name": "Laevatain", "attrib": ["slash", "fire"], "sell": 3400,
-        "type": "slash",
+        "template": "slash_dos",
         "stats": { "atk": 25, "int": 5 },
         "description": "Intensely hot sword that scorches everything it touches.",
         "icon": "res://src/assets/sprites/inventory/weapon/dos_laevatain.png"
     },
     "sword_tyrfing": {
         "name": "Tyrfing", "attrib": ["slash", "dark"], "sell": 500,
-        "type": "slash",
+        "template": "slash_dos",
         "stats": { "atk": -30 },
         "description": "Dark, cursed sword.",
         "icon": "res://src/assets/sprites/inventory/weapon/sotn_tyrfing.png"
     },
     "sword_gladius": {
         "name": "Gladius", "attrib": ["slash"], "sell": 1450,
-        "type": "slash",
+        "template": "slash_dos",
         "stats": { "atk": 35, "def": 2 },
         "description": "Sword used in ancient Rome.",
         "icon": "res://src/assets/sprites/inventory/weapon/por_gladius.png"
     },
     "sword_gram": {
         "name": "Gram", "attrib": ["slash"], "sell": 2000,
-        "type": "slash",
+        "template": "slash_dos",
         "stats": { "atk": 38 },
         "description": "Infamous blade surrounded by a deadly aura.",
         "icon": "res://src/assets/sprites/inventory/weapon/sotn_gram.png"
     },
     "sword_stone": {
         "name": "Milican's Sword", "attrib": ["slash", "stone"], "sell": 5000,
-        "type": "slash",
+        "template": "slash_dos",
         "stats": { "atk": 40 },
         "description": "Sword that sometimes turns those it strikes to stone.",
         "icon": "res://src/assets/sprites/inventory/weapon/aos_milican.png"
     },
     "sword_ice": {
         "name": "Rahab's Frost", "attrib": ["slash", "ice"], "sell": 5500,
-        "type": "slash",
+        "template": "slash_dos",
         "stats": { "atk": 40, "int": 5 },
         "description": "Icy blade made from the fang of the water-dragon Rahab.",
         "icon": "res://src/assets/sprites/inventory/weapon/aos_rahab.png"
     },
     "sword_fire1": {
         "name": "Agni's Flame", "attrib": ["slash", "fire"], "sell": 5500,
-        "type": "slash",
+        "template": "slash_dos",
         "stats": { "atk": 40, "int": 5 },
         "description": "Flaming blade of Agni, the god of fire.",
         "icon": "res://src/assets/sprites/inventory/weapon/aos_laevatain.png"
     },
     "sword_lightning": {
         "name": "Vjaya", "attrib": ["slash", "thunder"], "sell": 5500,
-        "type": "slash",
+        "template": "slash_dos",
         "stats": { "atk": 40, "int": 5 },
         "description": "Lightning sword of the storm god Indra.",
         "icon": "res://src/assets/sprites/inventory/weapon/sotn_vjaya.png"
     },
     "sword_holy": {
         "name": "Holy Sword", "attrib": ["slash", "holy"], "sell": 5500,
-        "type": "slash",
+        "template": "slash_dos",
         "stats": { "atk": 40, "int": 5 },
         "description": "Blessed cross-hilted sword that is strong against undead creatures.",
         "icon": "res://src/assets/sprites/inventory/weapon/sotn_holysword.png"
     },
     "sword_shotel": {
         "name": "Shotel", "attrib": ["slash"], "sell": 4000,
-        "type": "slash",
+        "template": "slash_dos",
         "stats": { "atk": 42 },
         "description": "Abyssinian curved sword.",
         "icon": "res://src/assets/sprites/inventory/weapon/sotn_shotel.png"
     },
     "sword_harpe": {
         "name": "Harpe", "attrib": ["slash"], "sell": 5500,
-        "type": "slash",
+        "template": "slash_dos",
         "stats": { "atk": 45 },
         "description": "Legends say this weapon was used to kill Medusa.",
         "icon": "res://src/assets/sprites/inventory/weapon/sotn_harpe.png"
     },
     "sword_poison": {
         "name": "Hrunting", "attrib": ["slash", "poison"], "sell": 6250,
-        "type": "slash",
+        "type": "slash", "delay": 5,
         "stats": { "atk": 52 },
         "description": "Poisoned blade preferred by assassins.",
-        "icon": "res://src/assets/sprites/inventory/weapon/aos_hrunting.png"
+        "icon": "res://src/assets/sprites/inventory/weapon/aos_hrunting.png",
+        "sprite": {
+            "path": "res://src/assets/sprites/weapon/aos_hrunting",
+            "frames": [
+                { "time_sprite": [7], "player_frames": [0], "images": [0] },
+                { "time_sprite": [2], "player_frames": [1], "images": [1] },
+                { "time_sprite": [7], "player_frames": [1], "images": [2], "fade_previous": 7 },
+                { "time_sprite": [5], "player_frames": [2], "images": [3,4], "opacity": [1,0], "fade_previous": 5, "trail": { "step": 1, "frames": 2 }, "interpolate_trail": { "num": 4, "frames": 5 } },
+                { "time_sprite": [5], "player_frames": [2], "images": [4], "opacity": [0] }
+            ],
+            "center": [[15,2], [32,18], [-1,20], [-1,3], [0,0]],
+            "effects": { "trail_overlay": "#fc589c", "trail_alpha": 0.8 }
+        }
+    },
+    "sword_glamdring": {
+        "name": "Glamdring", "attrib": ["slash"], "sell": 7000,
+        "template": "slash_dos",
+        "stats": { "atk": 55, "def": 2 },
+        "description": "Dark blade said to have been forged by elves.",
+        "icon": "res://src/assets/sprites/inventory/weapon/sotn_glamdring.png"
     },
     "sword_burtgang": {
         "name": "Burtgang", "attrib": ["slash"], "sell": 7250,
-        "type": "slash",
+        "template": "slash_dos",
         "stats": { "atk": 58, "def": 8, "con": 10 },
         "description": "Sword blessed with divinity. It is designed for defense first.",
         "icon": "res://src/assets/sprites/inventory/weapon/dos_burtgang.png"
     },
     "sword_bakatwa": {
         "name": "Bakatwa", "attrib": ["slash"], "sell": 2500,
-        "type": "slash",
+        "template": "slash_dos",
         "stats": { "atk": 68 },
         "description": "Simple, effective sword that is easy to wield.",
         "icon": "res://src/assets/sprites/inventory/weapon/sotn_bakatwa.png"
     },
     "sword_kaladbolg": {
         "name": "Kaladbolg", "attrib": ["slash"], "sell": 8250,
-        "type": "slash",
+        "template": "slash_dos",
         "stats": { "atk": 65, "int": 8 },
         "description": "Demonic sword tempered by fairies.",
         "icon": "res://src/assets/sprites/inventory/weapon/aos_kaladbolg.png"
     },
     "sword_jagdplaute": {
         "name": "Jagdplaute", "attrib": ["slash"], "sell": 3200,
-        "type": "slash",
+        "template": "slash_dos",
         "stats": { "atk": 75 },
         "description": "Elegant yet deadly sword.",
         "icon": "res://src/assets/sprites/inventory/weapon/cv2r_jagdplaute.png"
     },
     "sword_stellar": {
         "name": "Stellar Sword", "attrib": ["slash", "holy"], "sell": 17500,
-        "type": "slash",
+        "template": "slash_dos",
         "stats": { "atk": 70 },
         "description": "Family heirloom of the Kischine bloodline.",
         "icon": "res://src/assets/sprites/inventory/weapon/por_stellar.png"
     },
     "sword_mourneblade": {
         "name": "Mourneblade", "attrib": ["slash"], "sell": 15000,
-        "type": "slash",
+        "template": "slash_dos",
         "stats": { "atk": 80 },
         "description": "Cursed blade that feeds upon the souls of its enemies.",
         "icon": "res://src/assets/sprites/inventory/weapon/sotn_mourneblade.png"
     },
     "sword_damascus": {
         "name": "Damascus Sword", "attrib": ["slash"], "sell": 12500,
-        "type": "slash",
+        "template": "slash_dos",
         "stats": { "atk": 88 },
         "description": "Superior sword that never loses its razor-sharp edge.",
         "icon": "res://src/assets/sprites/inventory/weapon/cv2r_damascus.png"
@@ -491,167 +518,185 @@
 
 
 
-    "swing1_broad": {
+    "swing_broad": {
         "name": "Broadsword", "attrib": ["slash"], "sell": 200,
-        "type": "swing1", "delay": 10,
+        "template": "swing1_aos_medium_trailsprite",
         "stats": { "atk": 20 },
         "description": "Simple sword often used by mercenaries.",
         "icon": "res://src/assets/sprites/inventory/weapon/sotn_broadsword.png",
         "sprite": {
             "path": "res://src/assets/sprites/weapon/aos_broadsword",
-            "frames": [
-                { "time_sprite": [3,2,5], "player_frames": [1,2], "images": [0,1,2], "angle": [-45, 135] },
-                { "time_sprite": [2,2,6], "player_frames": [3], "images": [2,1,0], "angle": [135] }
-            ],
-            "center": [[14,22], [14,22], [14,22]]
+            "center": [[14,22]]
         }
     },
-    "swing1_scimitar": {
+    "swing_scimitar": {
         "name": "Scimitar", "attrib": ["slash"], "sell": 375,
-        "type": "swing1", "delay": 10,
+        "template": "swing1_aos_medium_notrailsprite",
         "stats": { "atk": 25 },
         "description": "Curved, single-edged sword.",
         "icon": "res://src/assets/sprites/inventory/weapon/aos_scimitar.png",
         "sprite": {
             "path": "res://src/assets/sprites/weapon/aos_scimitar",
-            "frames": [
-                { "time_sprite": [10], "player_frames": [1,2], "images": [0], "angle": [-45, 135] },
-                { "time_sprite": [10], "player_frames": [3], "images": [0], "angle": [135] }
-            ],
             "center": [[6,19]]
         }
     },
-    "swing2_claymore": {
+    "swing_claymore": {
         "name": "Claymore", "attrib": ["slash"], "sell": 550,
-        "type": "swing2", "stun": true,
+        "template": "swing2_dos_medium_notrailsprite",
         "stats": { "atk": 30 },
         "description": "Large Scottish blade.",
-        "icon": "res://src/assets/sprites/inventory/weapon/por_claymore.png"
+        "icon": "res://src/assets/sprites/inventory/weapon/por_claymore.png",
+        "sprite": {
+            "path": "res://src/assets/sprites/weapon/por_claymore",
+            "center": [[6,26]]
+        }
     },
-    "swing2_falchion": {
+    "swing_falchion": {
         "name": "Falchion", "attrib": ["slash"], "sell": 700,
-        "type": "swing2", "stun": true,
+        "template": "swing2_dos_medium_notrailsprite",
         "stats": { "atk": 42 },
         "description": "Norman sword with a wide, crescent-shaped blade.",
-        "icon": "res://src/assets/sprites/inventory/weapon/por_falchion.png"
+        "icon": "res://src/assets/sprites/inventory/weapon/por_falchion.png",
+        "sprite": {
+            "path": "res://src/assets/sprites/weapon/por_falchion",
+            "center": [[4,26]]
+        }
     },
-    "swing2_great": {
+    "swing_great": {
         "name": "Great Sword", "attrib": ["slash"], "sell": 1700,
-        "type": "swing2", "stun": true,
+        "template": "swing2_dos_medium_notrailsprite",
         "stats": { "atk": 55 },
         "description": "Massive sword designed to smash through its targets.",
-        "icon": "res://src/assets/sprites/inventory/weapon/por_greatsword.png"
+        "icon": "res://src/assets/sprites/inventory/weapon/por_greatsword.png",
+        "sprite": {
+            "path": "res://src/assets/sprites/weapon/por_greatsword",
+            "center": [[4,26]]
+        }
     },
-    "swing2_fire": {
+    "swing_fire": {
         "name": "Flamberge", "attrib": ["slash", "fire"], "sell": 2250,
-        "type": "swing2", "stun": true,
+        "template": "swing2_mix_notrailsprite",
         "stats": { "atk": 58 },
         "description": "Massive, flame-edged sword.",
-        "icon": "res://src/assets/sprites/inventory/weapon/sotn_flamberge.png"
+        "icon": "res://src/assets/sprites/inventory/weapon/sotn_flamberge.png",
+        "sprite": {
+            "path": "res://src/assets/sprites/weapon/sotn_flamberge",
+            "center": [[4,30]],
+            "effects": { "trail_overlay": "#fc7858", "trail_alpha": 0.8 }
+        }
     },
-    "swing2_durandal": {
+    "swing_durandal": {
         "name": "Durandal", "attrib": ["slash"], "sell": 2000,
-        "type": "swing2", "stun": true,
+        "template": "swing2_dos_medium_notrailsprite",
         "stats": { "atk": 61 },
         "description": "Sword of giants that was tempered by fairies.",
-        "icon": "res://src/assets/sprites/inventory/weapon/dos_durandal.png"
+        "icon": "res://src/assets/sprites/inventory/weapon/dos_durandal.png",
+        "sprite": {
+            "path": "res://src/assets/sprites/weapon/dos_durandal",
+            "center": [[6,26]]
+        }
     },
-    "swing1_joyeuse": {
+    "swing_joyeuse": {
         "name": "Joyeuse", "attrib": ["slash"], "sell": 25000,
-        "type": "swing1", "delay": 10,
+        "template": "swing1_aos_medium_trailsprite",
         "stats": { "atk": 64, "lck": 5 },
         "description": "Extravagantly beautiful sword. Quite valuable.",
         "icon": "res://src/assets/sprites/inventory/weapon/aos_joyeuse.png",
         "sprite": {
             "path": "res://src/assets/sprites/weapon/aos_joyeuse",
-            "frames": [
-                { "time_sprite": [3,2,5], "player_frames": [1,2], "images": [0,1,2], "angle": [-45, 135] },
-                { "time_sprite": [2,2,6], "player_frames": [3], "images": [2,1,0], "angle": [135] }
-            ],
-            "center": [[6,23], [7,23], [14,23]]
+            "center": [[14,23]],
+            "effects": { "trail_overlay": "#fcd884" }
         }
     },
-    "swing2_zweihander": {
+    "swing_zweihander": {
         "name": "Zweihander", "attrib": ["slash"], "sell": 2200,
-        "type": "swing2", "stun": true,
+        "template": "swing2_dos_medium_notrailsprite",
         "stats": { "atk": 69 },
         "description": "German two-handed sword.",
-        "icon": "res://src/assets/sprites/inventory/weapon/sotn_zweihander.png"
+        "icon": "res://src/assets/sprites/inventory/weapon/por_zweihander.png",
+        "sprite": {
+            "path": "res://src/assets/sprites/weapon/por_zweihander",
+            "center": [[7,29]]
+        }
     },
-    "swing2_obsidian": {
+    "swing_obsidian": {
         "name": "Obsidian Sword", "attrib": ["slash"], "sell": 5000,
-        "type": "swing2", "stun": true,
+        "template": "swing2_mix_notrailsprite",
         "stats": { "atk": 73 },
         "description": "Two-handed blade, forged of volcanic glass.",
-        "icon": "res://src/assets/sprites/inventory/weapon/sotn_obsidiansword.png"
+        "icon": "res://src/assets/sprites/inventory/weapon/sotn_obsidiansword.png",
+        "sprite": {
+            "path": "res://src/assets/sprites/weapon/sotn_obsidiansword",
+            "center": [[4,30]],
+            "effects": { "trail_overlay": "#58d858", "trail_alpha": 0.8 }
+        }
     },
-    "swing1_glamdring": {
-        "name": "Glamdring", "attrib": ["slash"], "sell": 8000,
-        "type": "swing1",
-        "stats": { "atk": 75, "def": 2 },
-        "description": "Dark blade said to have been forged by elves.",
-        "icon": "res://src/assets/sprites/inventory/weapon/sotn_glamdring.png"
-    },
-    "swing2_dainslef": {
+    "swing_dainslef": {
         "name": "Dainslef", "attrib": ["slash", "curse"], "sell": 5250,
-        "type": "swing2", "stun": true,
+        "template": "swing2_dos_medium_notrailsprite",
         "stats": { "atk": 72, "str": 6, "con": 6, "int": 6 },
         "description": "Demonic sword of finality.",
-        "icon": "res://src/assets/sprites/inventory/weapon/dos_dainslef.png"
+        "icon": "res://src/assets/sprites/inventory/weapon/dos_dainslef.png",
+        "sprite": {
+            "path": "res://src/assets/sprites/weapon/dos_dainslef",
+            "center": [[6,27]]
+        }
     },
-    "swing2_ascalon": {
+    "swing_ascalon": {
         "name": "Ascalon", "attrib": ["slash"], "sell": 5900,
-        "type": "swing2",
+        "template": "swing2_dos_medium_notrailsprite",
         "stats": { "atk": 80 },
         "description": "Famous sword of the dragon slayers.",
         "icon": "res://src/assets/sprites/inventory/weapon/dos_ascalon.png",
         "sprite": {
             "path": "res://src/assets/sprites/weapon/dos_ascalon",
-            "frames": [
-                { "time_sprite": [7], "player_frames": [0], "images": [0], "angle": [-135] },
-                { "time_sprite": [5], "player_frames": [1], "images": [0], "angle": [-115] },
-                { "time_sprite": [5], "player_frames": [2], "images": [0], "angle": [-90] },
-                { "time_sprite": [4], "player_frames": [3], "images": [0], "angle": [0] },
-                { "time_sprite": [21], "player_frames": [4], "images": [0], "angle": [90] },
-                { "time_sprite": [7], "player_frames": [4], "images": [0], "angle": [90], "opacity": [1,0] }
-            ],
-            "center": [[4,35]]
+            "center": [[4,27]]
         }
     },
-    "swing2_royal": {
+    "swing_royal": {
         "name": "Royal Sword", "attrib": ["slash"], "sell": 7200,
-        "type": "swing2", "stun": true,
+        "template": "swing2_dos_medium_notrailsprite", "stun": true,
         "stats": { "atk": 84, "str": 8, "con": 6, "int": 6 },
         "description": "Two-handed sword of kings.",
-        "icon": "res://src/assets/sprites/inventory/weapon/por_royal.png"
+        "icon": "res://src/assets/sprites/inventory/weapon/por_royal.png",
+        "sprite": {
+            "path": "res://src/assets/sprites/weapon/por_royalsword",
+            "center": [[6,29]],
+            "effects": { "trail_overlay": "#fcd884" }
+        }
     },
-    "swing2_final": {
+    "swing_final": {
         "name": "Final Sword", "attrib": ["slash"], "sell": 13750,
-        "type": "swing2", "stun": true,
+        "template": "swing2_dos_heavy_notrailsprite", "stun": true,
         "stats": { "atk": 120 },
         "description": "Blade favoured by the Final Guards.",
-        "icon": "res://src/assets/sprites/inventory/weapon/aos_final.png"
+        "icon": "res://src/assets/sprites/inventory/weapon/aos_final.png",
+        "sprite": {
+            "path": "res://src/assets/sprites/weapon/aos_finalsword",
+            "center": [[12,57]]
+        }
     },
-    "swing2_holy": {
+    "swing_holy": {
         "name": "Holy Claymore", "attrib": ["slash", "holy"], "sell": 75000,
-        "type": "swing2", "stun": true,
+        "template": "swing2_dos_medium_notrailsprite", "stun": true,
         "stats": { "atk": 100, "int": 10 },
         "description": "Enormous sword shaped like a cross.",
-        "icon": "res://src/assets/sprites/inventory/weapon/por_holyclaymore.png"
+        "icon": "res://src/assets/sprites/inventory/weapon/por_holyclaymore.png",
+        "sprite": {
+            "path": "res://src/assets/sprites/weapon/por_holyclaymore",
+            "center": [[6,32]]
+        }
     },
-    "swing1_claimh": {
+    "swing_claimh": {
         "name": "Claimh Solais", "attrib": ["slash", "holy"], "sell": 82500,
-        "type": "swing1", "delay": 10,
+        "template": "swing2_mix_trailsprite",
         "stats": { "atk": 82, "str": 6, "int": 6 },
         "description": "Indefatigable sword. Its blade glitters with light.",
         "icon": "res://src/assets/sprites/inventory/weapon/aos_claimh.png",
         "sprite": {
             "path": "res://src/assets/sprites/weapon/aos_claimhsolais",
-            "frames": [
-                { "time_sprite": [4,4,2], "player_frames": [1,2], "images": [0,2,1], "angle": [-45, 135] },
-                { "time_sprite": [3,7], "player_frames": [3], "images": [1,0], "angle": [135] }
-            ],
-            "center": [[15,43], [15,43], [15,43]]
+            "center": [[15,44]],
+            "effects": { "trail_overlay": "#fcf8fc" }
         }
     },
 
@@ -753,29 +798,25 @@
     
     "cudgel_axe": {
         "name": "Axe", "attrib": ["slash"], "sell": 200,
-        "type": "swing2", "stun": true,
+        "template": "swing2_dos_heavy_notrailsprite", "stun": true,
         "stats": { "atk": 50 },
         "description": "Heavy single-edged axe.",
         "icon": "res://src/assets/sprites/inventory/weapon/por_axe.png",
         "sprite": {
-            "path": "res://src/assets/sprites/weapon/por_axe",
-            "frames": [
-                { "time_sprite": [8], "player_frames": [0], "images": [0], "angle": [-135] },
-                { "time_sprite": [6], "player_frames": [1], "images": [0], "angle": [-115] },
-                { "time_sprite": [6], "player_frames": [2], "images": [0], "angle": [-90] },
-                { "time_sprite": [5], "player_frames": [3], "images": [0], "angle": [0] },
-                { "time_sprite": [26], "player_frames": [4], "images": [0], "angle": [90] },
-                { "time_sprite": [7], "player_frames": [4], "images": [0], "angle": [90], "opacity": [1,0] }
-            ],
+            "path": "res://src/assets/sprites/weapon/por_axe_original",
             "center": [[3,30]]
         }
     },
     "cudgel_mace": {
         "name": "Mace", "attrib": ["strike"], "sell": 200,
-        "type": "swing1", "stun": true,
+        "template": "swing2_dos_heavy_notrailsprite", "stun": true,
         "stats": { "atk": 45 },
         "description": "Large metal club.",
-        "icon": "res://src/assets/sprites/inventory/weapon/por_mace.png"
+        "icon": "res://src/assets/sprites/inventory/weapon/por_mace.png",
+        "sprite": {
+            "path": "res://src/assets/sprites/weapon/por_mace_original",
+            "center": [[5,27]]
+        }
     },
     "cudgel_holy": {
         "name": "Holy Rod", "attrib": ["strike", "holy"], "sell": 2500,
@@ -786,10 +827,14 @@
     },
     "cudgel_battle": {
         "name": "Battle Axe", "attrib": ["slash"], "sell": 1250,
-        "type": "swing2", "stun": true,
+        "template": "swing2_dos_heavy_notrailsprite", "stun": true,
         "stats": { "atk": 60 },
         "description": "Double-edged axe designed for combat.",
-        "icon": "res://src/assets/sprites/inventory/weapon/por_battleaxe.png"
+        "icon": "res://src/assets/sprites/inventory/weapon/por_battleaxe.png",
+        "sprite": {
+            "path": "res://src/assets/sprites/weapon/por_battleaxe_original",
+            "center": [[9,29]]
+        }
     },
     "cudgel_star": {
         "name": "Star Flail", "attrib": ["strike"], "sell": 4000,
@@ -807,45 +852,65 @@
     },
     "cudgel_bhuj": {
         "name": "Bhuj", "attrib": ["slash"], "sell": 3500,
-        "type": "swing2", "stun": true,
+        "template": "swing2_dos_heavy_notrailsprite", "stun": true,
         "stats": { "atk": 80 },
         "description": "Very heavy combat axe.",
-        "icon": "res://src/assets/sprites/inventory/weapon/por_bhuj.png"
+        "icon": "res://src/assets/sprites/inventory/weapon/por_bhuj.png",
+        "sprite": {
+            "path": "res://src/assets/sprites/weapon/por_bhuj_original",
+            "center": [[3,35]]
+        }
     },
     "cudgel_great": {
         "name": "Great Axe", "attrib": ["slash"], "sell": 4500,
-        "type": "swing2", "stun": true,
+        "template": "swing2_dos_heavy_notrailsprite", "stun": true,
         "stats": { "atk": 90 },
         "description": "Huge war axe. It is exceptionally heavy.",
-        "icon": "res://src/assets/sprites/inventory/weapon/por_greataxe.png"
+        "icon": "res://src/assets/sprites/inventory/weapon/por_greataxe.png",
+        "sprite": {
+            "path": "res://src/assets/sprites/weapon/por_greataxe_original",
+            "center": [[10,35]]
+        }
     },
     "cudgel_voulge": {
         "name": "Voulge", "attrib": ["slash", "dark"], "sell": 5750,
-        "type": "swing2", "stun": true,
+        "template": "swing2_dos_heavy_notrailsprite", "stun": true,
         "stats": { "atk": 100 },
         "description": "Axe with a hooked blade.",
-        "icon": "res://src/assets/sprites/inventory/weapon/por_voulge.png"
+        "icon": "res://src/assets/sprites/inventory/weapon/por_voulge.png",
+        "sprite": {
+            "path": "res://src/assets/sprites/weapon/por_voulge_original",
+            "center": [[15,36]]
+        }
     },
     "cudgel_mjollnjr": {
         "name": "Mjollnjr", "attrib": ["strike", "thunder"], "sell": 6750,
-        "type": "swing2", "stun": true,
+        "template": "swing2_dos_heavy_notrailsprite", "stun": true,
         "stats": { "atk": 40 },
         "description": "Mighty hammer of the thunder god.",
         "icon": "res://src/assets/sprites/inventory/weapon/dos_mjollnjr.png"
     },
     "cudgel_bullova": {
         "name": "Bullova", "attrib": ["slash"], "sell": 10000,
-        "type": "swing2", "stun": true,
+        "template": "swing2_dos_heavy_notrailsprite", "stun": true,
         "stats": { "atk": 115 },
         "description": "Axe with a crescent-shaped blade.",
-        "icon": "res://src/assets/sprites/inventory/weapon/por_bullova.png"
+        "icon": "res://src/assets/sprites/inventory/weapon/por_bullova.png",
+        "sprite": {
+            "path": "res://src/assets/sprites/weapon/por_bullova_original",
+            "center": [[10,45]]
+        }
     },
     "cudgel_gold": {
         "name": "Golden Axe", "attrib": ["slash"], "sell": 15000,
-        "type": "swing2", "stun": true,
+        "template": "swing2_dos_heavy_notrailsprite", "stun": true,
         "stats": { "atk": 130 },
         "description": "Axe with astounding destructive power, crafted from gold.",
-        "icon": "res://src/assets/sprites/inventory/weapon/por_goldenaxe.png"
+        "icon": "res://src/assets/sprites/inventory/weapon/por_goldenaxe.png",
+        "sprite": {
+            "path": "res://src/assets/sprites/weapon/por_goldenaxe_original",
+            "center": [[8,39]]
+        }
     },
 
 
@@ -880,17 +945,25 @@
     },
     "katana_onikiri": {
         "name": "Onikiri", "attrib": ["slash"], "sell": 6500,
-        "type": "swing1",
+        "template": "swing1_aos_light_trailsprite",
         "stats": { "atk": 43 },
         "description": "Carried to protect against demons.",
-        "icon": "res://src/assets/sprites/inventory/weapon/aos_onikiri.png"
+        "icon": "res://src/assets/sprites/inventory/weapon/aos_onikiri.png",
+        "sprite": {
+            "path": "res://src/assets/sprites/weapon/aos_onikiri",
+            "center": [[12,23]]
+        }
     },
     "katana_osafune": {
         "name": "Osafune", "attrib": ["slash"], "sell": 7250,
-        "type": "swing1",
+        "template": "swing1_aos_light_notrailsprite",
         "stats": { "atk": 48 },
         "description": "Japanese sword with the full name of Bizen Osafune Nagamitsu.",
-        "icon": "res://src/assets/sprites/inventory/weapon/dos_osafune.png"
+        "icon": "res://src/assets/sprites/inventory/weapon/dos_osafune.png",
+        "sprite": {
+            "path": "res://src/assets/sprites/weapon/aos_osafune",
+            "center": [[5,40]]
+        }
     },
     "katana_kunitsuna": {
         "name": "Kunitsuna", "attrib": ["slash"], "sell": 10000,
